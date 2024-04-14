@@ -5,6 +5,11 @@
   justify-content: space-between;
 }
 
+.button + .button {
+  margin-left: rem(10);
+}
+
+
 .longLabel {
   width: rem(64);
   font-size: rem(10);

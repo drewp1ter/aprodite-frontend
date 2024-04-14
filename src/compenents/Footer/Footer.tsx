@@ -16,35 +16,39 @@ export function Footer() {
       <Image className={styles.logoMini} src={logo.src} width={99} height={106} alt="" />
       <Logo className={styles.logo} />
       <div className={styles.contacts}>
-        <EnvelopeIcon />
-        <a href="mailto:oooargo2012@mail.ru">oooargo2012@mail.ru</a>
+        <div>
+          <EnvelopeIcon />
+          <a href="mailto:oooargo2012@mail.ru">oooargo2012@mail.ru</a>
+        </div>
+        <div>
+          <PhoneIcon />
+          <a href="tel:+79180777200">+7 (918) 0-777-200</a>
+        </div>
+        <div>
+          <PhoneIcon />
+          <a href="tel:+78615533070">+7 (861) 553-30-70</a>
+        </div>
       </div>
-      <div className={styles.contacts}>
-        <PhoneIcon />
-        <a href="tel:+79180777200">+7 (918) 0-777-200</a>
-      </div>
-      <div className={styles.contacts}>
-        <PhoneIcon />
-        <a href="tel:+78615533070">+7 (861) 553-30-70</a>
-      </div>
-      <p>
-        Вы также можете найти нас на
-        <br />
-        этих платформах!
-      </p>
       <div className={styles.socialMedia}>
-        <a href="#">
-          <WhatsAppIcon />
-        </a>
-        <a href="https://www.instagram.com/grk_afrodita/">
-          <InstagramIcon />
-        </a>
-        <a href="#">
-          <TelegramIcon />
-        </a>
-        <a href="https://vk.com/id288733184">
-          <VkIcon />
-        </a>
+        <p>
+          Вы также можете найти нас на
+          <br />
+          этих платформах!
+        </p>
+        <div className={styles.socialIcons}>
+          <a href="#">
+            <WhatsAppIcon />
+          </a>
+          <a href="https://www.instagram.com/grk_afrodita/">
+            <InstagramIcon />
+          </a>
+          <a href="#">
+            <TelegramIcon />
+          </a>
+          <a href="https://vk.com/id288733184">
+            <VkIcon />
+          </a>
+        </div>
       </div>
       <div className={styles.subfooter}>
         <CIcon />

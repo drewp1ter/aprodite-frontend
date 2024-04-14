@@ -1,4 +1,5 @@
 import { Logo } from '../Logo'
+import Link from 'next/link'
 import styles from './Header.module.scss'
 import CartIcon from './assets/cart.svg'
 import BurgerMenu from './assets/burger-menu.svg'
@@ -6,13 +7,36 @@ import BurgerMenu from './assets/burger-menu.svg'
 export function Header() {
   return (
     <header className={styles.header}>
-      <Logo className={styles.logo} height={65} width={65} />
+      <Logo className={styles.logo} />
+      <nav className={styles.navbarFull}>
+        <ul>
+          <li>
+            <a href="#">Гостиница</a>
+          </li>
+          <li>
+            <a href="#">Ресторан</a>
+          </li>
+          <li>
+            <a href="#">Летний ресторан</a>
+          </li>
+          <li>
+            <a href="#">Караоке</a>
+          </li>
+          <li data-active="true">
+            <a href="#">Доставка еды</a>
+          </li>
+        </ul>
+      </nav>
       <ul className={styles.navbar}>
         <li>
-          <CartIcon />
+          <Link rel="nofollow" href="#">
+            <CartIcon />
+          </Link>
         </li>
         <li>
-          <BurgerMenu />
+          <a href="#">
+            <BurgerMenu />
+          </a>
         </li>
       </ul>
     </header>

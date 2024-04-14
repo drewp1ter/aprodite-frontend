@@ -5,14 +5,6 @@
   flex-direction: column;
   position: relative;
   background: #6d645a;
-
-  p {
-    margin: rem(44) auto 0; 
-    font-size: rem(16);
-    line-height: per(24, 16);
-    text-align: center;
-    color: #D9D9D9;
-  }
 }
 
 .logo {
@@ -31,11 +23,12 @@
 
 .contacts {
   display: flex;
+  flex-direction: column;
   align-items: center;
   margin-inline: auto;
   margin-top: rem(36);
 
-  & + & {
+  div + div {
     margin-top: rem(8);
   }
 
@@ -49,9 +42,23 @@
 }
 
 .socialMedia {
+  margin: rem(44) auto 0; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  p {
+    font-size: rem(16);
+    line-height: per(24, 16);
+    text-align: center;
+    color: #D9D9D9;
+  }
+}
+
+.socialIcons {
+  margin-top: rem(10);
   display: flex;
   justify-content: space-between;
-  margin: rem(10) auto 0;
   
   a {
     display: block;

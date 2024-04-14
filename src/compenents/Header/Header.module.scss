@@ -10,18 +10,88 @@
   justify-content: flex-end;
   align-items: center;
   z-index: 1000;
+
+  @media screen and (min-width: 64em) {
+    height: rem(68);
+  }
+}
+
+.navbarFull {
+  display: none;
+
+  ul {
+    width: rem(598);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  li[data-active='true'] a {
+    background: #fff;
+    border-radius: 10px;
+    padding: rem(12) rem(20);
+    color: #1e1e1e;
+    font-size: rem(14);
+    line-height: 100%;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  a {
+    color: #fff;
+    font-size: rem(16);
+    line-height: per(24, 16);
+  }
+
+  @media screen and (min-width: 64em) {
+    display: block;
+
+    a:hover {
+      text-decoration: underline;
+    }
+  }
 }
 
 .logo {
+  width: 64px;
+  height: 64px;
   position: absolute;
   left: 30px;
   top: 50%;
   transform: translateY(-50%);
+
+  @media screen and (min-width: 64em) {
+    left: 112px;
+    width: 54px;
+    height: 54px;
+  }
 }
 
 .navbar {
   display: flex;
-  li {
+  li a {
     padding: 24px;
+  }
+
+  @media screen and (min-width: 64em) {
+    li {
+      margin-right: rem(88);
+    }
+
+    path {
+      transition: 0.3s ease fill;
+    }
+
+    a {
+      cursor: pointer;
+
+      &:hover path {
+        fill: #dfc597;
+      }
+    }
+
+    li + li {
+      display: none;
+    }
   }
 }

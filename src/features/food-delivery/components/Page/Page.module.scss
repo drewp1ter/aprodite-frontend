@@ -9,27 +9,67 @@
   max-width: per(390, 430);
   padding-bottom: rem(162);
 
+  @media screen and (min-width: 64em) {
+    max-width: per(1224, 1280);
+  }
+
+  @media screen and (min-width: 80em) {
+    max-width: rem(1224);
+  }
+
   h1 {
     margin-top: rem(24);
     font-size: rem(36);
     line-height: 100%;
+
+    @media screen and (min-width: 64em) {
+      margin-top: rem(40);
+    }
   }
+}
+
+.hero {
+  margin-top: rem(20);
+
+  @media screen and (min-width: 64em) {
+    margin-top: rem(36);
+    display: flex;
+    align-items: center;
+  }  
 }
 
 .categoriesButtons {
   margin-top: rem(28);
+
+  @media screen and (min-width: 64em) {
+    margin-top: 0;
+    margin-left: rem(36);
+    width: rem(390);
+  }
 }
 
 .searchBar {
-  margin-top: rem(20);
+  @media screen and (min-width: 64em) {
+    margin-top: rem(-20);
+    flex-grow: 1;
+  }
+}
+
+.categories {
+  max-width: rem(1224);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(rem(308), 1fr));
+  column-gap: rem(24);
+  row-gap: rem(34);
+  margin-top: rem(36);
+
+  @media screen and (min-width: 64em) {
+    margin-top: rem(64);
+  }
 }
 
 .category {
-  margin-top: rem(36);
-
-  & + & {
-    margin-top: rem(32);
-  }
+  width: unset;
 }
 
 .logo {
@@ -40,4 +80,12 @@
   left: -247px;
   width: 454px;
   height: 356px;
+
+  @media screen and (min-width: 64em) {
+    bottom: unset;
+    top: 200px;
+    left: -260px;
+    width: 407px;
+    height: 434px;
+  }
 }

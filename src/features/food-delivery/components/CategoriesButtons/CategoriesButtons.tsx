@@ -10,27 +10,27 @@ export interface Props {
 export function CategoriesButtons({ className }: Props) {
   return (
     <div className={clsx(styles.categoriesButtons, className)}>
-      <Label title="Все" position="bottom" align="center">
+      <Label className={styles.button} title="Все" position="bottom" align="center">
         <Link href="#">
           <Button.ForkKnife />
         </Link>
       </Label>
-      <Label title="Пицца" position="bottom" align="center">
+      <Label className={styles.button} title="Пицца" position="bottom" align="center">
         <Link href="#">
           <Button.Pizza />
         </Link>
       </Label>
-      <Label className={styles.longLabel} title="Морепродукты" position="bottom" align="center">
+      <Label className={clsx(styles.longLabel, styles.button)} title="Морепродукты" position="bottom" align="center">
         <Link href="#">
           <Button.Fish />
         </Link>
       </Label>
-      <Label title="Фастфуд" position="bottom" align="center">
+      <Label className={styles.button} title="Фастфуд" position="bottom" align="center">
         <Link href="#">
           <Button.Burger />
         </Link>
       </Label>
-      <Label title="Напитки" position="bottom" align="center">
+      <Label className={styles.button} title="Напитки" position="bottom" align="center">
         <Link href="#">
           <Button.Cup />
         </Link>
