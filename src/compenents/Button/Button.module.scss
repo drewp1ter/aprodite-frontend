@@ -1,0 +1,36 @@
+@import '/src/styles/helpers';
+
+.button {
+  height: rem(36);
+  outline: none;
+  border: none;
+  background: #A6763C;
+  border-radius: 10px;
+  font-size: rem(13);
+  color: #FFF;
+  line-height: per(16, 13);
+  font-weight: 700;
+}
+
+.filter {
+  width: 57px;
+  height: 42px;
+  background-color: transparent;
+  border: 1px solid #1E1E1E;
+  border-radius: 10px;
+}
+
+.quad {
+  width: 64px;
+  height: 64px;
+  border: 1px solid #1E1E1E;
+  border-radius: 10px;
+  background-color: transparent;
+
+  @media screen and (min-width: rem(1024)) {
+    &:hover {
+      cursor: pointer;
+      background-color: #dfc5979a;
+    } 
+  }
+}

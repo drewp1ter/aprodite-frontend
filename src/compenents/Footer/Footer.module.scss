@@ -1,0 +1,72 @@
+@import '/src/styles/helpers';
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  background: #6d645a;
+
+  p {
+    margin: rem(44) auto 0; 
+    font-size: rem(16);
+    line-height: per(24, 16);
+    text-align: center;
+    color: #D9D9D9;
+  }
+}
+
+.logo {
+  opacity: 0.05;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 454px;
+  height: 438px;
+}
+
+.logoMini {
+  margin: 44px auto 0;
+}
+
+.contacts {
+  display: flex;
+  align-items: center;
+  margin-inline: auto;
+  margin-top: rem(36);
+
+  & + & {
+    margin-top: rem(8);
+  }
+
+  a {
+    margin-left: rem(18);
+    color: #d9d9d9;
+    font-weight: 700;
+    font-size: rem(18);
+    line-height: per(28, 18);
+  }
+}
+
+.socialMedia {
+  display: flex;
+  justify-content: space-between;
+  margin: rem(10) auto 0;
+  
+  a {
+    display: block;
+    padding: 5px;
+  }
+}
+
+.subfooter{
+  display: flex;
+  align-items: center;
+  margin: rem(60) auto rem(26);
+
+  small {
+    margin-left: rem(8);
+    color: #d9d9d9;
+    font-size: rem(16);
+  }
+}

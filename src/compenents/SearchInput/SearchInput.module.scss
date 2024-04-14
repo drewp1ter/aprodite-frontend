@@ -1,0 +1,25 @@
+@import '/src/styles/helpers';
+
+.searchInput {
+  position: relative;
+  
+  input {
+    width: 100%;
+    outline: none;
+    border: 1px solid #1E1E1E;
+    border-radius: 10px;
+    background: transparent;
+    height: rem(42);
+    font-size: 1rem;
+    line-height: 100%;
+    padding-left: rem(38);
+    padding-right: rem(20);
+  }
+}
+
+.searchIcon {
+  position: absolute;
+  left: 9px;
+  top: 50%;
+  transform: translateY(-50%);
+}

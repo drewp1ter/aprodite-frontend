@@ -1,0 +1,29 @@
+@import 'reset-css';
+@import '_fonts';
+
+html,
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: Bellota, sans-serif;
+  color: #1E1E1E;
+  background: #F6F0E6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+*,
+:after,
+:before {
+  box-sizing: border-box;
+}

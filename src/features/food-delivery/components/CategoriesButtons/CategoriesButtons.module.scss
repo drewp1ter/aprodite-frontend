@@ -1,0 +1,11 @@
+@import '/src/styles/helpers';
+
+.categoriesButtons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.longLabel {
+  width: rem(64);
+  font-size: rem(10);
+}

@@ -1,0 +1,27 @@
+@import '/src/styles/helpers';
+
+.header {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  background: #6d645a;
+  height: 78px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  z-index: 1000;
+}
+
+.logo {
+  position: absolute;
+  left: 30px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.navbar {
+  display: flex;
+  li {
+    padding: 24px;
+  }
+}

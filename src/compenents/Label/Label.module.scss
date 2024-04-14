@@ -1,0 +1,37 @@
+@import '/src/styles/helpers';
+
+.label {
+  display: flex;
+  flex-direction: column;
+  font-size: rem(14);
+  line-height: per(16, 14);
+  
+  &[data-position="top"]::before {
+    content: attr(data-title);
+    margin-bottom: rem(8);
+  }
+
+  &[data-position="bottom"]::after {
+    content: attr(data-title);
+    margin-top: rem(8);
+  }
+
+  &[data-align='left'] {
+    &::before, &::after {
+      align-self: flex-start;
+    }
+  }
+
+  &[data-align='center'] {
+    &::before, &::after {
+      align-self: center;
+    }
+  }
+
+  &[data-align='right'] {
+    &::before, &::after {
+      align-self: flex-end;
+    }
+  }
+
+}

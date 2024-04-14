@@ -1,0 +1,13 @@
+@import '/src/styles/helpers';
+
+.searchBar {
+  display: flex;
+}
+
+.filterButton {
+  margin-left: rem(14);
+}
+
+.searchInput {
+  width: 100%;
+}

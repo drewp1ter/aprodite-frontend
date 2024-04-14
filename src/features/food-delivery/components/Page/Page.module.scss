@@ -1,0 +1,43 @@
+@import '/src/styles/helpers';
+
+.page {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 78px auto 0;
+  max-width: per(390, 430);
+  padding-bottom: rem(162);
+
+  h1 {
+    margin-top: rem(24);
+    font-size: rem(36);
+    line-height: 100%;
+  }
+}
+
+.categoriesButtons {
+  margin-top: rem(28);
+}
+
+.searchBar {
+  margin-top: rem(20);
+}
+
+.category {
+  margin-top: rem(36);
+
+  & + & {
+    margin-top: rem(32);
+  }
+}
+
+.logo {
+  position: absolute;
+  opacity: 0.2;
+  z-index: -1;
+  bottom: 0;
+  left: -247px;
+  width: 454px;
+  height: 356px;
+}
