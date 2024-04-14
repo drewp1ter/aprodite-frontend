@@ -6,20 +6,7 @@
   height: rem(178);
   border-radius: 18px;
   overflow: hidden;
-
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  h3 {
-    position: absolute;
-    left: rem(30);
-    bottom: rem(24);
-    font-size: rem(20);
-    color: #fff;
-  }
+  transition: 300ms ease box-shadow;
 
   &::before {
     content: '';
@@ -29,5 +16,28 @@
     bottom: 0;
     left: 0;
     background: linear-gradient(180deg, rgba(255, 255, 255, 0) 55%, rgba(0, 0, 0, 0.55) 100%);
+  }
+
+  @media screen and (min-width: 64em) {
+    &:hover {
+      box-shadow: 0 1.5rem 2rem rgba(0, 0, 0, 0.06);
+
+      img {
+        transform: scale3d(1.1, 1.1, 1);
+      }
+    }
+  }
+
+  img {
+    transition: transform 300ms ease-out;
+    object-fit: cover;
+  }
+
+  h3 {
+    position: absolute;
+    left: rem(30);
+    bottom: rem(24);
+    font-size: rem(20);
+    color: #fff;
   }
 }
