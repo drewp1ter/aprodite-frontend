@@ -11,6 +11,12 @@ body {
   font-family: Bellota, sans-serif;
   color: #1E1E1E;
   background: #F6F0E6;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex-grow: 1;
 }
 
 h1, h2, h3, h4, h5, h6 {
