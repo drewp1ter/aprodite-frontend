@@ -1,3 +1,4 @@
+export { AutoSlider } from './AutoSlider'
 export { Header } from './Header'
 export { Input } from './Input'
 export { SearchInput } from './SearchInput'
