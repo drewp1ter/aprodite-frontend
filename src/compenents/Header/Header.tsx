@@ -7,7 +7,9 @@ import BurgerMenu from './assets/burger-menu.svg'
 export function Header() {
   return (
     <header className={styles.header}>
-      <Logo className={styles.logo} />
+      <Link href="/">
+        <Logo className={styles.logo} />
+      </Link>
       <nav className={styles.navbarFull}>
         <ul>
           <li>

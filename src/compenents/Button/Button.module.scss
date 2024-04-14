@@ -18,6 +18,14 @@
   background-color: transparent;
   border: 1px solid #1E1E1E;
   border-radius: 10px;
+  transition: 300ms ease background-color;
+
+  @media screen and (min-width: rem(1024)) {
+    &:hover {
+      cursor: pointer;
+      background-color: #dfc5979a;
+    } 
+  }
 }
 
 .quad {
@@ -26,6 +34,7 @@
   border: 1px solid #1E1E1E;
   border-radius: 10px;
   background-color: transparent;
+  transition: 300ms ease background-color;
 
   @media screen and (min-width: rem(1024)) {
     &:hover {
