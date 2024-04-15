@@ -84,4 +84,4 @@ function formatPrice(price: number): string {
   return price.toLocaleString('ru-RU', { style: 'currency', currency: 'RUB', maximumFractionDigits: 0 })
 }
 
-export { Product }
+export default Product

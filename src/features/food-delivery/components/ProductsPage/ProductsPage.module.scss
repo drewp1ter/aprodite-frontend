@@ -9,12 +9,12 @@
   max-width: per(390, 430);
   padding-bottom: rem(162);
 
-  @media screen and (min-width: 64em) {
+  @include lg {
     margin: 68px auto 0;
     max-width: per(1224, 1280);
   }
 
-  @media screen and (min-width: 80em) {
+  @include xl {
     max-width: rem(1224);
   }
 
@@ -23,7 +23,7 @@
     font-size: rem(36);
     line-height: 100%;
 
-    @media screen and (min-width: 64em) {
+    @include lg {
       margin-top: rem(40);
     }
   }
@@ -32,7 +32,7 @@
 .hero {
   margin-top: rem(20);
 
-  @media screen and (min-width: 64em) {
+  @include lg {
     margin-top: rem(36);
     display: flex;
     align-items: center;
@@ -48,7 +48,7 @@
   width: 100%;
   max-width: rem(1224);
 
-  @media screen and (min-width: 64em) {
+  @include lg {
     display: block;
   }
 }
@@ -60,7 +60,7 @@
 .categoriesButtons {
   margin-top: rem(28);
 
-  @media screen and (min-width: 64em) {
+  @include lg {
     margin-top: 0;
     margin-left: rem(36);
     width: rem(390);
@@ -68,18 +68,10 @@
 }
 
 .searchBar {
-  @media screen and (min-width: 64em) {
+  @include lg {
     margin-top: rem(-20);
     flex-grow: 1;
   }
-}
-
-.products {
-  margin-top: rem(28);
-}
-
-.productCompact {
-  width: rem(190);
 }
 
 .logo {
@@ -91,7 +83,7 @@
   width: 454px;
   height: 356px;
 
-  @media screen and (min-width: 64em) {
+  @include lg {
     bottom: unset;
     top: 200px;
     left: -260px;

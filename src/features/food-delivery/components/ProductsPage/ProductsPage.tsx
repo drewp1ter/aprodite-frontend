@@ -2,9 +2,8 @@ import Image from 'next/image'
 import { Logo, AutoSlider } from '@/compenents'
 import { CategoriesButtons } from '../CategoriesButtons'
 import { SearchBar } from '../SearchBar'
-import { Product } from '../Product'
+import { ProductsList } from '../ProductsList'
 import slider from './assets/slider1.png'
-import productImg from './assets/product.png'
 import styles from './ProductsPage.module.scss'
 
 export function ProductsPage() {
@@ -20,19 +19,15 @@ export function ProductsPage() {
         <SearchBar className={styles.searchBar} />
         <CategoriesButtons className={styles.categoriesButtons} />
       </div>
-      <div className={styles.products}>
-        <Product
-          // className={styles.productCompact}
-          title="Мидии в тайском стиле"
-          imgSrc={productImg.src}
-          calories={476}
-          carbonhydrates={48.7}
-          fats={20.8}
-          proteins={23.5}
-          weight={200}
-          price={1650}
-        />
-      </div>
+      <ProductsList
+        products={[
+          { name: 'Мидии в тайском стиле', weight: 200, calories: 476, proteins: 23.5, fats: 20.8, carbonhydrates: 48.7, price: '1650', id: 1 },
+          { name: 'Мидии в тайском стиле', weight: 200, calories: 476, proteins: 23.5, fats: 20.8, carbonhydrates: 48.7, price: '1650', id: 2 },
+          { name: 'Мидии в тайском стиле', weight: 200, calories: 476, proteins: 23.5, fats: 20.8, carbonhydrates: 48.7, price: '1650', id: 3 },
+          { name: 'Мидии в тайском стиле', weight: 200, calories: 476, proteins: 23.5, fats: 20.8, carbonhydrates: 48.7, price: '1650', id: 4 }
+        ]}
+      />
+
       <Logo className={styles.logo} />
     </main>
   )

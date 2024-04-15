@@ -14,7 +14,7 @@
   align-items: center;
   z-index: 1;
 
-  @media screen and (min-width: 64em) {
+  @include lg {
     padding: rem(44) rem(118);
     flex-direction: row;
     justify-content: space-between;
@@ -30,7 +30,7 @@
   width: 454px;
   height: 438px;
 
-  @media screen and (min-width: 64em) {
+  @include lg {
     width: 320px;
     height: 310px;
   }  
@@ -42,7 +42,7 @@
   height: 106px;
   margin-top: 44px;
 
-  @media screen and (min-width: 64em) {
+  @include lg {
     margin-top: 0;
     width: 142px;
     height: 152px;
@@ -55,7 +55,7 @@
   align-items: center;
   margin-top: rem(36);
 
-  @media screen and (min-width: 64em) {
+  @include lg {
     margin-top: 0;
   }
 
@@ -78,7 +78,7 @@
   flex-direction: column;
   align-items: center;
 
-  @media screen and (min-width: 64em) {
+  @include lg {
     margin-top: 0;
   }
 
@@ -107,7 +107,7 @@
   margin: rem(60) auto rem(26);
   z-index: 1;
 
-  @media screen and (min-width: 64em) {
+  @include lg {
     margin: rem(26) auto;
   }
 

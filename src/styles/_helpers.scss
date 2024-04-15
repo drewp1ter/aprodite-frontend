@@ -9,3 +9,44 @@
   $result: math.div($pxOne, $pxTwo) * 100%;
   @return $result;
 }
+
+// Small devices such as large phones (640px and up)
+@mixin sm {
+  @media only screen and (min-width: 40em) {
+    @content;
+  }
+}
+
+// Medium devices such as tablets (768px and up)
+@mixin md {
+  @media only screen and (min-width: 48em) {
+    @content;
+  }
+}
+
+// Large devices such as laptops (1024px and up)
+@mixin lg {
+  @media only screen and (min-width: 64em) {
+    @content;
+  }
+}
+
+// Largest devices such as desktops (1280px and up)
+@mixin xl {
+  @media only screen and (min-width: 80em) {
+    @content;
+  }
+}
+
+@mixin gradient {
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 55%, rgba(0, 0, 0, 0.55) 100%);
+    z-index: 1;
+  }
+}

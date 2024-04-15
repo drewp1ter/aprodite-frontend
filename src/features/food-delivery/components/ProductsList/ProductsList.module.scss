@@ -1,0 +1,31 @@
+@import '/src/styles/helpers';
+
+.productsList {
+  margin-top: rem(32);
+}
+
+.selectAlign {
+  display: flex;
+  justify-content: flex-end;
+
+  @include sm {
+    display: none;
+  }
+}
+
+.content {
+  margin-top: rem(28);
+  display: grid;
+  grid-template-columns: 1fr;
+  row-gap: rem(52);
+
+  &[data-view='grid'] {
+    grid-template-columns: repeat(auto-fit, minmax(rem(188), 1fr));
+    gap: rem(56) rem(20);
+  }
+
+  @include sm {
+    grid-template-columns: repeat(auto-fit, minmax(rem(350), 1fr));
+    gap: rem(52) rem(20);
+  }
+}

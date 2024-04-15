@@ -11,7 +11,7 @@
   align-items: center;
   z-index: 1000;
 
-  @media screen and (min-width: 64em) {
+  @include lg {
     height: rem(68);
   }
 }
@@ -43,7 +43,7 @@
     line-height: per(24, 16);
   }
 
-  @media screen and (min-width: 64em) {
+  @include lg {
     display: block;
 
     a:hover {
@@ -60,7 +60,7 @@
   top: 50%;
   transform: translateY(-50%);
 
-  @media screen and (min-width: 64em) {
+  @include lg {
     left: 112px;
     width: 54px;
     height: 54px;
@@ -73,7 +73,7 @@
     padding: 24px;
   }
 
-  @media screen and (min-width: 64em) {
+  @include lg {
     li {
       margin-right: rem(88);
     }
