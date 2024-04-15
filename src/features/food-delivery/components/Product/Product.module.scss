@@ -1,15 +1,22 @@
 @import '/src/styles/helpers';
 
-.product {
+.product, .productCompact {
   display: flex;
   flex-direction: column;
 }
 
-.imgContainer {
+.imgContainer, .imgContainerCompact {
   border-radius: 10px;
   overflow: hidden;
   position: relative;
+}
+
+.imgContainer {
   height: rem(212);
+}
+
+.imgContainerCompact {
+  height: rem(174);
 }
 
 .title {
@@ -30,14 +37,36 @@
   }
 }
 
-.footer {
+.footer, .footerCompact {
   display: flex;
-  margin-top: rem(14);
   justify-content: space-between;
 }
 
-.info {
+.footer {
+  margin-top: rem(14);
+}
+
+.footerCompact {
+  margin-top: rem(12);
+  align-items: center;
+
+  b {
+    font-size: rem(26);
+    line-height: 100%;
+  }
+}
+
+.info, .infoCompact {
   display: flex;
+
+  small {
+    display: block;
+    line-height: per(16, 12);
+    opacity: 0.54;
+  }
+}
+
+.info {
   align-items: center;
 
   div + div {
@@ -45,14 +74,30 @@
   }
 
   small {
-    display: block;
     font-size: rem(12);
-    line-height: per(16, 12);
-    opacity: 0.54;
+  }
+}
+
+.infoCompact {
+  margin-top: rem(6);
+
+  div + div {
+    margin-left: rem(18);
+  }
+
+  small {
+    font-size: rem(8);
   }
 }
 
 .button {
   width: rem(94);
   height: rem(40);
+}
+
+.productCompact {
+  h3 {
+    font-size: rem(16);
+    margin-top: rem(12);
+  }
 }

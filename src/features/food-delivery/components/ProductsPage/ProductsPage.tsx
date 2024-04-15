@@ -22,6 +22,7 @@ export function ProductsPage() {
       </div>
       <div className={styles.products}>
         <Product
+          // className={styles.productCompact}
           title="Мидии в тайском стиле"
           imgSrc={productImg.src}
           calories={476}
