@@ -1,0 +1,58 @@
+@import '/src/styles/helpers';
+
+.product {
+  display: flex;
+  flex-direction: column;
+}
+
+.imgContainer {
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+  height: rem(212);
+}
+
+.title {
+  margin-top: rem(16);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  h3 {
+    font-size: rem(19);
+    line-height: 100%;
+  }
+
+  b {
+    font-size: rem(26);
+    line-height: 100%;
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+.footer {
+  display: flex;
+  margin-top: rem(14);
+  justify-content: space-between;
+}
+
+.info {
+  display: flex;
+  align-items: center;
+
+  div + div {
+    margin-left: rem(30);
+  }
+
+  small {
+    display: block;
+    font-size: rem(12);
+    line-height: per(16, 12);
+    opacity: 0.54;
+  }
+}
+
+.button {
+  width: rem(94);
+  height: rem(40);
+}

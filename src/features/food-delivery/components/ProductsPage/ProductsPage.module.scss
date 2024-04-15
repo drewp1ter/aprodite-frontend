@@ -1,6 +1,6 @@
 @import '/src/styles/helpers';
 
-.page {
+.productsPage {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -74,21 +74,8 @@
   }
 }
 
-.categories {
-  max-width: rem(1224);
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(rem(308), 1fr));
-  column-gap: rem(24);
-  row-gap: rem(34);
-  margin-top: rem(36);
-
-  @media screen and (min-width: 64em) {
-    margin-top: rem(64);
-  }
-}
-
-.category {
-  width: unset;
+.products {
+  margin-top: rem(28);
 }
 
 .logo {
