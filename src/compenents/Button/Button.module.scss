@@ -9,6 +9,16 @@
   color: #FFF;
   line-height: per(16, 13);
   font-weight: 700;
+
+  @include lg {
+    transition: 300ms ease all;
+
+    &:hover {
+      cursor: pointer;
+      background-color: #F2AC57;
+      box-shadow: 0 6px 10px rgba(255, 90, 57, 0.28);
+    } 
+  }
 }
 
 .filter {
@@ -17,9 +27,9 @@
   background-color: transparent;
   border: 1px solid #1E1E1E;
   border-radius: 10px;
-  transition: 300ms ease background-color;
 
-  @media screen and (min-width: rem(1024)) {
+  @include lg {
+    transition: 300ms ease background-color;
     &:hover {
       cursor: pointer;
       background-color: #dfc5979a;
@@ -33,9 +43,9 @@
   border: 1px solid #1E1E1E;
   border-radius: 10px;
   background-color: transparent;
-  transition: 300ms ease background-color;
 
-  @media screen and (min-width: rem(1024)) {
+  @include lg {
+    transition: 300ms ease background-color;
     &:hover {
       cursor: pointer;
       background-color: #dfc5979a;

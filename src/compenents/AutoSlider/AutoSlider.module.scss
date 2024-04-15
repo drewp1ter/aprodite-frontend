@@ -19,7 +19,10 @@
   height: 100%;
   overflow: hidden;
   display: inline-block;
-  border-radius: 20px;
+  
+  @include md {
+    border-radius: 20px;
+  }
 
   @include gradient;
 }
@@ -30,15 +33,24 @@
   bottom: 26px;
   text-align: center;
   height: 16px;
+
+  @include lg {
+    height: 8px;
+  }
 }
 
 .slideshowDot {
   display: inline-block;
-  height: 16px;
-  width: 16px;
+  height: 8px;
+  width: 8px;
   border-radius: 50%;
   cursor: pointer;
   background-color: #D9D9D9;
+
+  @include lg {
+    height: 16px;
+    width: 16px;
+  }
 
   &[data-active="true"] {
     background-color: #A6763C;

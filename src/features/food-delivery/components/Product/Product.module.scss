@@ -11,6 +11,19 @@
   position: relative;
 
   @include gradient;
+
+  img {
+    transition: transform 300ms ease-out;
+  }
+
+  &:hover {
+    cursor: pointer;
+    box-shadow: 0 1.5rem 2rem rgba(0, 0, 0, 0.06);
+
+    img {
+      transform: scale3d(1.1, 1.1, 1);
+    }
+  }
 }
 
 .imgContainer {
@@ -95,6 +108,7 @@
 .button {
   width: rem(94);
   height: rem(40);
+  margin-left: rem(8);
 }
 
 .productCompact {
