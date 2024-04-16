@@ -4,6 +4,7 @@ import { Button } from '@/compenents'
 import styles from './ProductDetails.module.scss'
 import productImg from './assets/product.png'
 import ArrowIcon from './assets/arrow.svg'
+import ArrowIcon2 from './assets/arrow2.svg'
 import CartIcon from './assets/cart.svg'
 import pepper from './assets/pepper.png'
 
@@ -49,6 +50,12 @@ export function ProductDetails({ className, product }: Props) {
           </Button>
         </div>
       </div>
+      <div className={styles.navprev}>
+        <ArrowIcon2 />
+      </div>
+      <div className={styles.navnext}>
+        <ArrowIcon2 />
+      </div>    
     </div>
   )
 }

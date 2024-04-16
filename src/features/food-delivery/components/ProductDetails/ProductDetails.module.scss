@@ -1,6 +1,7 @@
 @import '/src/styles/helpers';
 
 .productDetails {
+  position: relative;
   display: flex;
   min-width: rem(1036);
   align-items: stretch;
@@ -86,4 +87,25 @@
 
 .flagImg {
   margin-left: rem(21);
+}
+
+.navprev, .navnext {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background-color: #DFC597;
+  padding: 22px 27px 22px 22px;
+  cursor: pointer;
+}
+
+.navprev {
+  left: -40px;
+}
+
+.navnext {
+  right: -40px;
+  transform: translateY(-50%) rotate(180deg);
 }
