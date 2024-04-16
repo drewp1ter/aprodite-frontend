@@ -1,0 +1,89 @@
+@import '/src/styles/helpers';
+
+.productDetails {
+  display: flex;
+  min-width: rem(1036);
+  align-items: stretch;
+  background-color: #F6F0E6;
+  border-radius: 20px;
+  padding: rem(26) rem(76) rem(26) rem(26);
+  gap: rem(34); 
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-width: rem(368);
+
+  h3 {
+    font-size: rem(36);
+    line-height: per(46, 36);
+    margin-top: rem(32);
+  }
+
+  h5 {
+    margin-top: rem(26);
+    font-size: rem(16);
+    line-height: per(34, 16);
+  }
+
+  p {
+    font-weight: 400;
+    font-size: rem(14);
+    line-height: per(16, 14);
+    opacity: .54;
+  }
+}
+
+.backButton {
+  flex-shrink: 1;
+  background: transparent;
+  outline: none;
+  border: none;
+  font-size: rem(16);
+  line-height: 100%;
+  font-weight: 700;
+
+  svg {
+    margin-left: rem(8);
+  }
+}
+
+.productInfo {
+  display: flex;
+  align-items: center;
+  margin-top: rem(26);
+  gap: rem(46);
+
+  span, b {
+    display: block;
+    font-size: rem(12);
+    line-height: per(16, 12);
+    opacity: 0.54;
+  }
+
+  small {
+    font-size: rem(12);
+  }
+}
+
+.price {
+  font-size: rem(32);
+  line-height: per(35, 32);
+}
+
+.button {
+  margin-top: rem(38);
+  height: rem(64);
+  width: 100%;
+  font-size: rem(18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.flagImg {
+  margin-left: rem(21);
+}

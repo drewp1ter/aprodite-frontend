@@ -7,6 +7,7 @@ interface ProductDto {
   proteins: number
   fats: number
   carbonhydrates: number
+  imgSrc: string
   createdAt: Date
   updatedAt: Date
 }

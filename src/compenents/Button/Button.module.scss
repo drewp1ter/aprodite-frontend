@@ -5,10 +5,8 @@
   border: none;
   background: #A6763C;
   border-radius: 10px;
-  font-size: rem(13);
   color: #FFF;
   line-height: per(16, 13);
-  font-weight: 700;
 
   @include lg {
     transition: 300ms ease all;

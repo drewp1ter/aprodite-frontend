@@ -1,10 +1,9 @@
 import Image from 'next/image'
 import { Logo, AutoSlider } from '@/compenents'
-import { CategoriesButtons } from '../CategoriesButtons'
-import { SearchBar } from '../SearchBar'
-import { ProductsList } from '../ProductsList'
+import { CategoriesButtons, SearchBar, ProductsList } from '..'
 import slider from './assets/slider1.png'
 import styles from './ProductsPage.module.scss'
+import productImg from './assets/product.png'
 
 export function ProductsPage() {
   return (
@@ -23,10 +22,10 @@ export function ProductsPage() {
       <ProductsList
         className={styles.productsList}
         products={[
-          { name: 'Мидии в тайском стиле', weight: 200, calories: 476, proteins: 23.5, fats: 20.8, carbonhydrates: 48.7, price: '1650', id: 1 },
-          { name: 'Мидии в тайском стиле', weight: 200, calories: 476, proteins: 23.5, fats: 20.8, carbonhydrates: 48.7, price: '1650', id: 2 },
-          { name: 'Мидии в тайском стиле', weight: 200, calories: 476, proteins: 23.5, fats: 20.8, carbonhydrates: 48.7, price: '1650', id: 3 },
-          { name: 'Мидии в тайском стиле', weight: 200, calories: 476, proteins: 23.5, fats: 20.8, carbonhydrates: 48.7, price: '1650', id: 4 }
+          { name: 'Мидии в тайском стиле', imgSrc: productImg.src, createdAt: new Date(), updatedAt: new Date(), weight: 200, calories: 476, proteins: 23.5, fats: 20.8, carbonhydrates: 48.7, price: '1650', id: 1 },
+          { name: 'Мидии в тайском стиле', imgSrc: productImg.src, createdAt: new Date(), updatedAt: new Date(), weight: 200, calories: 476, proteins: 23.5, fats: 20.8, carbonhydrates: 48.7, price: '1650', id: 2 },
+          { name: 'Мидии в тайском стиле', imgSrc: productImg.src, createdAt: new Date(), updatedAt: new Date(), weight: 200, calories: 476, proteins: 23.5, fats: 20.8, carbonhydrates: 48.7, price: '1650', id: 3 },
+          { name: 'Мидии в тайском стиле', imgSrc: productImg.src, createdAt: new Date(), updatedAt: new Date(), weight: 200, calories: 476, proteins: 23.5, fats: 20.8, carbonhydrates: 48.7, price: '1650', id: 4 }
         ]}
       />
 
