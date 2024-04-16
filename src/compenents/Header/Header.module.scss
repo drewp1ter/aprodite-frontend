@@ -5,7 +5,7 @@
   width: 100%;
   top: 0;
   background: #6d645a;
-  height: 78px;
+  height: rem(78);
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -69,8 +69,20 @@
 
 .navbar {
   display: flex;
+  align-self: stretch;
+
+
+  li {
+    align-self: stretch;
+    display: flex;
+  }
+
   li a {
-    padding: 24px;
+    display: flex;
+    width: rem(70);
+    height: 100%;
+    justify-content: center;
+    align-items: center;
   }
 
   @include lg {

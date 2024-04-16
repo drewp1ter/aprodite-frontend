@@ -7,6 +7,12 @@ body {
   overflow-x: hidden;
 }
 
+@media screen and (max-width: 429px) {
+  html {
+    font-size: 3.72vw;
+  }
+}
+
 body {
   font-family: Bellota, sans-serif;
   color: #1E1E1E;
