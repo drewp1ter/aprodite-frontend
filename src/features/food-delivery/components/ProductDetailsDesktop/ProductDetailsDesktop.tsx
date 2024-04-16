@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import clsx from 'clsx'
 import { Button } from '@/compenents'
-import styles from './ProductDetails.module.scss'
+import styles from './ProductDetailsDesktop.module.scss'
 import productImg from './assets/product.png'
 import ArrowIcon from './assets/arrow.svg'
 import ArrowIcon2 from './assets/arrow2.svg'
@@ -13,7 +13,7 @@ export interface Props {
   product?: ProductDto
 }
 
-export function ProductDetails({ className, product }: Props) {
+export function ProductDetailsDesktop({ className, product }: Props) {
   return (
     <div className={clsx(styles.productDetails, className)}>
       <Image width={530} height={500} src={productImg.src} alt="" />

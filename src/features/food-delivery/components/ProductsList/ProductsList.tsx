@@ -2,7 +2,7 @@
 import { useState, useMemo } from 'react'
 import clsx from 'clsx'
 import { Modal } from '@/compenents'
-import { ProductCard, ProductDetails } from '..'
+import { ProductCard, ProductDetailsDesktop } from '..'
 import { ViewSelector, ViewType } from '../ViewSelector'
 import styles from './ProductsList.module.scss'
 
@@ -13,7 +13,7 @@ export interface Props {
 
 export function ProductsList({ className, products }: Props) {
   const [view, setView] = useState<ViewType>('list')
-  const [isModalOpened, setIsModalOpened] = useState(true)
+  const [isModalOpened, setIsModalOpened] = useState(false)
 
   const handleProductClick = (productId: number) => {
     setIsModalOpened(true)
@@ -37,7 +37,7 @@ export function ProductsList({ className, products }: Props) {
         {productsList}
       </div>
       <Modal open={isModalOpened} onClose={() => setIsModalOpened(false)}>
-        <ProductDetails />
+        <ProductDetailsDesktop />
       </Modal>  
     </div>
   )

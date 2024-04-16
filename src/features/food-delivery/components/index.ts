@@ -6,4 +6,4 @@ export { CategoriesButtons } from "./CategoriesButtons"
 export { SearchBar } from './SearchBar'
 export { ViewSelector } from './ViewSelector'
 export { ProductsList } from './ProductsList'
-export { ProductDetails } from './ProductDetails'
+export { ProductDetailsDesktop } from './ProductDetailsDesktop'
