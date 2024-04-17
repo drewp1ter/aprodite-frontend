@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import clsx from 'clsx'
-import { Button } from '@/compenents'
+import { Button, Modal } from '@/compenents'
 import styles from './ProductDetailsDesktop.module.scss'
 import productImg from './assets/product.png'
 import ArrowIcon from './assets/arrow.svg'

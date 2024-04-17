@@ -6,11 +6,11 @@ import styles from './Modal.module.scss'
 
 interface Props extends PropsWithChildren {
   className?: string
-  open?: boolean
+  isOpen?: boolean
   onClose?: () => void
 }
 
-export function Modal ({ children, onClose, className, open = false }: Props) {
+export function Modal ({ children, onClose, className, isOpen = false }: Props) {
   const handleEscPress = (event: KeyboardEvent) => onClose && event.key === 'Escape' && onClose()
 
   useEffect(() => {
@@ -18,10 +18,12 @@ export function Modal ({ children, onClose, className, open = false }: Props) {
     return () => window.removeEventListener('keydown', handleEscPress)
   })
 
+  if (!isOpen) return null
+
   return (
     <>
-      <div className={styles.backdrop} data-open={open} onClick={onClose} />
-      <div className={clsx(styles.container, className)} data-open={open}>
+      <div className={styles.backdrop} onClick={onClose} />
+      <div className={clsx(styles.container, className)}>
         <CloseIcon className={styles.closeIcon} onClick={onClose} />
         {children}
       </div>

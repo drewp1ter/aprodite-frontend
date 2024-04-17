@@ -10,16 +10,17 @@ import productImg from './assets/product.png'
 export interface Props {
   className?: string
   product?: ProductDto
+  onClickBack?: () => void
 }
 
-export function ProductDetailsMobile({ className, product }: Props) {
+export function ProductDetailsMobile({ className, product, onClickBack }: Props) {
   return (
     <div className={clsx(styles.productDetailsMobile, className)}>
       <div className={styles.imgContainer}>
         <Image fill src={productImg.src} alt="" />
       </div>
       <div className={styles.content}>
-        <Button className={styles.backButton}>
+        <Button className={styles.backButton} onClick={onClickBack}>
           Фастфуд
           <ArrowIcon />
         </Button>

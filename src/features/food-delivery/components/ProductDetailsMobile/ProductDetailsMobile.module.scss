@@ -1,20 +1,14 @@
 @import '/src/styles/helpers';
 
 .productDetailsMobile {
-  position: fixed;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 102;
 }
 
 .imgContainer {
   position: relative;
-  height: 100%;
+  flex-grow: 1;
   width: calc(100% + 1px);
   margin-bottom: rem(-28);
   left: -1px;
@@ -98,6 +92,7 @@ button.backButton {
 }
 
 button.cartButton {
+  font-size: rem(18);
   flex-grow: 1;
   display: flex;
   justify-content: center;

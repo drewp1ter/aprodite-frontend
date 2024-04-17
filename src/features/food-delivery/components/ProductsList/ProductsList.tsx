@@ -1,7 +1,7 @@
 'use client'
 import { useState, useMemo } from 'react'
 import clsx from 'clsx'
-import { Modal } from '@/compenents'
+import { Modal, FullScreen } from '@/compenents'
 import { ProductCard, ProductDetailsDesktop, ProductDetailsMobile } from '..'
 import { ViewSelector, ViewType } from '../ViewSelector'
 import styles from './ProductsList.module.scss'
@@ -11,12 +11,19 @@ export interface Props {
   products?: ProductDto[]
 }
 
+const DESKTOP_WIDTH_START = 1024
+
 export function ProductsList({ className, products }: Props) {
   const [view, setView] = useState<ViewType>('list')
   const [isModalOpened, setIsModalOpened] = useState(false)
+  const [isFullScreenOpened, setIsFullScreenOpened] = useState(false)
 
   const handleProductClick = (productId: number) => {
-    setIsModalOpened(true)
+    if (window.innerWidth < DESKTOP_WIDTH_START) {
+      setIsFullScreenOpened(true)
+    } else {
+      setIsModalOpened(true)
+    }
   }
 
   const productsList = useMemo(
@@ -36,10 +43,12 @@ export function ProductsList({ className, products }: Props) {
       <div data-view={view} className={styles.content}>
         {productsList}
       </div>
-      <Modal open={isModalOpened} onClose={() => setIsModalOpened(false)}>
+      <Modal isOpen={isModalOpened} onClose={() => setIsModalOpened(false)}>
         <ProductDetailsDesktop />
-      </Modal> 
-      <ProductDetailsMobile />
+      </Modal>
+      <FullScreen isOpen={isFullScreenOpened}>
+        <ProductDetailsMobile onClickBack={() => setIsFullScreenOpened(false)} />
+      </FullScreen>
     </div>
   )
 }

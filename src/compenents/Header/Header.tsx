@@ -11,7 +11,7 @@ export function Header() {
         <Logo className={styles.logo} />
       </Link>
       <nav className={styles.navbarFull}>
-        <ul>
+        <menu>
           <li>
             <a href="#">Гостиница</a>
           </li>
@@ -27,7 +27,7 @@ export function Header() {
           <li data-active="true">
             <a href="#">Доставка еды</a>
           </li>
-        </ul>
+        </menu>
       </nav>
       <ul className={styles.navbar}>
         <li>

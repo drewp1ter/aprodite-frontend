@@ -7,10 +7,6 @@
   position: fixed;
   background-color: rgba(166, 118, 60, 0.47);
   backdrop-filter: blur(8px);
-
-  &[data-open='false'] {
-    display: none;
-  }
 }
 
 .container {
@@ -20,10 +16,6 @@
   z-index: 110;
   position: fixed;
   transform: translate(-50%, -50%);
-
-  &[data-open='false'] {
-    display: none;
-  }
 }
 
 .closeIcon {
