@@ -5,11 +5,13 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  margin: 78px auto 0;
+  margin: rem(78) auto 0;
   max-width: per(390, 430);
   padding-bottom: rem(162);
+  min-height: calc(100svh - rem(78));
 
   @include lg {
+    min-height: unset;
     margin: 68px auto 0;
     max-width: per(1224, 1280);
   }

@@ -1,0 +1,72 @@
+@import '/src/styles/helpers';
+
+.productItem {
+  position: relative;
+  margin-top: rem(30);
+  display: flex;
+  gap: rem(10);
+  align-items: stretch;
+}
+
+.productImg {
+  position: relative;
+}
+
+.productInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-grow: 1;
+  padding-top: rem(24);
+  padding-bottom: rem(10);
+
+  h3 {
+    font-size: 1rem;
+    line-height: 100%;
+  }
+
+  h5 {
+    font-size: 1rem;
+    line-height: 100%;
+  }
+}
+
+.amount {
+  align-self: flex-end;
+  width: rem(122);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  h5 {
+    font-size: 1rem;
+    line-height: 100%;
+  }
+}
+
+@mixin line {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  translate: -50% -50%;
+  width: 10px;
+  border-bottom: 1px solid #fff;
+}
+
+.buttonDecrease,
+.buttonIncrease {
+  position: relative;
+  width: 29px;
+  height: 29px;
+  border-radius: 50%;
+
+  &::before {
+    @include line;
+  }
+}
+
+.buttonIncrease::after {
+  @include line;
+  rotate: 90deg;
+}
