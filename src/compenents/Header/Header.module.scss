@@ -9,7 +9,7 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  z-index: 1000;
+  z-index: 200;
 
   @include lg {
     height: rem(68);
@@ -70,7 +70,6 @@
 .navbar {
   display: flex;
   align-self: stretch;
-
 
   li {
     align-self: stretch;

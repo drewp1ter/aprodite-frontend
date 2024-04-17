@@ -15,13 +15,21 @@ export interface Props {
 export function ProductDetailsMobile({ className, product }: Props) {
   return (
     <div className={clsx(styles.productDetailsMobile, className)}>
-      <Button className={styles.backButton}>Фастфуд<ArrowIcon/></Button>
-      {/* <Image fill src={productImg.src} alt='' /> */}
+      <div className={styles.imgContainer}>
+        <Image fill src={productImg.src} alt="" />
+      </div>
       <div className={styles.content}>
+        <Button className={styles.backButton}>
+          Фастфуд
+          <ArrowIcon />
+        </Button>
         <div>
           <h3>Мидии в тайском стиле</h3>
           <h5>Подробности</h5>
-          <p>в соусе из кокосового молока с тайскими травами, сервируются в соусе из кокосового молока с тайскими травами, сервируются. сервируются в соусе из кокосового молока с тайскими травами, сервируются.</p>
+          <p>
+            в соусе из кокосового молока с тайскими травами, сервируются в соусе из кокосового молока с тайскими травами, сервируются. сервируются в
+            соусе из кокосового молока с тайскими травами, сервируются.
+          </p>
           <div className={styles.productInfo}>
             <div>
               <span>Вес</span>
