@@ -10,24 +10,24 @@
   padding-bottom: rem(162);
   min-height: calc(100svh - rem(78));
 
-  @include lg {
-    min-height: unset;
-    margin: 68px auto 0;
-    max-width: per(1224, 1280);
-  }
-
-  @media screen and (min-width: 80em) {
-    max-width: rem(1294);
-  }
-
   h1 {
     margin-top: rem(24);
     font-size: rem(36);
     line-height: 100%;
+  }
 
-    @include lg {
+  @include lg {
+    min-height: unset;
+    margin: rem(68) auto 0;
+    max-width: per(1224, 1280);
+
+    h1 {
       margin-top: rem(40);
     }
+  }
+
+  @include xl {
+    max-width: rem(1294);
   }
 }
 
