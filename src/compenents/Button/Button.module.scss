@@ -66,6 +66,10 @@
     background-color: #d9d9d9;
   }
 
+  span, input {
+    display: none;
+  }
+
   input:checked + span {
     display: block;
     width: rem(12);
@@ -74,10 +78,6 @@
     position: absolute;
     border-radius: 50%;
     left: rem(5);
-  }
-
-  input {
-    display: none;
   }
 
   @include lg {

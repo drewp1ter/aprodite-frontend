@@ -68,8 +68,8 @@ Button.Radio = function ({ className, children, ...rest }: Omit<ComponentProps<'
   return (
     <label className={clsx(styles.radio, className)}>
       <input {...rest} type='radio' />
-      {children}
       <span />
+      {children}
     </label>
   )
 }
