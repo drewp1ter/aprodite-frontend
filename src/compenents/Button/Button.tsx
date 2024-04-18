@@ -1,4 +1,5 @@
-import clsx from "clsx"
+import { ComponentProps } from 'react'
+import clsx from 'clsx'
 import styles from './Button.module.scss'
 import FilterIcon from './assets/filter-icon.svg'
 import ForkKnifeIcon from './assets/fork-knife.svg'
@@ -7,7 +8,7 @@ import FishIcon from './assets/fish.svg'
 import BurgerIcon from './assets/burger.svg'
 import CupIcon from './assets/cup.svg'
 
-function Button({ children, className, ...rest }: JSX.IntrinsicElements['button']) {
+function Button({ children, className, ...rest }: ComponentProps<'button'>) {
   return (
     <button className={clsx(styles.button, className)} {...rest}>
       {children}
@@ -15,7 +16,7 @@ function Button({ children, className, ...rest }: JSX.IntrinsicElements['button'
   )
 }
 
-Button.Filter = function({ className, ...rest }: Omit<JSX.IntrinsicElements['button'], 'children'>) {
+Button.Filter = function ({ className, ...rest }: Omit<ComponentProps<'button'>, 'children'>) {
   return (
     <button className={clsx(styles.filter, className)} {...rest}>
       <FilterIcon />
@@ -23,7 +24,7 @@ Button.Filter = function({ className, ...rest }: Omit<JSX.IntrinsicElements['but
   )
 }
 
-Button.ForkKnife = function({ className, ...rest }: Omit<JSX.IntrinsicElements['button'], 'children'>) {
+Button.ForkKnife = function ({ className, ...rest }: Omit<ComponentProps<'button'>, 'children'>) {
   return (
     <button className={clsx(styles.quad, className)} {...rest}>
       <ForkKnifeIcon />
@@ -31,7 +32,7 @@ Button.ForkKnife = function({ className, ...rest }: Omit<JSX.IntrinsicElements['
   )
 }
 
-Button.Pizza = function({ className, ...rest }: Omit<JSX.IntrinsicElements['button'], 'children'>) {
+Button.Pizza = function ({ className, ...rest }: Omit<ComponentProps<'button'>, 'children'>) {
   return (
     <button className={clsx(styles.quad, className)} {...rest}>
       <PizzaIcon />
@@ -39,7 +40,7 @@ Button.Pizza = function({ className, ...rest }: Omit<JSX.IntrinsicElements['butt
   )
 }
 
-Button.Fish = function({ className, ...rest }: Omit<JSX.IntrinsicElements['button'], 'children'>) {
+Button.Fish = function ({ className, ...rest }: Omit<ComponentProps<'button'>, 'children'>) {
   return (
     <button className={clsx(styles.quad, className)} {...rest}>
       <FishIcon />
@@ -47,7 +48,7 @@ Button.Fish = function({ className, ...rest }: Omit<JSX.IntrinsicElements['butto
   )
 }
 
-Button.Burger = function({ className, ...rest }: Omit<JSX.IntrinsicElements['button'], 'children'>) {
+Button.Burger = function ({ className, ...rest }: Omit<ComponentProps<'button'>, 'children'>) {
   return (
     <button className={clsx(styles.quad, className)} {...rest}>
       <BurgerIcon />
@@ -55,11 +56,21 @@ Button.Burger = function({ className, ...rest }: Omit<JSX.IntrinsicElements['but
   )
 }
 
-Button.Cup = function({ className, ...rest }: Omit<JSX.IntrinsicElements['button'], 'children'>) {
+Button.Cup = function ({ className, ...rest }: Omit<ComponentProps<'button'>, 'children'>) {
   return (
     <button className={clsx(styles.quad, className)} {...rest}>
       <CupIcon />
     </button>
+  )
+}
+
+Button.Radio = function ({ className, children, ...rest }: Omit<ComponentProps<'input'>, 'type'>) {
+  return (
+    <label className={clsx(styles.radio, className)}>
+      <input {...rest} type='radio' />
+      {children}
+      <span />
+    </label>
   )
 }
 

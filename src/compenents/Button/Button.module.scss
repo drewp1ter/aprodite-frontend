@@ -3,9 +3,9 @@
 .button {
   outline: none;
   border: none;
-  background: #A6763C;
+  background: #a6763c;
   border-radius: 10px;
-  color: #FFF;
+  color: #fff;
   line-height: per(16, 13);
 
   @include lg {
@@ -13,9 +13,9 @@
 
     &:hover {
       cursor: pointer;
-      background-color: #F2AC57;
+      background-color: #f2ac57;
       box-shadow: 0 6px 10px rgba(255, 90, 57, 0.28);
-    } 
+    }
   }
 }
 
@@ -23,7 +23,7 @@
   width: 57px;
   height: 42px;
   background-color: transparent;
-  border: 1px solid #1E1E1E;
+  border: 1px solid #1e1e1e;
   border-radius: 10px;
 
   @include lg {
@@ -31,14 +31,14 @@
     &:hover {
       cursor: pointer;
       background-color: #dfc5979a;
-    } 
+    }
   }
 }
 
 .quad {
   width: 64px;
   height: 64px;
-  border: 1px solid #1E1E1E;
+  border: 1px solid #1e1e1e;
   border-radius: 10px;
   background-color: transparent;
 
@@ -47,6 +47,40 @@
     &:hover {
       cursor: pointer;
       background-color: #dfc5979a;
-    } 
+    }
+  }
+}
+
+.radio {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: rem(8);
+
+  &::before {
+    content: '';
+    display: block;
+    width: rem(22);
+    height: rem(22);
+    border-radius: 50%;
+    background-color: #d9d9d9;
+  }
+
+  input:checked + span {
+    display: block;
+    width: rem(12);
+    height: rem(12);
+    background-color: #A6763C;
+    position: absolute;
+    border-radius: 50%;
+    left: rem(5);
+  }
+
+  input {
+    display: none;
+  }
+
+  @include lg {
+    cursor: pointer;
   }
 }

@@ -1,0 +1,31 @@
+@import '/src/styles/helpers';
+
+.steps {
+  display: flex;
+  gap: rem(32);
+}
+
+.step {
+  display: flex;
+  gap: rem(8);
+  align-items: center;
+  font-size: 1rem;
+  line-height: 100%;
+
+  div {
+    width: rem(32);
+    height: rem(32);
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: #dfc597;
+    opacity: 0.5;
+    font-weight: 700;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &[data-active="true"] div {
+    opacity: 1;
+  }
+}

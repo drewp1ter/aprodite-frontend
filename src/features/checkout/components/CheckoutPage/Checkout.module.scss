@@ -1,0 +1,93 @@
+@import '/src//styles/helpers';
+
+.checkoutPage {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 78px auto 0;
+  max-width: per(390, 430);
+  padding-bottom: rem(88);
+  min-height: calc(100svh - rem(78));
+
+  h1 {
+    margin-top: rem(44);
+    font-size: rem(30);
+  }
+}
+
+.steps {
+  margin-top: rem(24);
+}
+
+.fieldset {
+  display: flex;
+  flex-direction: column;
+
+  input {
+    width: 100%;
+  }
+}
+
+.nameAndPhone {
+  margin-top: rem(48);
+  display: flex;
+  gap: rem(20)
+}
+
+.fieldsRow {
+  margin-top: rem(24);
+}
+
+.geoButton {
+  margin-top: rem(24);
+  height: rem(36);
+}
+
+.radioButtons {
+  margin-top: rem(44);
+  display: flex;
+  flex-direction: column;
+  gap: rem(8);
+}
+
+.cards {
+  width: rem(284);
+  margin: rem(34) auto 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.summary {
+  margin-top: rem(78);
+  border: 1px solid #A6763C;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  padding: rem(14) rem(20) rem(16);
+
+  h6 {
+    font-size: rem(12);
+    line-height: per(16, 12);
+    color: #000;
+  }
+
+  button {
+    margin: rem(18) rem(48) 0;
+    height: rem(35);
+    font-size: rem(12);
+  }
+}
+
+.total {
+  margin-top: rem(14);
+  display: flex;
+  justify-content: space-between;
+
+  div span {
+    display: block;
+    font-size: rem(12);
+    line-height: per(20, 12);
+  }
+}
