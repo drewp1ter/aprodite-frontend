@@ -2,6 +2,7 @@ export { Page } from './Page'
 export { ProductCard } from './ProductCard'
 export { ProductsPage } from './ProductsPage'
 export { Category } from './Category'
+export { Categories } from './Categories'
 export { CategoriesButtons } from "./CategoriesButtons"
 export { SearchBar } from './SearchBar'
 export { ViewSelector } from './ViewSelector'

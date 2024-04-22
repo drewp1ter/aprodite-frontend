@@ -6,9 +6,30 @@
   height: rem(178);
   border-radius: 18px;
   overflow: hidden;
-  transition: 300ms ease box-shadow;
+  transition: 300ms ease all;
 
-  @include gradient;
+  img {
+    opacity: 0;
+    transition: 300ms ease opacity;
+  }
+
+  &[data-status='ok'] {
+    svg {
+      display: none;
+    }
+
+    img {
+      opacity: 1;
+    }
+
+    @include gradient;
+  }
+  
+  &[data-status='error'] {
+    img {
+      opacity: 0;
+    }
+  }
 
   @include lg {
     &:hover {
@@ -31,5 +52,6 @@
     bottom: rem(24);
     font-size: rem(20);
     color: #fff;
+    z-index: 1;
   }
 }

@@ -1,7 +1,6 @@
 import Image from 'next/image'
 import { Logo, AutoSlider } from '@/compenents'
-import { Category, CategoriesButtons, SearchBar } from '..'
-import pizza from './assets/1225.png'
+import { Categories, CategoriesButtons, SearchBar } from '..'
 import slider from './assets/slider1.png'
 import styles from './Page.module.scss'
 
@@ -18,11 +17,7 @@ export function Page() {
         <SearchBar className={styles.searchBar} />
         <CategoriesButtons className={styles.categoriesButtons} />
       </div>
-      <div className={styles.categories}>
-        <Category className={styles.category} title="Пицца" imgSrc={pizza.src} url="" />
-        <Category className={styles.category} title="Пицца" imgSrc={pizza.src} url="" />
-        <Category className={styles.category} title="Пицца" imgSrc={pizza.src} url="" />
-      </div>
+      <Categories className={styles.categories} />
       <Logo className={styles.logo} />
     </main>
   )

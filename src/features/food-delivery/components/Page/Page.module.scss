@@ -78,19 +78,11 @@
 
 .categories {
   max-width: rem(1294);
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(rem(308), 1fr));
-  column-gap: rem(24);
-  row-gap: rem(34);
   margin-top: rem(36);
 
   @include lg {
     margin-top: rem(64);
   }
-}
-
-.category {
-  width: unset;
 }
 
 .logo {

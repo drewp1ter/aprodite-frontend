@@ -7,7 +7,18 @@ const nextConfig = {
     })
 
     return config
-  }
+  },
+
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '102922.selcdn.ru',
+        port: '',
+        pathname: '**',
+      },
+    ],
+  },
 }
 
 export default nextConfig

@@ -1,0 +1,12 @@
+@import '/src/styles/helpers';
+
+.categories {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(rem(308), 1fr));
+  column-gap: rem(24);
+  row-gap: rem(34);
+}
+
+.category {
+  width: unset;
+}
