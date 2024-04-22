@@ -3,3 +3,8 @@ interface BaseDto {
   createdAt: Date
   updatedAt: Date
 }
+
+interface ImageDto extends BaseDto {
+  url: string
+  type: string
+}

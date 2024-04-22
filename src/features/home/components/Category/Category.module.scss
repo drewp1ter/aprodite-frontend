@@ -8,11 +8,6 @@
   overflow: hidden;
   transition: 300ms ease all;
 
-  img {
-    opacity: 0;
-    transition: 300ms ease opacity;
-  }
-
   &[data-status='ok'] {
     svg {
       display: none;
@@ -43,6 +38,7 @@
 
   img {
     transition: transform 300ms ease-out;
+    opacity: 0;
     object-fit: cover;
   }
 

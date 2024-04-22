@@ -1,3 +1,3 @@
-import { ProductsPage } from '@/features/food-delivery/components'
+import { Page } from '@/features/products/components'
 
-export default ProductsPage
+export default Page

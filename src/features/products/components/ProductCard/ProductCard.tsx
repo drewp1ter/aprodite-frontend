@@ -25,7 +25,7 @@ function ProductCard({ className, product, onCartButtonClick, onImageClick }: Pr
   return (
     <div className={clsx(styles.product, className)}>
       <div onClick={handleImageClick} className={styles.imgContainer}>
-        <Image fill src={product.imgSrc} alt="" />
+        <Image fill src={product.images[0]?.url} alt={product.name} />
       </div>
 
       <div className={styles.title}>
@@ -57,7 +57,7 @@ ProductCard.Compact = function ProductCardCompact({ className, product, onCartBu
   return (
     <div className={clsx(styles.productCompact, className)}>
       <div className={styles.imgContainerCompact}>
-        <Image onClick={handleImageClick} fill src={product.imgSrc} alt="" />
+        <Image onClick={handleImageClick} fill src={product.images[0]?.url} alt="" />
       </div>
       <h3>{product.name}</h3>
 

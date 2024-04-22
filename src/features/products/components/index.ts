@@ -1,10 +1,5 @@
-export { Page } from './Page'
 export { ProductCard } from './ProductCard'
-export { ProductsPage } from './ProductsPage'
-export { Category } from './Category'
-export { Categories } from './Categories'
-export { CategoriesButtons } from "./CategoriesButtons"
-export { SearchBar } from './SearchBar'
+export { Page } from './Page'
 export { ViewSelector } from './ViewSelector'
 export { ProductsList } from './ProductsList'
 export { ProductDetailsDesktop } from './ProductDetailsDesktop'

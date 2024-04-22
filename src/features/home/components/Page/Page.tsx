@@ -1,6 +1,6 @@
 import Image from 'next/image'
-import { Logo, AutoSlider } from '@/compenents'
-import { Categories, CategoriesButtons, SearchBar } from '..'
+import { Logo, AutoSlider, SearchBar } from '@/compenents'
+import { Categories, CategoriesButtons } from '..'
 import slider from './assets/slider1.png'
 import styles from './Page.module.scss'
 
