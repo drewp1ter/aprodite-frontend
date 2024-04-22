@@ -1,5 +1,6 @@
 'use client'
-import { useEffect, PropsWithChildren } from 'react'
+import { useEffect, useState, PropsWithChildren } from 'react'
+import { createPortal } from 'react-dom'
 import clsx from 'clsx'
 import CloseIcon from './assets/closeIcon.svg'
 import styles from './Modal.module.scss'
@@ -10,17 +11,19 @@ interface Props extends PropsWithChildren {
   onClose?: () => void
 }
 
-export function Modal ({ children, onClose, className, isOpen = false }: Props) {
+export function Modal({ children, onClose, className, isOpen = false }: Props) {
   const handleEscPress = (event: KeyboardEvent) => onClose && event.key === 'Escape' && onClose()
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => setMounted(true), []);
+
 
   useEffect(() => {
     window.addEventListener('keydown', handleEscPress)
     return () => window.removeEventListener('keydown', handleEscPress)
   })
 
-  if (!isOpen) return null
-
-  return (
+  const modal = (
     <>
       <div className={styles.backdrop} onClick={onClose} />
       <div className={clsx(styles.container, className)}>
@@ -29,4 +32,8 @@ export function Modal ({ children, onClose, className, isOpen = false }: Props) 
       </div>
     </>
   )
+
+  if (!isOpen || !mounted) return null
+
+  return createPortal(modal, document.body)
 }
