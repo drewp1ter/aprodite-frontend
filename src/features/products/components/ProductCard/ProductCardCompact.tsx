@@ -3,6 +3,7 @@ import { ReactNode } from 'react'
 import Image from 'next/image'
 import clsx from 'clsx'
 import { Button } from '@/compenents'
+import formatPrice from '@/utils/formatPrice'
 import CartIcon from './assets/cart.svg'
 import styles from './ProductCard.module.scss'
 import { ProductCardBase, Props } from './ProductCardBase'
@@ -30,7 +31,7 @@ export class ProductCardCompact extends ProductCardBase {
         {this.supplementFacts({ product, className: styles.infoCompact })}
 
         <div className={styles.footerCompact}>
-          <b>{this.formatPrice(product.price)}</b>
+          <b>{formatPrice(product.price)}</b>
           <Button className={styles.button} onClick={this.handleCartButtonClick}>
             <CartIcon />
           </Button>

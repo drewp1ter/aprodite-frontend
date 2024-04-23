@@ -4,6 +4,7 @@ import Image from 'next/image'
 import clsx from 'clsx'
 import { Button } from '@/compenents'
 import CartIcon from './assets/cart.svg'
+import formatPrice from '@/utils/formatPrice'
 import styles from './ProductCard.module.scss'
 import { ProductCardBase } from './ProductCardBase'
 import { ProductCardCompact } from './ProductCardCompact'
@@ -21,7 +22,7 @@ export class ProductCard extends ProductCardBase {
 
         <div className={styles.title}>
           <h3>{product.name}</h3>
-          <b>{this.formatPrice(product.price)}</b>
+          <b>{formatPrice(product.price)}</b>
         </div>
 
         <div className={styles.footer}>

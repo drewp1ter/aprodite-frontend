@@ -1,50 +1,58 @@
 import Image from 'next/image'
 import clsx from 'clsx'
-import { Button, Modal } from '@/compenents'
-import styles from './ProductDetailsDesktop.module.scss'
+import { Button } from '@/compenents'
+import formatPrice from '@/utils/formatPrice'
 import productImg from './assets/product.png'
 import ArrowIcon from './assets/arrow.svg'
 import ArrowIcon2 from './assets/arrow2.svg'
 import CartIcon from './assets/cart.svg'
 import pepper from './assets/pepper.png'
+import styles from './ProductDetailsDesktop.module.scss'
 
 export interface Props {
   className?: string
+  categoryName?: string
   product?: ProductDto
+  onClickBack?: React.MouseEventHandler<HTMLDivElement>
+  onClickAddToCart?: React.MouseEventHandler<HTMLButtonElement>
+  onClickPrev?: React.MouseEventHandler<HTMLElement>
+  onClickNext?: React.MouseEventHandler<HTMLElement>
 }
 
-export function ProductDetailsDesktop({ className, product }: Props) {
+export function ProductDetailsDesktop({ className, categoryName, product, onClickBack, onClickAddToCart }: Props) {
+  if (!product) return null
+  const weight = product.weight < 1 ? `${product.weight * 1000} г` : `${product.weight} кг`
   return (
     <div className={clsx(styles.productDetails, className)}>
       <Image width={530} height={500} src={productImg.src} alt="" />
       <div className={styles.content}>
         <div>
-          <div className={styles.backButton}>
-            <span>Фастфуд</span>
+          <div className={styles.backButton} onClick={onClickBack}>
+            <span>{categoryName}</span>
             <ArrowIcon />
           </div>
-          <h3>Мидии в тайском стиле</h3>
+          <h3>{product.name}</h3>
           <h5>Подробности</h5>
-          <p>В соусе из кокосового молока с тайскими травами, сервируются в соусе из кокосового молока с тайскими травами, сервируются.</p>
+          <p>{product.description}</p>
           <div className={styles.productInfo}>
             <div>
               <span>Вес</span>
-              <b>200 Г</b>
+              <b>{weight}</b>
             </div>
             <div>
               <span>Ккал</span>
-              <b>476</b>
+              <b>{product.calories}</b>
             </div>
             <div>
               <span>Б / Ж / У</span>
-              <b>23.5 Г / 20.8 Г / 48.7 Г</b>
+              <b>{product.proteins} г / {product.fats} г / {product.carbonhydrates} г</b>
             </div>
             <Image className={styles.flagImg} src={pepper.src} width={27} height={27} alt="" />
           </div>
         </div>
         <div>
-          <b className={styles.price}>Р 650</b>
-          <Button className={styles.button}>
+          <b className={styles.price}>{formatPrice(product.price)}</b>
+          <Button className={styles.button} onClick={onClickAddToCart}>
             <CartIcon />
             <span>&nbsp;добавить в корзину</span>
           </Button>

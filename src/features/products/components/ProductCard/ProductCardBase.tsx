@@ -31,10 +31,6 @@ export class ProductCardBase extends Component<Props, State> {
     onCartButtonClick && onCartButtonClick(product.id)
   }
 
-  formatPrice(price: string): string {
-    return parseInt(price).toLocaleString('ru-RU', { style: 'currency', currency: 'RUB', maximumFractionDigits: 0 })
-  }
-
   imgLoader({ src }: any) {
     if (!src) return ''
     return `/_next/image?url=${encodeURI(src)}&w=384&q=75`

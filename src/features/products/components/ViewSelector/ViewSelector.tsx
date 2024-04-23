@@ -19,6 +19,7 @@ export interface Props {
 
 export function ViewSelector({ className, value, onSelect }: Props) {
   const handleClick: React.MouseEventHandler<HTMLOrSVGElement> = (event) => {
+    event.stopPropagation()
     onSelect && onSelect(event.currentTarget.dataset.value as ViewType)
   }
 

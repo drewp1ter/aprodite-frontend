@@ -45,6 +45,16 @@
   font-size: rem(16);
   line-height: 100%;
   font-weight: 700;
+  transition: color 300ms ease;
+  cursor: pointer;
+
+  &:hover {
+    color: #f2ac57;
+
+    svg {
+      stroke: #f2ac57;
+    }
+  }
 
   svg {
     margin-left: rem(8);

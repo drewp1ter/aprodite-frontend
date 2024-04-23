@@ -3,7 +3,7 @@
 .category {
   position: relative;
   width: rem(390);
-  height: rem(178);
+  height: clamp(rem(178), 38vw, rem(250));
   border-radius: 18px;
   overflow: hidden;
   transition: 300ms ease all;
@@ -33,6 +33,10 @@
 
   &[data-loaded='false'] {
     background-color:rgba(0, 0, 0, 0.20);
+  }
+
+  @include sm {
+    height: rem(178);
   }
 
   @include lg {

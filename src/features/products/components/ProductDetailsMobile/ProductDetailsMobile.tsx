@@ -10,7 +10,7 @@ import productImg from './assets/product.png'
 export interface Props {
   className?: string
   product?: ProductDto
-  onClickBack?: () => void
+  onClickBack?: React.MouseEventHandler<HTMLElement>
 }
 
 export function ProductDetailsMobile({ className, product, onClickBack }: Props) {
