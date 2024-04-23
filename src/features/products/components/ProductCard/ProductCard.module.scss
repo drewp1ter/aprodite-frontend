@@ -1,4 +1,5 @@
 @import '/src/styles/helpers';
+@import './placeholder';
 
 .product, .productCompact {
   display: flex;
@@ -10,10 +11,22 @@
   overflow: hidden;
   position: relative;
 
-  @include gradient;
-
   img {
-    transition: transform 300ms ease-out;
+    opacity: 0;
+    object-fit: cover;
+    transition: transform 300ms ease-out, opacity 300ms ease-out;
+  }
+
+  &[data-loaded='true'] {
+    @include gradient;
+
+    img {
+      opacity: 1;
+    }
+  }
+
+  &[data-loaded='false'] {
+    @include placeholder;
   }
 
   &:hover {

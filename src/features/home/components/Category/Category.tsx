@@ -3,7 +3,6 @@ import { useState } from 'react'
 import clsx from 'clsx'
 import Link from 'next/link'
 import Image from 'next/image'
-import Placeholder from './assets/placeholder.svg'
 import styles from './Category.module.scss'
 
 export interface Props {
@@ -13,29 +12,20 @@ export interface Props {
   url: string
 }
 
-type ImgLoadStatus = 'init' | 'ok' | 'error'
-
 export function Category({ className, title, imgSrc, url }: Props) {
-  const [imgLoadStatus, setImgLoadStatus] = useState<ImgLoadStatus>('init')
+  const [isImgLoaded, setIsImgLoaded] = useState(false)
 
-  const imgLoader=({ src }: any) => {
-    if (!src) return ''
-    return `/_next/image?url=${encodeURI(src)}&w=384&q=75`
-  }
-
-  const handleOnImgLoad = () => {
-    setImgLoadStatus('ok')
-  }
-
-  const handleOnImgError = () => {
-    setImgLoadStatus('error')
-  }
+  const handleOnImgLoad = () => setIsImgLoaded(true)
 
   return (
-    <Link className={clsx(styles.category, className)} href={url} data-status={imgLoadStatus}>
-      <Placeholder />
-      <Image fill src={imgSrc} alt={title} loader={imgLoader} onLoad={handleOnImgLoad} onError={handleOnImgError}  />
+    <Link className={clsx(styles.category, className)} href={url} data-loaded={isImgLoaded}>
+      <Image fill src={imgSrc} alt={title} loader={imgLoader} onLoad={handleOnImgLoad} onError={() => {}}  />
       <h3>{title}</h3>
     </Link>
   )
+}
+
+function imgLoader({ src }: any) {
+  if (!src) return ''
+  return `/_next/image?url=${encodeURI(src)}&w=384&q=75`
 }

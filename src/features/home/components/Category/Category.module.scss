@@ -8,36 +8,8 @@
   overflow: hidden;
   transition: 300ms ease all;
 
-  &[data-status='ok'] {
-    svg {
-      display: none;
-    }
-
-    img {
-      opacity: 1;
-    }
-
-    @include gradient;
-  }
-  
-  &[data-status='error'] {
-    img {
-      opacity: 0;
-    }
-  }
-
-  @include lg {
-    &:hover {
-      box-shadow: 0 1.5rem 2rem rgba(0, 0, 0, 0.06);
-
-      img {
-        transform: scale3d(1.1, 1.1, 1);
-      }
-    }
-  }
-
   img {
-    transition: transform 300ms ease-out;
+    transition: transform 300ms ease-out, opacity 300ms ease-out;
     opacity: 0;
     object-fit: cover;
   }
@@ -49,5 +21,27 @@
     font-size: rem(20);
     color: #fff;
     z-index: 1;
+  }
+
+  &[data-loaded='true'] {
+    img {
+      opacity: 1;
+    }
+
+    @include gradient;
+  }
+
+  &[data-loaded='false'] {
+    background-color:rgba(0, 0, 0, 0.20);
+  }
+
+  @include lg {
+    &:hover {
+      box-shadow: 0 1.5rem 2rem rgba(0, 0, 0, 0.06);
+
+      img {
+        transform: scale3d(1.1, 1.1, 1);
+      }
+    }
   }
 }

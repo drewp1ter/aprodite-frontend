@@ -8,7 +8,7 @@
   display: flex;
   justify-content: flex-end;
 
-  @include sm {
+  @include md {
     display: none;
   }
 }
@@ -20,12 +20,12 @@
   row-gap: rem(52);
 
   &[data-view='grid'] {
-    grid-template-columns: repeat(auto-fit, minmax(rem(170), 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(rem(180), 1fr));
     gap: rem(56) rem(20);
   }
 
   @include sm {
-    grid-template-columns: repeat(auto-fit, minmax(rem(350), 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(rem(340), 1fr));
     gap: rem(52) rem(20);
   }
 }
