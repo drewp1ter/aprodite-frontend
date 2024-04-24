@@ -1,6 +1,9 @@
 'use client'
-import { useState, useMemo } from 'react'
+import { useState } from 'react'
+import { useEffectOnce } from 'react-use'
+import { observer } from 'mobx-react-lite'
 import clsx from 'clsx'
+import { useStore } from '@/store/hooks'
 import { Modal, FullScreen } from '@/compenents'
 import { ProductCard, ProductDetailsDesktop, ProductDetailsMobile } from '..'
 import { ViewSelector, ViewType } from '../ViewSelector'
@@ -8,12 +11,12 @@ import styles from './ProductsList.module.scss'
 
 export interface Props {
   className?: string
-  products?: ProductDto[]
+  categoryId: string
 }
 
 const DESKTOP_WIDTH_START = 1024
 
-export function ProductsList({ className, products }: Props) {
+export const ProductsList = observer(function ProductsList({ className, categoryId }: Props) {
   const [view, setView] = useState<ViewType>('list')
   const [isModalOpened, setIsModalOpened] = useState(false)
   const [isFullScreenOpened, setIsFullScreenOpened] = useState(false)
@@ -26,14 +29,19 @@ export function ProductsList({ className, products }: Props) {
     }
   }
 
-  const productsList = useMemo(
-    () =>
-      products?.map((product) => {
-        const ProductComponent = view === 'grid' ? ProductCard.Compact : ProductCard
-        return <ProductComponent key={product.id} product={product} onImageClick={handleProductClick} />
-      }),
-    [view]
-  )
+  const store = useStore()
+
+  useEffectOnce(() => {
+    console.log(store?.products.status)
+    if (store?.products.status === 'initial') {
+      store.products.fetchProducts(categoryId)
+    }
+  })
+
+  const productsList = store?.products.products.map((product) => {
+    const ProductComponent = view === 'grid' ? ProductCard.Compact : ProductCard
+    return <ProductComponent key={product.id} product={product} onImageClick={handleProductClick} />
+  })
 
   return (
     <div className={clsx(styles.productsList, className)}>
@@ -51,4 +59,4 @@ export function ProductsList({ className, products }: Props) {
       </FullScreen>
     </div>
   )
-}
+})

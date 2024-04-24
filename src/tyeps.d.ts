@@ -1,3 +1,5 @@
+type RequestStatus = 'initial' | 'request' | 'success' | 'failure'
+
 interface BaseDto {
   id: number
   createdAt: Date
