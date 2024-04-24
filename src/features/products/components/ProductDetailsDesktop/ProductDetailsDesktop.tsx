@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import clsx from 'clsx'
 import { Button } from '@/compenents'
-import formatPrice from '@/utils/formatPrice'
+import { formatPrice } from '@/utils/formatPrice'
 import productImg from './assets/product.png'
 import ArrowIcon from './assets/arrow.svg'
 import ArrowIcon2 from './assets/arrow2.svg'

@@ -1,4 +1,4 @@
-import { fetchApi } from '@/utils/fetchAbsolute'
+import { fetchApi } from '@/utils'
 
 export async function fetchCategory(categoryId: string): Promise<Pick<CategoryDto, 'id' | 'name'>> {
   try {
@@ -20,9 +20,4 @@ export async function fetchProducts(categoryId: string): Promise<ProductDto[]> {
     console.error(e)
     return []
   }
-}
-
-export async function fetchCategoryAndProducts(categoryId: string): Promise<{ category: Pick<CategoryDto, 'id' | 'name'>; products: ProductDto[] }> {
-  const [category, products] = await Promise.all([fetchCategory(categoryId), fetchProducts(categoryId)])
-  return { category, products }
 }

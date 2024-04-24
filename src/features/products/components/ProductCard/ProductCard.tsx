@@ -4,7 +4,7 @@ import Image from 'next/image'
 import clsx from 'clsx'
 import { Button } from '@/compenents'
 import CartIcon from './assets/cart.svg'
-import formatPrice from '@/utils/formatPrice'
+import { formatPrice } from '@/utils'
 import styles from './ProductCard.module.scss'
 import { ProductCardBase } from './ProductCardBase'
 import { ProductCardCompact } from './ProductCardCompact'
@@ -12,12 +12,19 @@ import { ProductCardCompact } from './ProductCardCompact'
 export class ProductCard extends ProductCardBase {
   render(): ReactNode {
     const { className, product } = this.props
-    const { isImgLoaded } = this.state
+    const { imgLoadStatus } = this.state
 
     return (
       <div className={clsx(styles.product, className)}>
-        <div onClick={this.handleImageClick} className={styles.imgContainer} data-loaded={isImgLoaded}>
-          <Image fill src={product.images[0]?.url} alt={product.name} loader={this.imgLoader} onLoad={this.handleOnImgLoad} onError={() => {}} />
+        <div onClick={this.handleImageClick} className={styles.imgContainer} data-status={imgLoadStatus}>
+          <Image
+            fill
+            src={product.images[0]?.url}
+            alt={product.name}
+            loader={this.imgLoader}
+            onLoad={this.handleOnImgLoaded}
+            onError={this.handleOnImgError}
+          />
         </div>
 
         <div className={styles.title}>
@@ -37,4 +44,3 @@ export class ProductCard extends ProductCardBase {
 
   static Compact = ProductCardCompact
 }
-

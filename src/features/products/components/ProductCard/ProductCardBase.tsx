@@ -9,14 +9,15 @@ export interface Props {
 }
 
 interface State {
-  readonly isImgLoaded: boolean
+  readonly imgLoadStatus: 'pending' | 'success' | 'failure'
 }
 
 export class ProductCardBase extends Component<Props, State> {
   constructor (props: Props) {
     super(props)
-    this.state = { isImgLoaded: false }
-    this.handleOnImgLoad = this.handleOnImgLoad.bind(this)
+    this.state = { imgLoadStatus: 'pending' }
+    this.handleOnImgError = this.handleOnImgError.bind(this)
+    this.handleOnImgLoaded = this.handleOnImgLoaded.bind(this)
   }
 
   handleImageClick: React.MouseEventHandler<HTMLDivElement> = (event) => {
@@ -36,8 +37,12 @@ export class ProductCardBase extends Component<Props, State> {
     return `/_next/image?url=${encodeURI(src)}&w=384&q=75`
   }
 
-  handleOnImgLoad() {
-    this.setState({ isImgLoaded: true })
+  handleOnImgError() {
+    this.setState({ imgLoadStatus: 'failure' })
+  }
+
+  handleOnImgLoaded() {
+    this.setState({ imgLoadStatus: 'success' })
   }
 
   supplementFacts({ product, className }: Pick<Props, 'product' | 'className'>) {

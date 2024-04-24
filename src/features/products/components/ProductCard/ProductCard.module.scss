@@ -12,21 +12,20 @@
   position: relative;
 
   img {
-    opacity: 0;
     object-fit: cover;
     transition: transform 300ms ease-out, opacity 300ms ease-out;
   }
 
-  &[data-loaded='true'] {
+  &[data-status='success'] {
     @include gradient;
-
-    img {
-      opacity: 1;
-    }
   }
 
-  &[data-loaded='false'] {
+  &[data-status='failure'] {
     @include placeholder;
+
+    img {
+      opacity: 0;
+    }
   }
 
   &:hover {

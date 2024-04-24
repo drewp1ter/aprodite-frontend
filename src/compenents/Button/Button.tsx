@@ -16,7 +16,7 @@ function Button({ children, className, ...rest }: ComponentProps<'button'>) {
   )
 }
 
-Button.Filter = function ({ className, ...rest }: Omit<ComponentProps<'button'>, 'children'>) {
+const ButtonFilter = function ({ className, ...rest }: Omit<ComponentProps<'button'>, 'children'>) {
   return (
     <button className={clsx(styles.filter, className)} {...rest}>
       <FilterIcon />
@@ -24,7 +24,7 @@ Button.Filter = function ({ className, ...rest }: Omit<ComponentProps<'button'>,
   )
 }
 
-Button.ForkKnife = function ({ className, ...rest }: Omit<ComponentProps<'button'>, 'children'>) {
+const ButtonForkKnife = function ({ className, ...rest }: Omit<ComponentProps<'button'>, 'children'>) {
   return (
     <button className={clsx(styles.quad, className)} {...rest}>
       <ForkKnifeIcon />
@@ -32,7 +32,7 @@ Button.ForkKnife = function ({ className, ...rest }: Omit<ComponentProps<'button
   )
 }
 
-Button.Pizza = function ({ className, ...rest }: Omit<ComponentProps<'button'>, 'children'>) {
+const ButtonPizza = function ({ className, ...rest }: Omit<ComponentProps<'button'>, 'children'>) {
   return (
     <button className={clsx(styles.quad, className)} {...rest}>
       <PizzaIcon />
@@ -40,7 +40,7 @@ Button.Pizza = function ({ className, ...rest }: Omit<ComponentProps<'button'>, 
   )
 }
 
-Button.Fish = function ({ className, ...rest }: Omit<ComponentProps<'button'>, 'children'>) {
+const ButtonFish = function ({ className, ...rest }: Omit<ComponentProps<'button'>, 'children'>) {
   return (
     <button className={clsx(styles.quad, className)} {...rest}>
       <FishIcon />
@@ -48,7 +48,7 @@ Button.Fish = function ({ className, ...rest }: Omit<ComponentProps<'button'>, '
   )
 }
 
-Button.Burger = function ({ className, ...rest }: Omit<ComponentProps<'button'>, 'children'>) {
+const ButtonBurger = function ({ className, ...rest }: Omit<ComponentProps<'button'>, 'children'>) {
   return (
     <button className={clsx(styles.quad, className)} {...rest}>
       <BurgerIcon />
@@ -56,7 +56,7 @@ Button.Burger = function ({ className, ...rest }: Omit<ComponentProps<'button'>,
   )
 }
 
-Button.Cup = function ({ className, ...rest }: Omit<ComponentProps<'button'>, 'children'>) {
+const ButtonCup = function ({ className, ...rest }: Omit<ComponentProps<'button'>, 'children'>) {
   return (
     <button className={clsx(styles.quad, className)} {...rest}>
       <CupIcon />
@@ -64,7 +64,7 @@ Button.Cup = function ({ className, ...rest }: Omit<ComponentProps<'button'>, 'c
   )
 }
 
-Button.Radio = function ({ className, children, ...rest }: Omit<ComponentProps<'input'>, 'type'>) {
+const ButtonRadio = function ({ className, children, ...rest }: Omit<ComponentProps<'input'>, 'type'>) {
   return (
     <label className={clsx(styles.radio, className)}>
       <input {...rest} type='radio' />
@@ -73,5 +73,22 @@ Button.Radio = function ({ className, children, ...rest }: Omit<ComponentProps<'
     </label>
   )
 }
+
+Button.displayName = 'Button'
+ButtonFilter.displayName = 'ButtonFilter'
+ButtonForkKnife.displayName = 'ButtonForkKnife'
+ButtonPizza.displayName = 'ButtonPizza'
+ButtonFish.displayName = 'ButtonFish'
+ButtonBurger.displayName = 'ButtonBurger'
+ButtonCup.displayName = 'ButtonCup'
+ButtonRadio.displayName = 'ButtonRadio'
+
+Button.Filter = ButtonFilter
+Button.ForkKnife = ButtonForkKnife
+Button.Pizza = ButtonPizza
+Button.Fish = ButtonFish
+Button.Burger = ButtonBurger
+Button.Cup = ButtonCup
+Button.Radio = ButtonRadio
 
 export default Button

@@ -1,38 +1,27 @@
-import { makeAutoObservable, runInAction } from 'mobx'
-import * as api from '../api'
+import { makeObservable, action, observable } from 'mobx'
+import { enableStaticRendering} from 'mobx-react-lite'
+import { isServer } from '@/utils'
+
+enableStaticRendering(isServer())
 
 export class Products {
-  status: RequestStatus
-  errorMessage: string
-  products: ProductDto[]
+  products: ProductDto[] = []
+  selectedProduct: ProductDto | null = null
 
   constructor() {
-    makeAutoObservable(this)
-    this.errorMessage = ''
-    this.status = 'initial'
-    this.products = []
+    makeObservable(this, {
+      products: observable,
+      selectedProduct: observable,
+      selectProduct: action,
+      hydrate: action
+    })
   }
 
-  findProduct(productId: number): ProductDto | undefined {
-    return this.products.find(product => product.id === productId)
+  selectProduct(productId: number) {
+    this.selectedProduct = this.products.find(product => product.id === productId) ?? null
   }
 
-  async fetchProducts(categoryId: string) {
-    console.log('adasfa')
-    if (this.status === 'request') return
-    this.status = 'request'
-    try {
-      const products = await api.fetchProducts(categoryId)
-      runInAction(() => {
-        this.products = products
-        this.status = 'success'
-        this.errorMessage = ''
-      })
-    } catch (e: any) {
-      runInAction(() => {
-        this.status = 'failure'
-        this.errorMessage = e.message
-      })
-    }
+  hydrate({ products }: Pick<Products, 'products'>) {
+    this.products = products
   }
 }

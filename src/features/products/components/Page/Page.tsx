@@ -2,9 +2,10 @@ import Image from 'next/image'
 import { Logo, AutoSlider, SearchBar } from '@/compenents'
 import { ProductsList } from '..'
 import { CategoriesButtons } from '@/features/home/components'
+import * as api from '../../api'
 import slider from './assets/slider1.png'
 import styles from './Page.module.scss'
-import { store } from '@/store/StoreProvider/initializeStore'
+
 interface Params {
   categoryId: string
 }
@@ -13,8 +14,8 @@ interface Props {
 }
 
 export async function Page({ params }: Props) {
-  await store?.products.fetchProducts(params.categoryId)
-  
+  const category = await api.fetchCategory(params.categoryId)
+
   return (
     <main className={styles.productsPage}>
       <h1>Доставка еды</h1>
@@ -22,7 +23,7 @@ export async function Page({ params }: Props) {
         <SearchBar className={styles.searchBar} />
         <CategoriesButtons className={styles.categoriesButtons} />
       </div>
-      <h2>dfg</h2>
+      <h2>{category.name}</h2>
       <AutoSlider className={styles.autoSlider}>
         <Image className={styles.slide} src={slider.src} alt="" fill />
         <Image className={styles.slide} src={slider.src} alt="" fill />
@@ -30,9 +31,7 @@ export async function Page({ params }: Props) {
       </AutoSlider>
       <ProductsList
         className={styles.productsList}
-        categoryId={params.categoryId}
       />
-
       <Logo className={styles.logo} />
     </main>
   )

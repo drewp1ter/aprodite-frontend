@@ -11,3 +11,5 @@ export const SearchInput = forwardRef<HTMLInputElement, JSX.IntrinsicElements['i
     </div>
   )
 })
+
+SearchInput.displayName = 'SearchInput'
