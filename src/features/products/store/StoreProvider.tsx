@@ -1,9 +1,8 @@
 'use client'
 import { createContext, useContext, PropsWithChildren } from 'react'
-import { Products } from '../store'
+import { Products } from './products'
 import { isServer } from '@/utils'
 
-let store: Products
 export const StoreContext = createContext<Products | null>(null)
 
 export function useProductsStore() {
@@ -12,8 +11,14 @@ export function useProductsStore() {
     throw new Error('useStore must be used within StoreProvider')
   }
 
+  if (context === null) {
+    throw new Error()
+  }
+
   return context
 }
+
+let store: Products
 
 function initializeStore(initialData: Pick<Products, 'products'>) {
   const _store = store ?? new Products()
@@ -23,12 +28,12 @@ function initializeStore(initialData: Pick<Products, 'products'>) {
   }
 
   if (isServer()) return _store
-  if (!store) store = _store
+  store ??= _store
 
   return _store
 }
 
-interface ProviderProps extends PropsWithChildren {
+export interface ProviderProps extends PropsWithChildren {
   initialState: Pick<Products, 'products'>
 }
 

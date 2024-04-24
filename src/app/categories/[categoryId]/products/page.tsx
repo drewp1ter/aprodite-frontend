@@ -12,10 +12,10 @@ interface Props {
 
 export default async function Page({ params }: Props) {
   const products = await api.fetchProducts(params.categoryId)
-  
+
   return (
     <StoreProvider initialState={{ products }}>
-      <ProductsPage params={params} />
+      <ProductsPage categoryId={params.categoryId} />
     </StoreProvider>
   )
 }

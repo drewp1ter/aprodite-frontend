@@ -100,6 +100,8 @@
 }
 
 .navprev, .navnext {
+  border: none;
+  outline: none;
   position: absolute;
   top: 50%;
   transform: translateY(-50%);

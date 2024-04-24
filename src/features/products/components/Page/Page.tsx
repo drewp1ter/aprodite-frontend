@@ -6,15 +6,12 @@ import * as api from '../../api'
 import slider from './assets/slider1.png'
 import styles from './Page.module.scss'
 
-interface Params {
+export interface Props {
   categoryId: string
 }
-interface Props {
-  params: Params
-}
 
-export async function Page({ params }: Props) {
-  const category = await api.fetchCategory(params.categoryId)
+export async function Page({ categoryId }: Props) {
+  const category = await api.fetchCategory(categoryId)
 
   return (
     <main className={styles.productsPage}>
