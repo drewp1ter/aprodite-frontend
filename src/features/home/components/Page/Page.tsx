@@ -1,3 +1,4 @@
+import { Suspense } from 'react'
 import { Logo, AutoSlider, SearchBar } from '@/ui'
 import { Categories, CategoriesButtons } from '..'
 import { getCategsOrProductsImages } from '@/lib'
@@ -14,7 +15,9 @@ export async function Page() {
       <h1>Доставка еды</h1>
       <AutoSlider className={styles.autoSlider} images={categoriesImages} />
       <div className={styles.hero}>
-        <SearchBar className={styles.searchBar} />
+        <Suspense>
+          <SearchBar className={styles.searchBar} />
+        </Suspense>
         <CategoriesButtons className={styles.categoriesButtons} />
       </div>
       <Categories className={styles.categories} />

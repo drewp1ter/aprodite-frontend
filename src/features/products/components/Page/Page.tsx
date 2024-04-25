@@ -1,4 +1,5 @@
 import { Logo, AutoSlider, SearchBar } from '@/ui'
+import { Suspense } from 'react'
 import { ProductsList } from '..'
 import { CategoriesButtons } from '@/features/home/components'
 import * as api from '../../api'
@@ -10,7 +11,7 @@ export interface Props {
 }
 
 export async function Page({ categoryId, images }: Props) {
-  let category 
+  let category
   if (categoryId) {
     category = await api.fetchCategory(categoryId)
   }
@@ -19,7 +20,9 @@ export async function Page({ categoryId, images }: Props) {
     <main className={styles.productsPage}>
       <h1>Доставка еды</h1>
       <div className={styles.hero}>
-        <SearchBar className={styles.searchBar} />
+        <Suspense>
+          <SearchBar className={styles.searchBar} />
+        </Suspense>
         <CategoriesButtons className={styles.categoriesButtons} />
       </div>
       <h2>{category?.name || ''}</h2>
