@@ -28,7 +28,7 @@ export function ProductDetailsDesktop({ className, closeButtonTitle, product, on
       <div className={styles.content}>
         <div>
           <div className={styles.backButton} onClick={withStopPropagation(onClose)}>
-            <span>{closeButtonTitle}</span>
+            <span>{closeButtonTitle || ''}</span>
             <ArrowIcon />
           </div>
           <h3>{product.name}</h3>

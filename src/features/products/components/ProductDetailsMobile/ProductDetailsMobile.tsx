@@ -31,7 +31,7 @@ export function ProductDetailsMobile({ className, product, backButtonTitle, onCl
       </div>
       <div className={styles.content}>
         <Button className={styles.backButton} onClick={onClickBack}>
-          {backButtonTitle}
+          {backButtonTitle || ''}
           <ArrowIcon />
         </Button>
         <div>

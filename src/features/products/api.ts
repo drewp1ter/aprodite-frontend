@@ -11,9 +11,20 @@ export async function fetchCategory(categoryId: string): Promise<Pick<CategoryDt
   }
 }
 
-export async function fetchProducts(categoryId: string): Promise<ProductDto[]> {
+export async function fetchProductsByCategoryId(categoryId: string): Promise<ProductDto[]> {
   try {
     const res = await fetchApi(`/categories/${categoryId}/products`, { next: { revalidate: 10 } })
+    if (!res.ok) return []
+    return res.json() as unknown as ProductDto[]
+  } catch (e) {
+    console.error(e)
+    return []
+  }
+}
+
+export async function fetchProductsByQuery(query: string): Promise<ProductDto[]> {
+  try {
+    const res = await fetchApi(`/products/?query=${query}`, { next: { revalidate: 10 } })
     if (!res.ok) return []
     return res.json() as unknown as ProductDto[]
   } catch (e) {

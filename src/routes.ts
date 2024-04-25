@@ -9,3 +9,7 @@ export function getCartRoute() {
 export function getCheckOutRoute() {
   return '/checkout'
 }
+
+export function getSearchProductsRoute(query: string) {
+  return `/products?query=${query}`
+}

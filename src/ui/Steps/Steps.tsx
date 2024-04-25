@@ -11,7 +11,7 @@ export function Steps({ className, currentStep, children }: Props) {
   return (
     <div className={clsx(styles.steps, className)}>
       {Children.map(children, (child, idx) => (
-        <div className={styles.step} data-active={currentStep === idx}>
+        <div key={idx} className={styles.step} data-active={currentStep === idx}>
           <div>{idx + 1}</div>
           {child}
         </div>
