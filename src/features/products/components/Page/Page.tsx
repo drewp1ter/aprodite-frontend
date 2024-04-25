@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { Logo, AutoSlider, SearchBar } from '@/compenents'
+import { Logo, AutoSlider, SearchBar } from '@/ui'
 import { ProductsList } from '..'
 import { CategoriesButtons } from '@/features/home/components'
 import * as api from '../../api'

@@ -1,7 +1,7 @@
 'use client'
 import { useState } from 'react'
 import clsx from 'clsx'
-import { Button, SearchInput } from '@/compenents'
+import { Button, SearchInput } from '@/ui'
 import styles from './SearchBar.module.scss'
 
 export interface Props {

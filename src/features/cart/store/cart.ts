@@ -1,6 +1,6 @@
 import { makeObservable, action, computed, observable } from 'mobx'
 import { enableStaticRendering } from 'mobx-react-lite'
-import { isServer, formatPrice } from '@/utils'
+import { isServer, formatPrice } from '@/lib'
 
 enableStaticRendering(isServer())
 

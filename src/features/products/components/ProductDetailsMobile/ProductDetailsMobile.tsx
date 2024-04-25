@@ -1,11 +1,11 @@
 import Image from 'next/image'
 import clsx from 'clsx'
-import { Button } from '@/compenents'
+import { Button } from '@/ui'
 import CartIcon from './assets/cart.svg'
 import ArrowIcon from './assets/arrow.svg'
 import styles from './ProductDetailsMobile.module.scss'
 import pepper from './assets/pepper.png'
-import { formatPrice } from '@/utils'
+import { formatPrice } from '@/lib'
 
 export interface Props {
   className?: string

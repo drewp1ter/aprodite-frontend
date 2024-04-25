@@ -1,3 +1,11 @@
-import { Page } from '@/features/home/components'
+import { Header } from '@/ui'
+import { Page as HomePage } from '@/features/home/components'
 
-export default Page
+export default function Page() {
+  return (
+    <>
+      <Header />
+      <HomePage />
+    </>
+  )
+}

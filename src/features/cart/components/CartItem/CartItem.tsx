@@ -1,8 +1,8 @@
 'use client'
 import clsx from 'clsx'
 import Image from 'next/image'
-import { Button } from '@/compenents'
-import { withStopPropagation } from '@/utils'
+import { Button } from '@/ui'
+import { withStopPropagation } from '@/lib'
 import TrashIcon from './assets/trash.svg'
 import styles from './CartItem.module.scss'
 

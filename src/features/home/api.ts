@@ -1,5 +1,5 @@
 
-import { fetchApi } from "@/utils/fetchAbsolute"
+import { fetchApi } from "@/lib/fetchAbsolute"
 
 export async function fetchCategories(): Promise<CategoryDto[]> {
   try {

@@ -1,4 +1,4 @@
-import { fetchApi } from '@/utils'
+import { fetchApi } from '@/lib'
 
 export async function fetchCategory(categoryId: string): Promise<Pick<CategoryDto, 'id' | 'name'>> {
   try {

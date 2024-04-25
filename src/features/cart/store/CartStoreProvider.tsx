@@ -1,7 +1,7 @@
 'use client'
 import { createContext, useContext, PropsWithChildren } from 'react'
 import { Cart } from './cart'
-import { isServer } from '@/utils'
+import { isServer } from '@/lib'
 
 export const StoreContext = createContext<Cart | null>(null)
 

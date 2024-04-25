@@ -1,6 +1,6 @@
 import clsx from 'clsx'
 import Link from 'next/link'
-import { Button, Label } from '@/compenents'
+import { Button, Label } from '@/ui'
 import styles from './CategoriesButtons.module.scss'
 
 export interface Props {

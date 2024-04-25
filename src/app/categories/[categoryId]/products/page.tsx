@@ -1,3 +1,4 @@
+import { Header } from '@/ui'
 import { ProductsStoreProvider } from '@/features/products/store/ProductsStoreProvider'
 import { CartStoreProvider } from '@/features/cart/store/CartStoreProvider'
 import * as api from '@/features/products/api'
@@ -17,6 +18,7 @@ export default async function Page({ params }: Props) {
   return (
     <ProductsStoreProvider initialState={{ products }}>
       <CartStoreProvider>
+        <Header />
         <ProductsPage categoryId={params.categoryId} />
       </CartStoreProvider>
     </ProductsStoreProvider>

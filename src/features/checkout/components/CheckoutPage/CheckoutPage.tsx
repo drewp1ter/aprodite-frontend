@@ -1,4 +1,4 @@
-import { Steps, Label, Input, Button, Textarea } from '@/compenents'
+import { Steps, Label, Input, Button, Textarea } from '@/ui'
 import styles from './Checkout.module.scss'
 import * as images from './images'
 

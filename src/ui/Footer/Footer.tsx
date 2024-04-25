@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { Logo } from '@/compenents'
+import { Logo } from '@/ui'
 import logo from './assets/logo_footer.png'
 import EnvelopeIcon from './assets/envelope.svg'
 import PhoneIcon from './assets/phone.svg'
