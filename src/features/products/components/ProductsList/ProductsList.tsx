@@ -17,16 +17,12 @@ const DESKTOP_WIDTH_START = 1024
 export const ProductsList = observer(function ProductsList({ className }: Props) {
   const productsStore = useProductsStore()
   const [view, setView] = useState<ViewType>('list')
-  const [isModalOpened, setIsModalOpened] = useState(false)
-  const [isFullScreenOpened, setIsFullScreenOpened] = useState(false)
+  const [isModalOpened, setIsModalOpened] = useState<false | 'mobile' | 'desktop'>(false)
 
   const handleProductClick = (productId: number) => {
     productsStore.selectProductById(productId)
-    if (window.innerWidth < DESKTOP_WIDTH_START) {
-      setIsFullScreenOpened(true)
-    } else {
-      setIsModalOpened(true)
-    }
+    const modalType = window.innerWidth < DESKTOP_WIDTH_START ? 'mobile' : 'desktop'
+    setIsModalOpened(modalType)
   }
 
   const productsList = productsStore.products.map((product) => {
@@ -42,15 +38,15 @@ export const ProductsList = observer(function ProductsList({ className }: Props)
       <div data-view={view} className={styles.content}>
         {productsList}
       </div>
-      <Modal isOpen={isModalOpened} onClose={() => setIsModalOpened(false)}>
+      <Modal isOpen={isModalOpened === 'desktop'} onClose={() => setIsModalOpened(false)}>
         <ProductDetailsDesktop
           product={productsStore.selectedProduct}
           onClickNext={productsStore.selectNextProduct}
           onClickPrev={productsStore.selectPrevProduct}
         />
       </Modal>
-      <FullScreen isOpen={isFullScreenOpened}>
-        <ProductDetailsMobile onClickBack={() => setIsFullScreenOpened(false)} />
+      <FullScreen isOpen={isModalOpened === 'mobile'}>
+        <ProductDetailsMobile onClickBack={() => setIsModalOpened(false)} product={productsStore.selectedProduct} />
       </FullScreen>
     </div>
   )

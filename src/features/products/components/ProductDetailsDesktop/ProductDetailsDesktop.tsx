@@ -12,24 +12,24 @@ export interface Props {
   className?: string
   categoryName?: string
   product?: ProductDto | null
-  onClickBack?: React.MouseEventHandler<HTMLDivElement>
-  onClickAddToCart?: React.MouseEventHandler<HTMLButtonElement>
+  onClickBack?: () => void
+  onClickAddToCart?: (product: ProductDto) => void
   onClickPrev?: () => void
   onClickNext?: () => void
+}
+
+const clickHandler = (callback?: () => void) => (event: React.MouseEvent<HTMLElement>) => {
+  event.stopPropagation()
+  callback && callback()
 }
 
 export function ProductDetailsDesktop({ className, categoryName, product, onClickBack, onClickAddToCart, onClickPrev, onClickNext }: Props) {
   if (!product) return null
   const weight = product.weight < 1 ? `${product.weight * 1000} г` : `${product.weight} кг`
 
-  const handleClickPrev: React.MouseEventHandler<HTMLElement> = (event) => {
+  const handleAddToCart: React.MouseEventHandler<HTMLElement> = (event) => {
     event.stopPropagation()
-    onClickPrev && onClickPrev()
-  }
-
-  const handleClickNext: React.MouseEventHandler<HTMLElement> = (event) => {
-    event.stopPropagation()
-    onClickNext && onClickNext()
+    onClickAddToCart && onClickAddToCart(product)
   }
 
   return (
@@ -37,7 +37,7 @@ export function ProductDetailsDesktop({ className, categoryName, product, onClic
       <Image width={530} height={500} src={product.images[0]?.url} alt={product.name} />
       <div className={styles.content}>
         <div>
-          <div className={styles.backButton} onClick={onClickBack}>
+          <div className={styles.backButton} onClick={clickHandler(onClickBack)}>
             <span>{categoryName}</span>
             <ArrowIcon />
           </div>
@@ -64,16 +64,16 @@ export function ProductDetailsDesktop({ className, categoryName, product, onClic
         </div>
         <div>
           <b className={styles.price}>{formatPrice(product.price)}</b>
-          <Button className={styles.button} onClick={onClickAddToCart}>
+          <Button className={styles.button} onClick={handleAddToCart}>
             <CartIcon />
             <span>&nbsp;добавить в корзину</span>
           </Button>
         </div>
       </div>
-      <button className={styles.navprev} onClick={handleClickPrev}>
+      <button className={styles.navprev} onClick={clickHandler(onClickPrev)}>
         <ArrowIcon2 />
       </button>
-      <button className={styles.navnext} onClick={handleClickNext}>
+      <button className={styles.navnext} onClick={clickHandler(onClickNext)}>
         <ArrowIcon2 />
       </button>
     </div>

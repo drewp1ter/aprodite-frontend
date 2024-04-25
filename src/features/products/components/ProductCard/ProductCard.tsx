@@ -24,6 +24,7 @@ export class ProductCard extends ProductCardBase {
             loader={this.imgLoader}
             onLoad={this.handleOnImgLoaded}
             onError={this.handleOnImgError}
+            sizes='100vh'
           />
         </div>
 

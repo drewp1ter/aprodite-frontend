@@ -11,7 +11,7 @@ export function Logo({ className, width, height }: Props) {
   const fill = width || height ? undefined : true
   return (
     <div className={className}>
-      <Image width={width} height={height} src={logo.src} fill={fill} alt="" />
+      <Image width={width} height={height} src={logo.src} fill={fill} alt="logo" sizes='100vh' />
     </div>
   )
 }

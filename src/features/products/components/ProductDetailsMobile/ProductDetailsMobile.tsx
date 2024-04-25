@@ -5,19 +5,28 @@ import CartIcon from './assets/cart.svg'
 import ArrowIcon from './assets/arrow.svg'
 import styles from './ProductDetailsMobile.module.scss'
 import pepper from './assets/pepper.png'
-import productImg from './assets/product.png'
+import { formatPrice } from '@/utils'
 
 export interface Props {
   className?: string
   product?: ProductDto
-  onClickBack?: React.MouseEventHandler<HTMLElement>
+  onClickBack?: () => void
+  onClickAddToCart?: (product: ProductDto) => void
 }
 
-export function ProductDetailsMobile({ className, product, onClickBack }: Props) {
+export function ProductDetailsMobile({ className, product, onClickBack, onClickAddToCart }: Props) {
+  if (!product) return 
+  const weight = product.weight < 1 ? `${product.weight * 1000} г` : `${product.weight} кг`
+
+  const handleAddToCart: React.MouseEventHandler<HTMLElement> = (event) => {
+    event.stopPropagation()
+    onClickAddToCart && onClickAddToCart(product)
+  }
+
   return (
     <div className={clsx(styles.productDetailsMobile, className)}>
       <div className={styles.imgContainer}>
-        <Image fill src={productImg.src} alt="" />
+        <Image fill src={product.images[0]?.url} alt={product.name} sizes='100vh' />
       </div>
       <div className={styles.content}>
         <Button className={styles.backButton} onClick={onClickBack}>
@@ -25,31 +34,28 @@ export function ProductDetailsMobile({ className, product, onClickBack }: Props)
           <ArrowIcon />
         </Button>
         <div>
-          <h3>Мидии в тайском стиле</h3>
+          <h3>{product.name}</h3>
           <h5>Подробности</h5>
-          <p>
-            в соусе из кокосового молока с тайскими травами, сервируются в соусе из кокосового молока с тайскими травами, сервируются. сервируются в
-            соусе из кокосового молока с тайскими травами, сервируются.
-          </p>
+          <p>{product.description}</p>
           <div className={styles.productInfo}>
             <div>
               <span>Вес</span>
-              <b>200 Г</b>
+              <b>{weight} г</b>
             </div>
             <div>
               <span>Ккал</span>
-              <b>476</b>
+              <b>{product.calories}</b>
             </div>
             <div>
               <span>Б / Ж / У</span>
-              <b>23.5 Г / 20.8 Г / 48.7 Г</b>
+              {product.proteins} г / {product.fats} г / {product.carbonhydrates} г
             </div>
             <Image className={styles.flagImg} src={pepper.src} width={27} height={27} alt="" />
           </div>
         </div>
         <div className={styles.footer}>
-          <b>Р 650</b>
-          <Button className={styles.cartButton}>
+          <b>{formatPrice(product.price)}</b>
+          <Button className={styles.cartButton} onClick={handleAddToCart}>
             <CartIcon />
             добавить в корзину
           </Button>
