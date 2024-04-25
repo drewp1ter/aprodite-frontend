@@ -5,10 +5,10 @@
   display: flex;
   min-width: rem(1036);
   align-items: stretch;
-  background-color: #F6F0E6;
+  background-color: #f6f0e6;
   border-radius: 20px;
   padding: rem(26) rem(76) rem(26) rem(26);
-  gap: rem(34); 
+  gap: rem(34);
 }
 
 .content {
@@ -33,7 +33,7 @@
     font-weight: 400;
     font-size: rem(14);
     line-height: per(16, 14);
-    opacity: .54;
+    opacity: 0.54;
   }
 }
 
@@ -67,7 +67,8 @@
   margin-top: rem(26);
   gap: rem(46);
 
-  span, b {
+  span,
+  b {
     display: block;
     font-size: rem(12);
     line-height: per(16, 12);
@@ -99,7 +100,8 @@
   margin-left: rem(21);
 }
 
-.navprev, .navnext {
+.navprev,
+.navnext {
   border: none;
   outline: none;
   position: absolute;
@@ -108,9 +110,16 @@
   width: 64px;
   height: 64px;
   border-radius: 50%;
-  background-color: #DFC597;
+  background-color: #dfc597;
   padding: 22px 27px 22px 22px;
   cursor: pointer;
+  transition: 300ms ease all;
+
+  &:hover {
+    cursor: pointer;
+    background-color: #f2ac57;
+    box-shadow: 0 6px 10px rgba(255, 90, 57, 0.28);
+  }
 }
 
 .navprev {

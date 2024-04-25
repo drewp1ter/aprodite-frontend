@@ -1,4 +1,5 @@
 @import '/src/styles/helpers';
+@import './placeholder';
 
 .cartItem {
   position: relative;
@@ -19,10 +20,20 @@
   border-radius: 20px;
   flex-shrink: 0;
 
-  @include gradient;
-
   img {
     object-fit: cover;
+  }
+
+  &[data-status='success'] {
+    @include gradient;
+  }
+
+  &[data-status='failure'] {
+    @include placeholder;
+    
+    img {
+      opacity: 0;
+    }
   }
 
   @include lg {

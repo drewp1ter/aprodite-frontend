@@ -1,9 +1,7 @@
-import Image from 'next/image'
 import { Logo, AutoSlider, SearchBar } from '@/ui'
 import { ProductsList } from '..'
 import { CategoriesButtons } from '@/features/home/components'
 import * as api from '../../api'
-import slider from './assets/slider1.png'
 import styles from './Page.module.scss'
 
 export interface Props {
@@ -12,6 +10,14 @@ export interface Props {
 
 export async function Page({ categoryId }: Props) {
   const category = await api.fetchCategory(categoryId)
+  const products = await api.fetchProducts(categoryId)
+
+  const productsImages = products
+    .reduce<ImageDto[][]>((result, product) => {
+      if (product.images.length && result.length <= 10) result.push(product.images)
+      return result
+    }, [])
+    .flat()
 
   return (
     <main className={styles.productsPage}>
@@ -21,16 +27,9 @@ export async function Page({ categoryId }: Props) {
         <CategoriesButtons className={styles.categoriesButtons} />
       </div>
       <h2>{category.name}</h2>
-      <AutoSlider className={styles.autoSlider}>
-        <Image className={styles.slide} src={slider.src} alt="" fill />
-        <Image className={styles.slide} src={slider.src} alt="" fill />
-        <Image className={styles.slide} src={slider.src} alt="" fill />
-      </AutoSlider>
-      <ProductsList
-        className={styles.productsList}
-      />
+      <AutoSlider className={styles.autoSlider} images={productsImages} />
+      <ProductsList className={styles.productsList} />
       <Logo className={styles.logo} />
     </main>
   )
 }
-

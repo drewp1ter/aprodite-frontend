@@ -1,18 +1,22 @@
-import Image from 'next/image'
 import { Logo, AutoSlider, SearchBar } from '@/ui'
 import { Categories, CategoriesButtons } from '..'
-import slider from './assets/slider1.png'
+import * as api from '../../api'
 import styles from './Page.module.scss'
 
-export function Page() {
+export async function Page() {
+  const categories = await api.fetchCategories()
+
+  const categoriesImages = categories
+    .reduce<ImageDto[][]>((result, category) => {
+      if (category.images.length && result.length < 11) result.push(category.images)
+      return result
+    }, [])
+    .flat()
+
   return (
     <main className={styles.page}>
       <h1>Доставка еды</h1>
-      <AutoSlider className={styles.autoSlider}>
-        <Image className={styles.slide} src={slider.src} alt="" fill />
-        <Image className={styles.slide} src={slider.src} alt="" fill />
-        <Image className={styles.slide} src={slider.src} alt="" fill />
-      </AutoSlider>  
+      <AutoSlider className={styles.autoSlider} images={categoriesImages} />
       <div className={styles.hero}>
         <SearchBar className={styles.searchBar} />
         <CategoriesButtons className={styles.categoriesButtons} />

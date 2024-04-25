@@ -1,14 +1,16 @@
 'use client'
-import { useState, useRef, useEffect, PropsWithChildren, Children } from 'react'
+import Image from 'next/image'
+import { useState, useRef, useEffect } from 'react'
 import clsx from 'clsx'
 import styles from './AutoSlider.module.scss'
 
-export interface Props extends PropsWithChildren {
+export interface Props {
+  images: ImageDto[]
   className?: string
   delay?: number
 }
 
-export function AutoSlider({ className, children, delay = 5000 }: Props) {
+export function AutoSlider({ className, images, delay = 5000 }: Props) {
   const [index, setIndex] = useState(0)
   const timeoutRef = useRef<NodeJS.Timeout | null>(null)
 
@@ -20,7 +22,7 @@ export function AutoSlider({ className, children, delay = 5000 }: Props) {
 
   useEffect(() => {
     resetTimeout()
-    timeoutRef.current = setTimeout(() => setIndex((prevIndex) => (prevIndex === Children.count(children) - 1 ? 0 : ++prevIndex)), delay)
+    timeoutRef.current = setTimeout(() => setIndex((prevIndex) => (prevIndex === images.length - 1 ? 0 : ++prevIndex)), delay)
     return () => resetTimeout()
   }, [index])
 
@@ -32,15 +34,26 @@ export function AutoSlider({ className, children, delay = 5000 }: Props) {
   return (
     <div className={clsx(styles.autoSlider, className)}>
       <div className={styles.slideshowSlider} style={{ transform: `translate3d(${-index * 100}%, 0, 0)` }}>
-        {Children.map(children, (item) => (
-          <div className={styles.slide}>{item}</div>
+        {images.map((image) => (
+          <div className={styles.slide}>
+            <Image
+              key={image.id}
+              src={image.url}
+              alt={image.type}
+              fill
+              sizes="(min-width: 430px) 100vw, (min-width: 1440px) 88vw, 100vw"
+              priority
+            />
+          </div>
         ))}
       </div>
-      <div className={styles.slideshowDots}>
-        {Children.map(children, (_, idx) => (
-          <div key={idx} className={styles.slideshowDot} data-active={idx === index} data-idx={idx} onClick={handleDotClick}></div>
-        ))}
-      </div>
+      {images.length > 1 && (
+        <div className={styles.slideshowDots}>
+          {images.map((_, idx) => (
+            <div key={idx} className={styles.slideshowDot} data-active={idx === index} data-idx={idx} onClick={handleDotClick}></div>
+          ))}
+        </div>
+      )}
     </div>
   )
 }

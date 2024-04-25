@@ -1,11 +1,10 @@
 @import '/src/styles/helpers';
 
 .cartPage {
-  margin-top: rem(78);
   display: flex;
   flex-direction: column;
   width: 100%;
-  margin: rem(78) auto 0;
+  margin-inline: auto;
   padding-bottom: rem(162);
   max-width: per(390, 430);
   min-height: calc(100svh - rem(78));
@@ -18,7 +17,7 @@
 
   @include lg {
     min-height: unset;
-    margin: rem(68) auto 0;
+    margin-inline: auto;
     max-width: per(1224, 1280);
 
     h1 {
@@ -52,6 +51,9 @@
 .resume {
   display: flex;
   flex-direction: column;
+  align-self: flex-start;
+  position: sticky;
+  top: rem(154);
 
   h3 {
     display: none;

@@ -1,4 +1,5 @@
 'use client'
+import { useState } from 'react'
 import clsx from 'clsx'
 import Image from 'next/image'
 import { Button } from '@/ui'
@@ -15,10 +16,15 @@ export interface Props {
 }
 
 export function CartItem({ className, item, onIncrementAmount, onDecrementAmount, onDelete }: Props) {
+  const [imgLoadStatus, setIsImgLoadStatus] = useState<false | 'success' | 'failure'>(false)
+
+  const handleOnImgLoad = () => setIsImgLoadStatus('success')
+  const handleOnImgError = () => setIsImgLoadStatus('failure')
+
   return (
     <div className={clsx(styles.cartItem, className)}>
-      <div className={styles.productImg}>
-        <Image src={item.imgSrc} fill alt={item.name} />
+      <div className={styles.productImg} data-status={imgLoadStatus}>
+        <Image src={item.imgSrc} fill alt={item.name} onLoad={handleOnImgLoad} onError={handleOnImgError} />
       </div>
       <div className={styles.productInfo}>
         <TrashIcon onClick={withStopPropagation(onDelete, item.id)} />

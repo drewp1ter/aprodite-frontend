@@ -5,14 +5,10 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  margin: rem(78) auto 0;
+  margin-inline: auto;
   max-width: per(390, 430);
   padding-bottom: rem(88);
   min-height: calc(100svh - rem(78));
-
-  @include lg {
-    margin: rem(68) auto 0;
-  }
 }
 
 .head {

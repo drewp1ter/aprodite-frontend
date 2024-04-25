@@ -19,6 +19,10 @@
   height: 100%;
   overflow: hidden;
   display: inline-block;
+
+  img {
+    object-fit: cover;
+  }
   
   @include md {
     border-radius: 20px;
