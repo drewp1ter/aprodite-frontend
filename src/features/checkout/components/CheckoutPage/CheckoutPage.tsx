@@ -1,8 +1,28 @@
+'use client'
+import { observer } from 'mobx-react-lite'
+import { useCartStore } from '@/features/cart/store'
 import { Steps, Label, Input, Button, Textarea } from '@/ui'
 import styles from './Checkout.module.scss'
 import * as images from './images'
 
-export function CheckoutPage() {
+function getItemsAmountSuffix(amount: number) {
+  const _amount = amount > 20 ? Number(amount.toString().at(-1)) : amount
+   
+  switch (_amount) {
+    case 1: 
+      return ''
+    case 2:
+    case 3:
+    case 4:
+      return 'а'
+    default:
+      return 'ов'
+  }
+}
+
+export const CheckoutPage = observer(function CheckoutPage() {
+  const { itemsCount, total } = useCartStore()
+
   return (
     <main className={styles.checkoutPage}>
       <div className={styles.head}>
@@ -53,8 +73,8 @@ export function CheckoutPage() {
               <span>Итого</span>
             </div>
             <div>
-              <span>2 товара</span>
-              <span>1580 ₽</span>
+              <span>{itemsCount} товар{getItemsAmountSuffix(itemsCount)}</span>
+              <span>{total}</span>
             </div>
           </div>
           <Button>Подтвердить заказ</Button>
@@ -62,4 +82,4 @@ export function CheckoutPage() {
       </div>
     </main>
   )
-}
+})
