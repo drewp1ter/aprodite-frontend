@@ -5,3 +5,7 @@ export function getCategoryProductsRoute(categoryId: number) {
 export function getCartRoute() {
   return '/cart'
 }
+
+export function getCheckOutRoute() {
+  return '/checkout'
+}

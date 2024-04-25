@@ -28,7 +28,7 @@ export async function Page({ categoryId }: Props) {
       </div>
       <h2>{category.name}</h2>
       <AutoSlider className={styles.autoSlider} images={productsImages} />
-      <ProductsList className={styles.productsList} />
+      <ProductsList className={styles.productsList} categoryName={category.name} />
       <Logo className={styles.logo} />
     </main>
   )

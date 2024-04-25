@@ -10,15 +10,15 @@ import styles from './ProductDetailsDesktop.module.scss'
 
 export interface Props {
   className?: string
-  categoryName?: string
+  closeButtonTitle?: string
   product?: ProductDto | null
-  onClickBack?: () => void
+  onClose?: () => void
   onClickAddToCart?: (product: ProductDto) => void
   onClickPrev?: () => void
   onClickNext?: () => void
 }
 
-export function ProductDetailsDesktop({ className, categoryName, product, onClickBack, onClickAddToCart, onClickPrev, onClickNext }: Props) {
+export function ProductDetailsDesktop({ className, closeButtonTitle, product, onClose, onClickAddToCart, onClickPrev, onClickNext }: Props) {
   if (!product) return null
   const weight = product.weight < 1 ? `${product.weight * 1000} г` : `${product.weight} кг`
 
@@ -27,8 +27,8 @@ export function ProductDetailsDesktop({ className, categoryName, product, onClic
       <Image width={530} height={500} src={product.images[0]?.url} alt={product.name} />
       <div className={styles.content}>
         <div>
-          <div className={styles.backButton} onClick={withStopPropagation(onClickBack)}>
-            <span>{categoryName}</span>
+          <div className={styles.backButton} onClick={withStopPropagation(onClose)}>
+            <span>{closeButtonTitle}</span>
             <ArrowIcon />
           </div>
           <h3>{product.name}</h3>

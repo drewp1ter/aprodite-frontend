@@ -11,11 +11,12 @@ import styles from './ProductsList.module.scss'
 
 export interface Props {
   className?: string
+  categoryName?: string
 }
 
 const DESKTOP_WIDTH_START = 1024
 
-export const ProductsList = observer(function ProductsList({ className }: Props) {
+export const ProductsList = observer(function ProductsList({ className, categoryName }: Props) {
   const productsStore = useProductsStore()
   const cartStore = useCartStore()
   const [view, setView] = useState<ViewType>('list')
@@ -26,6 +27,8 @@ export const ProductsList = observer(function ProductsList({ className }: Props)
     const modalType = window.innerWidth < DESKTOP_WIDTH_START ? 'mobile' : 'desktop'
     setIsModalOpened(modalType)
   }
+
+  const handleCloseModal = () => setIsModalOpened(false)
 
   const productsList = productsStore.products.map((product) => {
     const ProductComponent = view === 'grid' ? ProductCard.Compact : ProductCard
@@ -40,16 +43,18 @@ export const ProductsList = observer(function ProductsList({ className }: Props)
       <div data-view={view} className={styles.content}>
         {productsList}
       </div>
-      <Modal isOpen={isModalOpened === 'desktop'} onClose={() => setIsModalOpened(false)}>
+      <Modal isOpen={isModalOpened === 'desktop'} onClose={handleCloseModal}>
         <ProductDetailsDesktop
           product={productsStore.selectedProduct}
+          closeButtonTitle={categoryName}
           onClickNext={productsStore.selectNextProduct}
           onClickPrev={productsStore.selectPrevProduct}
           onClickAddToCart={cartStore.add}
+          onClose={handleCloseModal}
         />
       </Modal>
       <FullScreen isOpen={isModalOpened === 'mobile'}>
-        <ProductDetailsMobile onClickBack={() => setIsModalOpened(false)} product={productsStore.selectedProduct} />
+        <ProductDetailsMobile onClickBack={handleCloseModal} backButtonTitle={categoryName} product={productsStore.selectedProduct} />
       </FullScreen>
     </div>
   )

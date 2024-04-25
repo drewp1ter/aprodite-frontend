@@ -4,6 +4,7 @@ import { observer } from 'mobx-react-lite'
 import { useRouter } from 'next/navigation'
 import { Button } from '@/ui'
 import { withStopPropagation } from '@/lib'
+import { getCheckOutRoute } from '@/routes'
 import { CartItem } from '..'
 import { useCartStore } from '../../store'
 import TrashIcon from './assets/trash.svg'
@@ -54,8 +55,8 @@ export const CartPage = observer(function CartPage() {
             <h4>Итого</h4>
             <h4>{cartStore.total}</h4>
           </div>
-          <Button className={styles.button}>Оформить заказ</Button>
-          <Button className={styles.button}>Назад к покупкам</Button>
+          <Button className={styles.button} onClick={withStopPropagation(router.push, getCheckOutRoute())}>Оформить заказ</Button>
+          <Button className={styles.button} onClick={withStopPropagation(router.back)} >Назад к покупкам</Button>
         </div>
       </div>
     </main>

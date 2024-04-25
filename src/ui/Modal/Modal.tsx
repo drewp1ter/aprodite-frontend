@@ -4,6 +4,7 @@ import { createPortal } from 'react-dom'
 import clsx from 'clsx'
 import CloseIcon from './assets/closeIcon.svg'
 import styles from './Modal.module.scss'
+import { withStopPropagation } from '@/lib'
 
 interface Props extends PropsWithChildren {
   className?: string
@@ -25,9 +26,9 @@ export function Modal({ children, onClose, className, isOpen = false }: Props) {
 
   const modal = (
     <>
-      <div className={styles.backdrop} onClick={onClose} />
+      <div className={styles.backdrop} onClick={withStopPropagation(onClose)} />
       <div className={clsx(styles.container, className)}>
-        <CloseIcon className={styles.closeIcon} onClick={onClose} />
+        <CloseIcon className={styles.closeIcon} onClick={withStopPropagation(onClose)} />
         {children}
       </div>
     </>

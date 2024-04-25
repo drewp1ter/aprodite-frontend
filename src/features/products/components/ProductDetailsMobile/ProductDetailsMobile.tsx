@@ -10,11 +10,12 @@ import { formatPrice } from '@/lib'
 export interface Props {
   className?: string
   product?: ProductDto
+  backButtonTitle?: string
   onClickBack?: () => void
   onClickAddToCart?: (product: ProductDto) => void
 }
 
-export function ProductDetailsMobile({ className, product, onClickBack, onClickAddToCart }: Props) {
+export function ProductDetailsMobile({ className, product, backButtonTitle, onClickBack, onClickAddToCart }: Props) {
   if (!product) return 
   const weight = product.weight < 1 ? `${product.weight * 1000} г` : `${product.weight} кг`
 
@@ -30,7 +31,7 @@ export function ProductDetailsMobile({ className, product, onClickBack, onClickA
       </div>
       <div className={styles.content}>
         <Button className={styles.backButton} onClick={onClickBack}>
-          Фастфуд
+          {backButtonTitle}
           <ArrowIcon />
         </Button>
         <div>

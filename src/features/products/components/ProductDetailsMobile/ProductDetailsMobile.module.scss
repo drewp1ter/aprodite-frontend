@@ -4,9 +4,11 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  width: 100%;
 }
 
 .imgContainer {
+  background: #F6F0E6;
   position: relative;
   flex-grow: 1;
   width: calc(100% + 1px);
