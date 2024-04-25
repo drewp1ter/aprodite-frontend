@@ -1,11 +1,13 @@
+@import '/src/styles/helpers';
+
 .viewSelector {
   position: relative;
-  width: 94px;
-  height: 38px;
+  width: rem(94);
+  height: rem(38);
   border: 1px solid #000;
   border-radius: 10px;
-  padding-left: 14px;
-  padding-right: 10px;
+  padding-left: rem(14);
+  padding-right: rem(10);
   display: flex;
   align-items: center;
   justify-content: space-between;

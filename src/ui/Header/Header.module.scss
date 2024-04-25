@@ -53,17 +53,17 @@
 }
 
 .logo {
-  width: 64px;
-  height: 64px;
+  width: rem(64);
+  height: rem(64);
   position: absolute;
-  left: 30px;
+  left: rem(30);
   top: 50%;
   transform: translateY(-50%);
 
   @include lg {
-    left: 112px;
-    width: 54px;
-    height: 54px;
+    left: rem(112);
+    width: rem(54);
+    height: rem(54);
   }
 }
 

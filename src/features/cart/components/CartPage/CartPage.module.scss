@@ -7,7 +7,6 @@
   margin-inline: auto;
   padding-bottom: rem(162);
   max-width: per(390, 430);
-  min-height: calc(100svh - rem(78));
 
   h1 {
     margin-top: rem(44);
@@ -18,16 +17,12 @@
   @include lg {
     min-height: unset;
     margin-inline: auto;
-    max-width: per(1224, 1280);
+    max-width: min(per(1224, 1280), rem(1294));
 
     h1 {
       margin-top: rem(48);
       font-size: rem(36);
     }
-  }
-
-  @include xl {
-    max-width: rem(1294);
   }
 }
 
@@ -44,6 +39,7 @@
 .content {
   @include lg {
     display: flex;
+    gap: rem(16);
     justify-content: space-between;
   }
 }

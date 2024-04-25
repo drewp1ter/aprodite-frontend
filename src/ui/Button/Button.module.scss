@@ -20,8 +20,8 @@
 }
 
 .filter {
-  width: 57px;
-  height: 42px;
+  width: rem(57);
+  height: rem(42);
   background-color: transparent;
   border: 1px solid #1e1e1e;
   border-radius: 10px;
@@ -36,8 +36,8 @@
 }
 
 .quad {
-  width: 64px;
-  height: 64px;
+  width: rem(64);
+  height: rem(64);
   border: 1px solid #1e1e1e;
   border-radius: 10px;
   background-color: transparent;
