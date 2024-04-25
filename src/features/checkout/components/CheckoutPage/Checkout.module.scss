@@ -8,6 +8,11 @@
   margin-inline: auto;
   max-width: per(390, 430);
   padding-bottom: rem(88);
+
+  @include lg {
+    margin-inline: auto;
+    max-width: min(per(1224, 1280), rem(1294));
+  }
 }
 
 .head {
@@ -21,6 +26,10 @@
     display: flex;
     justify-content: space-between;
     margin-top: rem(40);
+
+    h1 {
+      font-size: rem(36);
+    }
   }
 }
 
@@ -37,6 +46,7 @@
 
   @include lg {
     margin-top: rem(60);
+    gap: rem(16);
     display: flex;
     justify-content: space-between;
   }
@@ -75,6 +85,11 @@
   @include lg {
     display: none;
   }
+}
+
+.textarea {
+  min-width: 100%;
+  min-height: rem(36);
 }
 
 .radioButtons {

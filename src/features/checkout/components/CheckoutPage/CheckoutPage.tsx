@@ -47,14 +47,14 @@ export const CheckoutPage = observer(function CheckoutPage() {
           </Label>
           <Button className={styles.geoButton}>Определить мое местоположение</Button>
           <Label className={styles.fieldsRow} title="Адрес  *">
-            <Textarea rows={3} />
+            <Textarea className={styles.textarea} rows={3} />
           </Label>
           <Label className={styles.fieldsRow} title="Детали">
-            <Textarea rows={3} placeholder="Примечания к вашему заказу, например, особые пожелания отделу доставки." />
+            <Textarea className={styles.textarea} rows={3} placeholder="Примечания к вашему заказу, например, особые пожелания отделу доставки." />
           </Label>
           <div className={styles.radioButtons}>
             <Button.Radio name="group1">Оплата при доставке</Button.Radio>
-            <Button.Radio name="group1">
+            <Button.Radio checked name="group1">
               Банковская карта <img src={images.CARDS} />
             </Button.Radio>
           </div>

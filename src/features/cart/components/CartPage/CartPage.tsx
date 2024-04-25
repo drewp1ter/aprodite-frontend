@@ -2,7 +2,7 @@
 import { useEffect } from 'react'
 import { observer } from 'mobx-react-lite'
 import { useRouter } from 'next/navigation'
-import { Button } from '@/ui'
+import { Button, Steps } from '@/ui'
 import { withStopPropagation } from '@/lib'
 import { getCheckOutRoute } from '@/routes'
 import { CartItem } from '..'
@@ -30,7 +30,13 @@ export const CartPage = observer(function CartPage() {
 
   return (
     <main className={styles.cartPage}>
-      <h1>Корзина</h1>
+      <div className={styles.head}>
+        <h1>Корзина</h1>
+        <Steps className={styles.steps} currentStep={0}>
+          <b>Корзина</b>
+          <b>Оформление заказа</b>
+        </Steps>
+      </div>
       <h5 className={styles.clearCart} onClick={withStopPropagation(cartStore.clear)}>
         <TrashIcon />
         Очистить корзину
@@ -55,8 +61,12 @@ export const CartPage = observer(function CartPage() {
             <h4>Итого</h4>
             <h4>{cartStore.total}</h4>
           </div>
-          <Button className={styles.button} onClick={withStopPropagation(router.push, getCheckOutRoute())}>Оформить заказ</Button>
-          <Button className={styles.button} onClick={withStopPropagation(router.back)} >Назад к покупкам</Button>
+          <Button className={styles.button} onClick={withStopPropagation(router.push, getCheckOutRoute())}>
+            Оформить заказ
+          </Button>
+          <Button className={styles.button} onClick={withStopPropagation(router.back)}>
+            Назад к покупкам
+          </Button>
         </div>
       </div>
     </main>
