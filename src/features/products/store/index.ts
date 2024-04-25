@@ -1,2 +1,2 @@
 export { Products } from './products'
-export { useProductsStore } from './StoreProvider'
+export { useProductsStore } from './ProductsStoreProvider'

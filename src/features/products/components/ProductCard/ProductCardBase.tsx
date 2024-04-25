@@ -4,7 +4,7 @@ import { Component } from 'react'
 export interface Props {
   className?: string
   product: ProductDto
-  onCartButtonClick?: (productId: number) => void
+  onClickAddToCart?: (product: ProductDto) => void
   onImageClick?: (productId: number) => void
 }
 
@@ -27,9 +27,9 @@ export class ProductCardBase extends Component<Props, State> {
   }
 
   handleCartButtonClick: React.MouseEventHandler<HTMLButtonElement> = (event) => {
-    const { onCartButtonClick, product } = this.props
+    const { onClickAddToCart, product } = this.props
     event.stopPropagation()
-    onCartButtonClick && onCartButtonClick(product.id)
+    onClickAddToCart && onClickAddToCart(product)
   }
 
   imgLoader({ src }: any) {

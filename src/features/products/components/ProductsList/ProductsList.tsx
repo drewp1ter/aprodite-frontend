@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { observer } from 'mobx-react-lite'
 import clsx from 'clsx'
 import { useProductsStore } from '../../store'
+import { useCartStore } from '@/features/cart/store'
 import { Modal, FullScreen } from '@/compenents'
 import { ProductCard, ProductDetailsDesktop, ProductDetailsMobile } from '..'
 import { ViewSelector, ViewType } from '../ViewSelector'
@@ -16,6 +17,7 @@ const DESKTOP_WIDTH_START = 1024
 
 export const ProductsList = observer(function ProductsList({ className }: Props) {
   const productsStore = useProductsStore()
+  const cartStore = useCartStore()
   const [view, setView] = useState<ViewType>('list')
   const [isModalOpened, setIsModalOpened] = useState<false | 'mobile' | 'desktop'>(false)
 
@@ -27,7 +29,7 @@ export const ProductsList = observer(function ProductsList({ className }: Props)
 
   const productsList = productsStore.products.map((product) => {
     const ProductComponent = view === 'grid' ? ProductCard.Compact : ProductCard
-    return <ProductComponent key={product.id} product={product} onImageClick={handleProductClick} />
+    return <ProductComponent key={product.id} product={product} onImageClick={handleProductClick} onClickAddToCart={cartStore.add} />
   })
 
   return (
@@ -43,6 +45,7 @@ export const ProductsList = observer(function ProductsList({ className }: Props)
           product={productsStore.selectedProduct}
           onClickNext={productsStore.selectNextProduct}
           onClickPrev={productsStore.selectPrevProduct}
+          onClickAddToCart={cartStore.add}
         />
       </Modal>
       <FullScreen isOpen={isModalOpened === 'mobile'}>

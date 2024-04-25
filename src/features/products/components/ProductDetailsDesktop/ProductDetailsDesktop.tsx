@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import clsx from 'clsx'
 import { Button } from '@/compenents'
-import { formatPrice } from '@/utils/formatPrice'
+import { formatPrice, withStopPropagation } from '@/utils'
 import ArrowIcon from './assets/arrow.svg'
 import ArrowIcon2 from './assets/arrow2.svg'
 import CartIcon from './assets/cart.svg'
@@ -18,26 +18,16 @@ export interface Props {
   onClickNext?: () => void
 }
 
-const clickHandler = (callback?: () => void) => (event: React.MouseEvent<HTMLElement>) => {
-  event.stopPropagation()
-  callback && callback()
-}
-
 export function ProductDetailsDesktop({ className, categoryName, product, onClickBack, onClickAddToCart, onClickPrev, onClickNext }: Props) {
   if (!product) return null
   const weight = product.weight < 1 ? `${product.weight * 1000} г` : `${product.weight} кг`
-
-  const handleAddToCart: React.MouseEventHandler<HTMLElement> = (event) => {
-    event.stopPropagation()
-    onClickAddToCart && onClickAddToCart(product)
-  }
 
   return (
     <div className={clsx(styles.productDetails, className)}>
       <Image width={530} height={500} src={product.images[0]?.url} alt={product.name} />
       <div className={styles.content}>
         <div>
-          <div className={styles.backButton} onClick={clickHandler(onClickBack)}>
+          <div className={styles.backButton} onClick={withStopPropagation(onClickBack)}>
             <span>{categoryName}</span>
             <ArrowIcon />
           </div>
@@ -64,16 +54,16 @@ export function ProductDetailsDesktop({ className, categoryName, product, onClic
         </div>
         <div>
           <b className={styles.price}>{formatPrice(product.price)}</b>
-          <Button className={styles.button} onClick={handleAddToCart}>
+          <Button className={styles.button} onClick={withStopPropagation(onClickAddToCart, product)}>
             <CartIcon />
             <span>&nbsp;добавить в корзину</span>
           </Button>
         </div>
       </div>
-      <button className={styles.navprev} onClick={clickHandler(onClickPrev)}>
+      <button className={styles.navprev} onClick={withStopPropagation(onClickPrev)}>
         <ArrowIcon2 />
       </button>
-      <button className={styles.navnext} onClick={clickHandler(onClickNext)}>
+      <button className={styles.navnext} onClick={withStopPropagation(onClickNext)}>
         <ArrowIcon2 />
       </button>
     </div>

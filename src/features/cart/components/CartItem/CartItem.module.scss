@@ -1,6 +1,6 @@
 @import '/src/styles/helpers';
 
-.productItem {
+.cartItem {
   position: relative;
   display: flex;
   gap: rem(10);
@@ -47,7 +47,8 @@
     padding-right: rem(28);
   }
 
-  b, h5 {
+  b,
+  h5 {
     font-size: 1rem;
     line-height: 100%;
   }
@@ -56,6 +57,17 @@
     position: absolute;
     right: 0;
     top: 18px;
+    z-index: 1;
+
+    @include lg {
+      transition: 300ms ease all;
+
+      &:hover {
+        cursor: pointer;
+        background-color: #f2ac57;
+        box-shadow: 0 6px 10px rgba(255, 90, 57, 0.28);
+      }
+    }
   }
 
   @include lg {

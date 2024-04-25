@@ -1,4 +1,5 @@
-import { StoreProvider } from '@/features/products/store/StoreProvider'
+import { ProductsStoreProvider } from '@/features/products/store/ProductsStoreProvider'
+import { CartStoreProvider } from '@/features/cart/store/CartStoreProvider'
 import * as api from '@/features/products/api'
 import { Page as ProductsPage } from '@/features/products/components'
 
@@ -14,8 +15,10 @@ export default async function Page({ params }: Props) {
   const products = await api.fetchProducts(params.categoryId)
 
   return (
-    <StoreProvider initialState={{ products }}>
-      <ProductsPage categoryId={params.categoryId} />
-    </StoreProvider>
+    <ProductsStoreProvider initialState={{ products }}>
+      <CartStoreProvider>
+        <ProductsPage categoryId={params.categoryId} />
+      </CartStoreProvider>
+    </ProductsStoreProvider>
   )
 }

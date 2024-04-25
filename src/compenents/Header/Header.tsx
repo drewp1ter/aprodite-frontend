@@ -1,5 +1,6 @@
 import { Logo } from '../Logo'
 import Link from 'next/link'
+import { getCartRoute } from '@/routes'
 import styles from './Header.module.scss'
 import CartIcon from './assets/cart.svg'
 import BurgerMenu from './assets/burger-menu.svg'
@@ -31,7 +32,7 @@ export function Header() {
       </nav>
       <ul className={styles.navbar}>
         <li>
-          <Link rel="nofollow" href="#">
+          <Link rel="nofollow" href={getCartRoute()}>
             <CartIcon />
           </Link>
         </li>

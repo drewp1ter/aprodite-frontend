@@ -37,7 +37,7 @@ export interface ProviderProps extends PropsWithChildren {
   initialState: Pick<Products, 'products'>
 }
 
-export function StoreProvider({ children, initialState: initialData }: ProviderProps) {
+export function ProductsStoreProvider({ children, initialState: initialData }: ProviderProps) {
   const store = initializeStore(initialData)
 
   return <StoreContext.Provider value={store}>{children}</StoreContext.Provider>

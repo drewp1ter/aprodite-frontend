@@ -1,2 +1,2 @@
 export { CartPage } from './CartPage'
-export { ProductItem } from './ProductItem'
+export { CartItem } from './CartItem'
