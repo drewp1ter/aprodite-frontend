@@ -14,7 +14,7 @@ export const CartPage = observer(function CartPage() {
   const router = useRouter()
 
   useEffect(() => {
-    cartStore.isEmty && router.back()
+    cartStore.isEmty && router.push('/')
   }, [cartStore.isEmty])
 
   const cartItems = cartStore.items.map((item) => (

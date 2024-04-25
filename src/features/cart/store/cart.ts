@@ -16,7 +16,8 @@ export class Cart {
       increaseItemAmount: action,
       decreaseItemAmount: action,
       total: computed,
-      isEmty: computed
+      isEmty: computed,
+      itemsCount: computed
     })
 
     this.add = this.add.bind(this)
@@ -70,5 +71,9 @@ export class Cart {
 
   get isEmty(): boolean {
     return this.items.length === 0
+  }
+
+  get itemsCount(): number {
+    return this.items.reduce((result, item) => result + item.amount, 0)
   }
 }

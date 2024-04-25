@@ -1,11 +1,16 @@
+'use client'
+import { observer } from 'mobx-react-lite'
 import { Logo } from '../Logo'
 import Link from 'next/link'
 import { getCartRoute } from '@/routes'
+import { useCartStore } from '@/features/cart/store'
 import styles from './Header.module.scss'
 import CartIcon from './assets/cart.svg'
 import BurgerMenu from './assets/burger-menu.svg'
 
-export function Header() {
+export const Header = observer(function Header() {
+  const cartStore = useCartStore()
+
   return (
     <header className={styles.header}>
       <Link href="/">
@@ -32,6 +37,7 @@ export function Header() {
       </nav>
       <ul className={styles.navbar}>
         <li>
+          {cartStore.itemsCount > 0 && <div className={styles.cartItemsCount}>{cartStore.itemsCount}</div>}
           <Link rel="nofollow" href={getCartRoute()}>
             <CartIcon />
           </Link>
@@ -44,4 +50,4 @@ export function Header() {
       </ul>
     </header>
   )
-}
+})

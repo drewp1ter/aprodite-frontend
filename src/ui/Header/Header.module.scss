@@ -72,6 +72,7 @@
   align-self: stretch;
 
   li {
+    position: relative;
     align-self: stretch;
     display: flex;
   }
@@ -105,4 +106,20 @@
       display: none;
     }
   }
+}
+
+.cartItemsCount {
+  position: absolute;
+  top: rem(16);
+  right: rem(12);
+  width: rem(16);
+  height: rem(16);
+  border-radius: 50%;
+  background-color: #A6763C;
+  color: #fff;
+  font-weight: 700;
+  font-size: rem(10);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
