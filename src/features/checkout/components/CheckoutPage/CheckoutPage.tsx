@@ -25,7 +25,7 @@ function getItemsAmountSuffix(amount: number) {
 }
 
 export const CheckoutPage = observer(function CheckoutPage() {
-  const { itemsCount, total, items, clear } = useCartStore()
+  const cartStore = useCartStore()
   const { createOrder, isLoading } = useCheckoutStore()
   const formRef = useRef<HTMLFormElement>(null)
 
@@ -34,11 +34,12 @@ export const CheckoutPage = observer(function CheckoutPage() {
     for (const [key, value] of formData.entries()) {
       setValueToField(order, key, value)
     }
-    order.items = items.map((item) => ({ productId: item.id, amount: item.amount }))
-    const isOk = await flowResult(createOrder(order))
     
+    order.items = cartStore.items.map((item) => ({ productId: item.id, amount: item.amount }))
+    const isOk = await flowResult(createOrder(order))
+
     if (isOk) {
-      clear()
+      cartStore.clear()
       formRef.current?.reset()
     }
   }
@@ -101,9 +102,9 @@ export const CheckoutPage = observer(function CheckoutPage() {
             </div>
             <div>
               <span>
-                {itemsCount} товар{getItemsAmountSuffix(itemsCount)}
+                {cartStore.itemsCount} товар{getItemsAmountSuffix(cartStore.itemsCount)}
               </span>
-              <span>{total}</span>
+              <span>{cartStore.total}</span>
             </div>
           </div>
           <Button disabled={isLoading} loading={isLoading} type="submit">
