@@ -1,4 +1,5 @@
-import { makeObservable, action, computed, observable } from 'mobx'
+import { makeObservable, action, computed, observable, flow } from 'mobx'
+import { makePersistable, clearPersistedStore } from 'mobx-persist-store'
 import { enableStaticRendering } from 'mobx-react-lite'
 import { isServer, formatPrice } from '@/lib'
 
@@ -10,21 +11,25 @@ export class Cart {
   constructor() {
     makeObservable(this, {
       items: observable,
-      add: action,
-      del: action,
-      clear: action,
-      increaseItemAmount: action,
-      decreaseItemAmount: action,
+      add: action.bound,
+      del: action.bound,
+      increaseItemAmount: action.bound,
+      decreaseItemAmount: action.bound,
       total: computed,
       isEmty: computed,
-      itemsCount: computed
+      itemsCount: computed,
+      hydrate: action.bound,
+      clear: flow.bound
     })
+  }
 
-    this.add = this.add.bind(this)
-    this.del = this.del.bind(this)
-    this.clear = this.clear.bind(this)
-    this.increaseItemAmount = this.increaseItemAmount.bind(this)
-    this.decreaseItemAmount = this.decreaseItemAmount.bind(this)
+  hydrate() {
+    makePersistable(this, { name: 'cart', properties: ['items'], storage: window.localStorage })
+  }
+
+  *clear() {
+    yield clearPersistedStore(this)
+    this.items = []
   }
 
   add(product: ProductDto) {
@@ -45,10 +50,6 @@ export class Cart {
 
   del(productId: number) {
     this.items = this.items.filter((item) => item.id !== productId)
-  }
-
-  clear() {
-    this.items = []
   }
 
   increaseItemAmount(productId: number) {
