@@ -1,4 +1,4 @@
-type RequestStatus = 'initial' | 'request' | 'success' | 'failure'
+type RequestState = 'init' | 'pending' | 'done' | 'error'
 
 interface BaseDto {
   id: number
@@ -10,3 +10,4 @@ interface ImageDto extends BaseDto {
   url: string
   type: string
 }
+

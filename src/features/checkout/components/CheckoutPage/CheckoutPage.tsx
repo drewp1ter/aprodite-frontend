@@ -1,7 +1,11 @@
 'use client'
+import { useRef } from 'react'
+import { flowResult } from 'mobx'
 import { observer } from 'mobx-react-lite'
 import { useCartStore } from '@/features/cart/store'
 import { Steps, Label, Input, Button, Textarea } from '@/ui'
+import { setValueToField } from '@/lib'
+import { useCheckoutStore } from '../../store'
 import styles from './Checkout.module.scss'
 import * as images from './images'
 
@@ -21,11 +25,21 @@ function getItemsAmountSuffix(amount: number) {
 }
 
 export const CheckoutPage = observer(function CheckoutPage() {
-  const { itemsCount, total } = useCartStore()
+  const { itemsCount, total, items, clear } = useCartStore()
+  const { createOrder, isLoading } = useCheckoutStore()
+  const formRef = useRef<HTMLFormElement>(null)
 
-  const formAction = (formData: FormData) => {
-    for (const entry of formData.entries()) {
-      console.log(entry)
+  const formAction = async (formData: FormData) => {
+    let order: Partial<CreateOrderDto> = {}
+    for (const [key, value] of formData.entries()) {
+      setValueToField(order, key, value)
+    }
+    order.items = items.map((item) => ({ productId: item.id, amount: item.amount }))
+    const isOk = await flowResult(createOrder(order))
+    
+    if (isOk) {
+      clear()
+      formRef.current?.reset()
     }
   }
 
@@ -38,8 +52,8 @@ export const CheckoutPage = observer(function CheckoutPage() {
           <b>Оформление заказа</b>
         </Steps>
       </div>
-      <form className={styles.content} action={formAction}>
-        <fieldset className={styles.fieldset}>
+      <form ref={formRef} className={styles.content} action={formAction}>
+        <div className={styles.fieldset}>
           <div className={styles.nameAndPhone}>
             <Label title="Имя *">
               <Input name="name" />
@@ -49,11 +63,11 @@ export const CheckoutPage = observer(function CheckoutPage() {
             </Label>
           </div>
           <Label className={styles.fieldsRow} title="Город *">
-            <Input name="city" />
+            <Input name="address.city" />
           </Label>
           <Button className={styles.geoButton}>Определить мое местоположение</Button>
           <Label className={styles.fieldsRow} title="Адрес *">
-            <Textarea name="address" className={styles.textarea} rows={3} />
+            <Textarea name="address.address" className={styles.textarea} rows={3} />
           </Label>
           <Label className={styles.fieldsRow} title="Детали">
             <Textarea
@@ -64,9 +78,11 @@ export const CheckoutPage = observer(function CheckoutPage() {
             />
           </Label>
           <div className={styles.radioButtons}>
-            <Button.Radio value='cash' name="group1">Оплата при доставке</Button.Radio>
-            <Button.Radio value='online' name="group1">
-              Банковская карта <img src={images.CARDS} alt='banks' />
+            <Button.Radio value="cash" name="paymentType">
+              Оплата при доставке
+            </Button.Radio>
+            <Button.Radio defaultChecked value="online" name="paymentType">
+              Банковская карта <img src={images.CARDS} alt="banks" />
             </Button.Radio>
           </div>
           <div className={styles.cards}>
@@ -75,7 +91,7 @@ export const CheckoutPage = observer(function CheckoutPage() {
             <img src={images.PAYPAL} alt="paypal" />
             <img src={images.MIR} alt="mir" />
           </div>
-        </fieldset>
+        </div>
         <div className={styles.summary}>
           <h6>Ваш заказ</h6>
           <div className={styles.total}>
@@ -90,7 +106,9 @@ export const CheckoutPage = observer(function CheckoutPage() {
               <span>{total}</span>
             </div>
           </div>
-          <Button type="submit">Подтвердить заказ</Button>
+          <Button disabled={isLoading} loading={isLoading} type="submit">
+            Подтвердить заказ
+          </Button>
         </div>
       </form>
     </main>

@@ -8,9 +8,13 @@ import FishIcon from './assets/fish.svg'
 import BurgerIcon from './assets/burger.svg'
 import CupIcon from './assets/cup.svg'
 
-function Button({ children, className, ...rest }: ComponentProps<'button'>) {
+export interface Props extends ComponentProps<'button'> {
+  loading?: boolean
+}
+
+function Button({ children, className, loading, ...rest }: Props) {
   return (
-    <button className={clsx(styles.button, className)} {...rest}>
+    <button className={clsx(styles.button, className, loading && styles.loading)} {...rest}>
       {children}
     </button>
   )
