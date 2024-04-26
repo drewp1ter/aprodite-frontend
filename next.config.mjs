@@ -19,7 +19,7 @@ function hashOnlyIdent(context, _, exportName) {
 // https://webpack.js.org/loaders/css-loader/
 function upadteCssLoaderConfig(config) {
   for (const rule of config.module.rules) {
-    if (!rule.oneOf) continue
+    if (!Array.isArray(rule.oneOf)) continue
     for (const moduleLoader of rule.oneOf) {
       if (!Array.isArray(moduleLoader.use)) continue
       for (const loader of moduleLoader.use) {
