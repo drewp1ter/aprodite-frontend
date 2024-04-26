@@ -64,8 +64,8 @@ export const CheckoutPage = observer(function CheckoutPage() {
             />
           </Label>
           <div className={styles.radioButtons}>
-            <Button.Radio name="group1">Оплата при доставке</Button.Radio>
-            <Button.Radio checked name="group1">
+            <Button.Radio value='cash' name="group1">Оплата при доставке</Button.Radio>
+            <Button.Radio value='online' name="group1">
               Банковская карта <img src={images.CARDS} alt='banks' />
             </Button.Radio>
           </div>
