@@ -1,10 +1,12 @@
+'use client'
+import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import clsx from 'clsx'
 import { Button } from '@/ui'
 import CartIcon from './assets/cart.svg'
 import ArrowIcon from './assets/arrow.svg'
 import styles from './ProductDetailsMobile.module.scss'
-import pepper from './assets/pepper.png'
+import Loading from './assets/loading.svg'
 import { formatPrice } from '@/lib'
 
 export interface Props {
@@ -16,8 +18,16 @@ export interface Props {
 }
 
 export function ProductDetailsMobile({ className, product, backButtonTitle, onClickBack, onClickAddToCart }: Props) {
-  if (!product) return 
+  if (!product) return
+  const [imgLoadState, setImgLoadState] = useState<LoadState>('pending')
   const weight = product.weight < 1 ? `${product.weight * 1000} г` : `${product.weight} кг`
+
+  useEffect(() => {
+    setImgLoadState('pending')
+  }, [product.images])
+
+  const handleOnImgLoaded = () => setImgLoadState('success')
+  const handleOnImgError = () => setImgLoadState('failure')
 
   const handleAddToCart: React.MouseEventHandler<HTMLElement> = (event) => {
     event.stopPropagation()
@@ -26,8 +36,14 @@ export function ProductDetailsMobile({ className, product, backButtonTitle, onCl
 
   return (
     <div className={clsx(styles.productDetailsMobile, className)}>
-      <div className={styles.imgContainer}>
-        <Image fill src={product.images[0]?.url} alt={product.name} sizes='100vh' />
+      <div
+        className={clsx(styles.imgContainer, imgLoadState === 'failure' && 'imgPlaceholder')}
+        data-state={imgLoadState}
+        onLoad={handleOnImgLoaded}
+        onError={handleOnImgError}
+      >
+        <Loading />
+        <Image fill src={product.images[0]?.url} alt={product.name} sizes="100vh" />
       </div>
       <div className={styles.content}>
         <Button className={styles.backButton} onClick={onClickBack}>
@@ -51,7 +67,6 @@ export function ProductDetailsMobile({ className, product, backButtonTitle, onCl
               <span>Б / Ж / У</span>
               {product.proteins} г / {product.fats} г / {product.carbonhydrates} г
             </div>
-            <Image className={styles.flagImg} src={pepper.src} width={27} height={27} alt="" />
           </div>
         </div>
         <div className={styles.footer}>

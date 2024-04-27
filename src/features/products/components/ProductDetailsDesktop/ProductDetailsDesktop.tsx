@@ -8,7 +8,6 @@ import ArrowIcon from './assets/arrow.svg'
 import ArrowIcon2 from './assets/arrow2.svg'
 import Loading from './assets/loading.svg'
 import CartIcon from './assets/cart.svg'
-import pepper from './assets/pepper.png'
 import styles from './ProductDetailsDesktop.module.scss'
 
 export interface Props {
