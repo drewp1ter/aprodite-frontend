@@ -11,6 +11,43 @@
   gap: rem(34);
 }
 
+.imgContainer {
+  position: relative;
+  width: rem(530);
+  height: rem(500);
+  flex-shrink: 0;
+  
+  img {
+    transition: 300ms ease opacity;
+    opacity: 0;
+  }
+
+  svg {
+    display: block;
+    background-color: transparent;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+  }
+
+  &[data-state='success'] {
+    svg {
+      display: none;
+    }
+
+    img {
+      opacity: 1;
+    }
+  }
+
+  &[data-state='failure'] {
+    svg {
+      display: none;
+    }
+  }
+}
+
 .content {
   display: flex;
   flex-direction: column;

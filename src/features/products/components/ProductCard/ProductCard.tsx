@@ -12,11 +12,15 @@ import { ProductCardCompact } from './ProductCardCompact'
 export class ProductCard extends ProductCardBase {
   render(): ReactNode {
     const { className, product } = this.props
-    const { imgLoadStatus } = this.state
+    const { imgLoadState } = this.state
 
     return (
       <div className={clsx(styles.product, className)}>
-        <div onClick={this.handleImageClick} className={styles.imgContainer} data-status={imgLoadStatus}>
+        <div
+          onClick={this.handleImageClick}
+          className={clsx(styles.imgContainer, imgLoadState === 'failure' && 'imgPlaceholder')}
+          data-status={imgLoadState}
+        >
           <Image
             fill
             src={product.images[0]?.url}
@@ -24,7 +28,8 @@ export class ProductCard extends ProductCardBase {
             loader={this.imgLoader}
             onLoad={this.handleOnImgLoaded}
             onError={this.handleOnImgError}
-            sizes='100vh'
+            sizes="100vh"
+            loading="eager"
           />
         </div>
 

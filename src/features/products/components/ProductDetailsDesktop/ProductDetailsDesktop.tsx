@@ -1,9 +1,12 @@
+'use client'
+import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import clsx from 'clsx'
 import { Button } from '@/ui'
 import { formatPrice, withStopPropagation } from '@/lib'
 import ArrowIcon from './assets/arrow.svg'
 import ArrowIcon2 from './assets/arrow2.svg'
+import Loading from './assets/loading.svg'
 import CartIcon from './assets/cart.svg'
 import pepper from './assets/pepper.png'
 import styles from './ProductDetailsDesktop.module.scss'
@@ -20,11 +23,22 @@ export interface Props {
 
 export function ProductDetailsDesktop({ className, closeButtonTitle, product, onClose, onClickAddToCart, onClickPrev, onClickNext }: Props) {
   if (!product) return null
+  const [imgLoadState, setImgLoadState] = useState<LoadState>('pending')
   const weight = product.weight < 1 ? `${product.weight * 1000} г` : `${product.weight} кг`
+
+  useEffect(() => {
+    setImgLoadState('pending')
+  }, [product.images])
+
+  const handleOnImgLoaded = () => setImgLoadState('success')
+  const handleOnImgError = () => setImgLoadState('failure')
 
   return (
     <div className={clsx(styles.productDetails, className)}>
-      <Image width={530} height={500} src={product.images[0]?.url} alt={product.name} />
+      <div className={clsx(styles.imgContainer, imgLoadState === 'failure' && 'imgPlaceholder')} data-state={imgLoadState}>
+        <Loading />
+        <Image width={530} height={500} src={product.images[0]?.url} alt={product.name} onLoad={handleOnImgLoaded} onError={handleOnImgError} />
+      </div>
       <div className={styles.content}>
         <div>
           <div className={styles.backButton} onClick={withStopPropagation(onClose)}>
@@ -49,7 +63,6 @@ export function ProductDetailsDesktop({ className, closeButtonTitle, product, on
                 {product.proteins} г / {product.fats} г / {product.carbonhydrates} г
               </b>
             </div>
-            <Image className={styles.flagImg} src={pepper.src} width={27} height={27} alt="" />
           </div>
         </div>
         <div>

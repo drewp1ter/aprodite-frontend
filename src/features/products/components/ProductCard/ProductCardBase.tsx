@@ -9,13 +9,13 @@ export interface Props {
 }
 
 interface State {
-  readonly imgLoadStatus: 'pending' | 'success' | 'failure'
+  readonly imgLoadState: LoadState
 }
 
 export class ProductCardBase extends Component<Props, State> {
   constructor (props: Props) {
     super(props)
-    this.state = { imgLoadStatus: 'pending' }
+    this.state = { imgLoadState: 'pending' }
     this.handleOnImgError = this.handleOnImgError.bind(this)
     this.handleOnImgLoaded = this.handleOnImgLoaded.bind(this)
   }
@@ -38,11 +38,11 @@ export class ProductCardBase extends Component<Props, State> {
   }
 
   handleOnImgError() {
-    this.setState({ imgLoadStatus: 'failure' })
+    this.setState({ imgLoadState: 'failure' })
   }
 
   handleOnImgLoaded() {
-    this.setState({ imgLoadStatus: 'success' })
+    this.setState({ imgLoadState: 'success' })
   }
 
   supplementFacts({ product, className }: Pick<Props, 'product' | 'className'>) {

@@ -19,7 +19,7 @@ export function Category({ className, title, imgSrc, url }: Props) {
 
   return (
     <Link className={clsx(styles.category, className)} href={url} data-loaded={isImgLoaded}>
-      <Image fill src={imgSrc} alt={title} loader={imgLoader} onLoad={handleOnImgLoad} onError={() => {}}  />
+      <Image fill src={imgSrc} alt={title} loader={imgLoader} onLoad={handleOnImgLoad} onError={() => {}} loading='eager' />
       <h3>{title}</h3>
     </Link>
   )

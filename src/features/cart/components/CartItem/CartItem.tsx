@@ -25,7 +25,7 @@ export function CartItem({ className, item, onIncrementAmount, onDecrementAmount
 
   return (
     <div className={clsx(styles.cartItem, className)}>
-      <div className={styles.productImg} data-status={imgLoadStatus}>
+      <div className={clsx(styles.productImg, imgLoadStatus === 'failure' && 'imgPlaceholder')} data-status={imgLoadStatus}>
         {img}
       </div>
       <div className={styles.productInfo}>

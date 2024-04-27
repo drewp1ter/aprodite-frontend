@@ -1,5 +1,4 @@
 @import '/src/styles/helpers';
-@import './placeholder';
 
 .product, .productCompact {
   display: flex;
@@ -21,8 +20,6 @@
   }
 
   &[data-status='failure'] {
-    @include placeholder;
-
     img {
       opacity: 0;
     }

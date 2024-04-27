@@ -1,5 +1,4 @@
 @import '/src/styles/helpers';
-@import './placeholder';
 
 .cartItem {
   position: relative;
@@ -29,8 +28,6 @@
   }
 
   &[data-status='failure'] {
-    @include placeholder;
-    
     img {
       opacity: 0;
     }

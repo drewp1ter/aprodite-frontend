@@ -6,16 +6,16 @@ import { Button } from '@/ui'
 import { formatPrice } from '@/lib'
 import CartIcon from './assets/cart.svg'
 import styles from './ProductCard.module.scss'
-import { ProductCardBase, Props } from './ProductCardBase'
+import { ProductCardBase } from './ProductCardBase'
 
 export class ProductCardCompact extends ProductCardBase {
   render(): ReactNode {
     const { className, product } = this.props
-    const { imgLoadStatus } = this.state
+    const { imgLoadState } = this.state
 
     return (
       <div className={clsx(styles.productCompact, className)}>
-        <div className={styles.imgContainerCompact} data-status={imgLoadStatus}>
+        <div className={clsx(styles.imgContainerCompact, imgLoadState === 'failure' && 'imgPlaceholder')} data-status={imgLoadState}>
           <Image
             onClick={this.handleImageClick}
             fill
@@ -24,6 +24,7 @@ export class ProductCardCompact extends ProductCardBase {
             loader={this.imgLoader}
             onLoad={this.handleOnImgLoaded}
             onError={this.handleOnImgError}
+            loading='eager'
           />
         </div>
         <h3>{product.name}</h3>

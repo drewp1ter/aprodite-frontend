@@ -11,3 +11,4 @@ interface ImageDto extends BaseDto {
   type: string
 }
 
+type LoadState = 'pending' | 'success' | 'failure'
