@@ -108,6 +108,11 @@
     display: flex;
     align-items: center;
   }
+
+  a {
+    display: flex;
+    flex-grow: 1;
+  }
 }
 
 button.backButton {

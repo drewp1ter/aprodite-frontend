@@ -1,9 +1,12 @@
 'use client'
 import { useState, useEffect } from 'react'
+import Link from 'next/link'
 import Image from 'next/image'
 import clsx from 'clsx'
 import { Button } from '@/ui'
+import { getCartRoute } from '@/routes'
 import CartIcon from './assets/cart.svg'
+import BagIcon from './assets/bag.svg'
 import ArrowIcon from './assets/arrow.svg'
 import styles from './ProductDetailsMobile.module.scss'
 import Loading from './assets/loading.svg'
@@ -11,14 +14,21 @@ import { formatPrice } from '@/lib'
 
 export interface Props {
   className?: string
-  product?: ProductDto
+  product: ProductDto
+  isAddedToCart?: boolean
   backButtonTitle?: string
   onClickBack?: () => void
   onClickAddToCart?: (product: ProductDto) => void
 }
 
-export function ProductDetailsMobile({ className, product, backButtonTitle, onClickBack, onClickAddToCart }: Props) {
-  if (!product) return
+export function ProductDetailsMobile({
+  className,
+  product,
+  backButtonTitle,
+  isAddedToCart,
+  onClickBack,
+  onClickAddToCart
+}: Props) {
   const [imgLoadState, setImgLoadState] = useState<LoadState>('pending')
   const weight = product.weight < 1 ? `${product.weight * 1000} г` : `${product.weight} кг`
 
@@ -57,7 +67,7 @@ export function ProductDetailsMobile({ className, product, backButtonTitle, onCl
           <div className={styles.productInfo}>
             <div>
               <span>Вес</span>
-              <b>{weight} г</b>
+              <b>{weight}</b>
             </div>
             <div>
               <span>Ккал</span>
@@ -71,10 +81,19 @@ export function ProductDetailsMobile({ className, product, backButtonTitle, onCl
         </div>
         <div className={styles.footer}>
           <b>{formatPrice(product.price)}</b>
-          <Button className={styles.cartButton} onClick={handleAddToCart}>
-            <CartIcon />
-            добавить в корзину
-          </Button>
+          {isAddedToCart ? (
+            <Link href={getCartRoute()}>
+              <Button className={styles.cartButton}>
+               <CartIcon />
+                Перейти в корзину
+              </Button>
+            </Link>
+          ) : (
+            <Button className={styles.cartButton} onClick={handleAddToCart}>
+              <BagIcon />
+              Добавить в корзину
+            </Button>
+          )}
         </div>
       </div>
     </div>

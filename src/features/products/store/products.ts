@@ -1,4 +1,4 @@
-import { makeObservable, action, computed, observable } from 'mobx'
+import { makeAutoObservable } from 'mobx'
 import { enableStaticRendering} from 'mobx-react-lite'
 import { isServer } from '@/lib'
 
@@ -9,17 +9,7 @@ export class Products {
   currentIndex: number = 0
 
   constructor() {
-    makeObservable(this, {
-      products: observable,
-      selectedProduct: computed,
-      currentIndex: observable,
-      selectProductById: action,
-      hydrate: action
-    })
-
-    this.selectNextProduct = this.selectNextProduct.bind(this)
-    this.selectPrevProduct = this.selectPrevProduct.bind(this)
-    this.selectProductById = this.selectProductById.bind(this)
+    makeAutoObservable(this, undefined, { autoBind: true })
   }
 
   selectProductById(productId: number) {

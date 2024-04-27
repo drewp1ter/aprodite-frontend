@@ -1,4 +1,4 @@
-import { makeObservable, flow, computed, observable } from 'mobx'
+import { makeAutoObservable } from 'mobx'
 import { enableStaticRendering } from 'mobx-react-lite'
 import { isServer } from '@/lib'
 import * as api from '../api'
@@ -10,12 +10,7 @@ export class Checkout {
   error: string = ''
 
   constructor() {
-    makeObservable(this, {
-      state: observable,
-      error: observable,
-      createOrder: flow.bound,
-      isLoading: computed
-    })
+    makeAutoObservable(this, undefined, { autoBind: true })
   }
 
   *createOrder(order: Partial<CreateOrderDto>): Generator<Promise<boolean>> {

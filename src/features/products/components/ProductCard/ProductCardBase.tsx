@@ -4,6 +4,7 @@ import { Component } from 'react'
 export interface Props {
   className?: string
   product: ProductDto
+  isAddedToCart?: boolean
   onClickAddToCart?: (product: ProductDto) => void
   onImageClick?: (productId: number) => void
 }

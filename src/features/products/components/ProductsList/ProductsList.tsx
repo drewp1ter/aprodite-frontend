@@ -32,7 +32,15 @@ export const ProductsList = observer(function ProductsList({ className, category
 
   const productsList = productsStore.products.map((product) => {
     const ProductComponent = view === 'grid' ? ProductCard.Compact : ProductCard
-    return <ProductComponent key={product.id} product={product} onImageClick={handleProductClick} onClickAddToCart={cartStore.add} />
+    return (
+      <ProductComponent
+        key={product.id}
+        product={product}
+        onImageClick={handleProductClick}
+        isAddedToCart={cartStore.isProductInCart(product.id)}
+        onClickAddToCart={cartStore.add}
+      />
+    )
   })
 
   return (
@@ -46,6 +54,7 @@ export const ProductsList = observer(function ProductsList({ className, category
       <Modal isOpen={isModalOpened === 'desktop'} onClose={handleCloseModal}>
         <ProductDetailsDesktop
           product={productsStore.selectedProduct}
+          isAddedToCart={cartStore.isProductInCart(productsStore.selectedProduct.id)}
           closeButtonTitle={categoryName}
           onClickNext={productsStore.selectNextProduct}
           onClickPrev={productsStore.selectPrevProduct}
@@ -54,7 +63,13 @@ export const ProductsList = observer(function ProductsList({ className, category
         />
       </Modal>
       <FullScreen isOpen={isModalOpened === 'mobile'}>
-        <ProductDetailsMobile onClickBack={handleCloseModal} backButtonTitle={categoryName} product={productsStore.selectedProduct} />
+        <ProductDetailsMobile
+          product={productsStore.selectedProduct}
+          isAddedToCart={cartStore.isProductInCart(productsStore.selectedProduct.id)}
+          onClickBack={handleCloseModal}
+          backButtonTitle={categoryName}
+          onClickAddToCart={cartStore.add}
+        />
       </FullScreen>
     </div>
   )
