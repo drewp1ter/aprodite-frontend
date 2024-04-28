@@ -16,7 +16,9 @@ export class Cart {
   }
 
   *hydrate() {
+    console.log('hodrate')
     if (isHydrated(this)) return
+    console.log('hodrate2')
     yield makePersistable(this, { name: 'cartStore', properties: ['items'], storage: window.localStorage })
     this.items.map(item => this.itemsProductsIds.add(item.productId))
   }

@@ -1,6 +1,7 @@
 import { PropsWithChildren } from 'react'
 import type { Metadata } from 'next'
-import { Footer } from '@/ui'
+import { Footer, Header } from '@/ui'
+import { CartStoreProvider } from '@/features/cart/store/CartStoreProvider'
 import '@/styles/globals.scss'
 
 export const metadata: Metadata = {
@@ -12,8 +13,11 @@ export default function RootLayout({ children }: PropsWithChildren) {
   return (
     <html lang="ru">
       <body>
-        {children}
-        <Footer />
+        <CartStoreProvider>
+          <Header />
+          {children}
+          <Footer />
+        </CartStoreProvider>
       </body>
     </html>
   )

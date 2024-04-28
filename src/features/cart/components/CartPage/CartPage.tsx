@@ -20,7 +20,7 @@ export const CartPage = observer(function CartPage() {
 
   const cartItems = cartStore.items.map((item) => (
     <CartItem
-      key={item.id}
+      key={item.productId}
       item={item}
       onDecrementAmount={cartStore.decreaseItemAmount}
       onIncrementAmount={cartStore.increaseItemAmount}

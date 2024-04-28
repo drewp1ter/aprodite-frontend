@@ -1,5 +1,5 @@
 'use client'
-import { useEffect } from 'react'
+import { useEffectOnce } from 'react-use'
 import { createContext, useContext, PropsWithChildren } from 'react'
 import { Cart } from './cart'
 import { isServer } from '@/lib'
@@ -33,9 +33,9 @@ function initializeStore() {
 export function CartStoreProvider({ children }: PropsWithChildren) {
   const store = initializeStore()
 
-  useEffect(() => {
+  useEffectOnce(() => {
     store.hydrate()
-  }, [])
+  })
 
   return <StoreContext.Provider value={store}>{children}</StoreContext.Provider>
 }
