@@ -1,5 +1,5 @@
 import { makeAutoObservable } from 'mobx'
-import { makePersistable, clearPersistedStore, stopPersisting } from 'mobx-persist-store'
+import { makePersistable, clearPersistedStore, stopPersisting, isHydrated } from 'mobx-persist-store'
 import { enableStaticRendering } from 'mobx-react-lite'
 import { isServer, formatPrice } from '@/lib'
 import { CartItem } from '../models'
@@ -16,6 +16,7 @@ export class Cart {
   }
 
   *hydrate() {
+    if (isHydrated(this)) return
     yield makePersistable(this, { name: 'cartStore', properties: ['items'], storage: window.localStorage })
     this.items.map(item => this.itemsProductsIds.add(item.productId))
   }
