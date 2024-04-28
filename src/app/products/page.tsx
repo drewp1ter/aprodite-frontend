@@ -22,7 +22,7 @@ export default async function Page({ searchParams }: Props) {
   }
 
   return (
-    <ProductsStoreProvider initialState={{ products }}>
+    <ProductsStoreProvider initialState={products}>
         <ProductsPage images={images} />
     </ProductsStoreProvider>
   )

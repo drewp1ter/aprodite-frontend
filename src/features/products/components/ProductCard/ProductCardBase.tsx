@@ -1,9 +1,10 @@
 'use client'
 import { Component } from 'react'
+import { Product } from '../../models'
 
 export interface Props {
   className?: string
-  product: ProductDto
+  product: Product
   isAddedToCart?: boolean
   onClickAddToCart?: (product: ProductDto) => void
   onImageClick?: (productId: number) => void
@@ -47,12 +48,11 @@ export class ProductCardBase extends Component<Props, State> {
   }
 
   supplementFacts({ product, className }: Pick<Props, 'product' | 'className'>) {
-    const weight = product.weight < 1 ? `${product.weight * 1000} г` : `${product.weight} кг`
     return (
       <div className={className}>
         <div>
           <small>Вес</small>
-          <small>{weight}</small>
+          <small>{product.weightFormated}</small>
         </div>
         <div>
           <small>Ккал</small>

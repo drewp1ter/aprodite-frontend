@@ -1,11 +1,12 @@
 import { makeAutoObservable } from 'mobx'
-import { enableStaticRendering} from 'mobx-react-lite'
+import { enableStaticRendering } from 'mobx-react-lite'
 import { isServer } from '@/lib'
+import { Product } from '../models'
 
 enableStaticRendering(isServer())
 
 export class Products {
-  products: ProductDto[] = []
+  products: Product[] = []
   currentIndex: number = 0
 
   constructor() {
@@ -13,7 +14,7 @@ export class Products {
   }
 
   selectProductById(productId: number) {
-    this.currentIndex = this.products.findIndex(product => product.id === productId)
+    this.currentIndex = this.products.findIndex((product) => product.id === productId)
   }
 
   selectNextProduct() {
@@ -24,11 +25,11 @@ export class Products {
     if (0 < this.currentIndex) this.currentIndex--
   }
 
-  get selectedProduct() {
+  get selectedProduct(): Product | undefined {
     return this.products[this.currentIndex]
   }
 
-  hydrate({ products }: Pick<Products, 'products'>) {
-    this.products = products
+  hydrate(products: ProductDto[]) {
+    this.products = products.map((product) => Product.createFromDto(product))
   }
 }

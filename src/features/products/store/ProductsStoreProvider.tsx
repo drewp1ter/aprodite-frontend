@@ -20,7 +20,7 @@ export function useProductsStore() {
 
 let store: Products
 
-function initializeStore(initialData: Pick<Products, 'products'>) {
+function initializeStore(initialData: ProductDto[]) {
   const _store = store ?? new Products()
 
   if (initialData) {
@@ -34,7 +34,7 @@ function initializeStore(initialData: Pick<Products, 'products'>) {
 }
 
 export interface ProviderProps extends PropsWithChildren {
-  initialState: Pick<Products, 'products'>
+  initialState: ProductDto[]
 }
 
 export function ProductsStoreProvider({ children, initialState: initialData }: ProviderProps) {

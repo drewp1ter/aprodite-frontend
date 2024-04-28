@@ -2,6 +2,7 @@ import { makeAutoObservable } from 'mobx'
 import { enableStaticRendering } from 'mobx-react-lite'
 import { isServer } from '@/lib'
 import * as api from '../api'
+import { Order } from '../models'
 
 enableStaticRendering(isServer())
 
@@ -13,7 +14,7 @@ export class Checkout {
     makeAutoObservable(this, undefined, { autoBind: true })
   }
 
-  *createOrder(order: Partial<CreateOrderDto>): Generator<Promise<boolean>> {
+  *createOrder(order: Order): Generator<Promise<boolean>> {
     if (this.state === 'pending') return false
     this.state = 'pending'
     try {

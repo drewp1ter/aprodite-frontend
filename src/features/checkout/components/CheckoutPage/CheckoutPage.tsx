@@ -4,7 +4,7 @@ import { flowResult } from 'mobx'
 import { observer } from 'mobx-react-lite'
 import { useCartStore } from '@/features/cart/store'
 import { Steps, Label, Input, Button, Textarea } from '@/ui'
-import { setValueToField } from '@/lib'
+import { Order } from '../../models'
 import { useCheckoutStore } from '../../store'
 import styles from './Checkout.module.scss'
 import * as images from './images'
@@ -30,12 +30,9 @@ export const CheckoutPage = observer(function CheckoutPage() {
   const formRef = useRef<HTMLFormElement>(null)
 
   const formAction = async (formData: FormData) => {
-    let order: Partial<CreateOrderDto> = {}
-    for (const [key, value] of formData.entries()) {
-      setValueToField(order, key, value)
-    }
+    const order = Order.createFromFormData(formData)
+    order.addItems(cartStore.items) 
     
-    order.items = cartStore.items.map((item) => ({ productId: item.id, amount: item.amount }))
     const isOk = await flowResult(createOrder(order))
 
     if (isOk) {

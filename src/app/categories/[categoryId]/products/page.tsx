@@ -16,7 +16,7 @@ export default async function Page({ params }: Props) {
   const images = getCategsOrProductsImages(products)
 
   return (
-    <ProductsStoreProvider initialState={{ products }}>
+    <ProductsStoreProvider initialState={products}>
         <ProductsPage categoryId={params.categoryId} images={images} />
     </ProductsStoreProvider>
   )

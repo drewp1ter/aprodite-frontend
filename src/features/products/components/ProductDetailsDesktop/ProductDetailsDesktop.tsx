@@ -6,6 +6,7 @@ import clsx from 'clsx'
 import { Button } from '@/ui'
 import { formatPrice, withStopPropagation } from '@/lib'
 import { getCartRoute } from '@/routes'
+import { Product } from '../../models'
 import ArrowIcon from './assets/arrow.svg'
 import ArrowIcon2 from './assets/arrow2.svg'
 import Loading from './assets/loading.svg'
@@ -16,10 +17,10 @@ import styles from './ProductDetailsDesktop.module.scss'
 export interface Props {
   className?: string
   closeButtonTitle?: string
-  product: ProductDto
+  product: Product
   isAddedToCart?: boolean
   onClose?: () => void
-  onClickAddToCart?: (product: ProductDto) => void
+  onClickAddToCart?: (product: Product) => void
   onClickPrev?: () => void
   onClickNext?: () => void
 }
@@ -35,7 +36,6 @@ export function ProductDetailsDesktop({
   onClickNext
 }: Props) {
   const [imgLoadState, setImgLoadState] = useState<LoadState>('pending')
-  const weight = product.weight < 1 ? `${product.weight * 1000} г` : `${product.weight} кг`
 
   useEffect(() => {
     setImgLoadState('pending')
@@ -62,7 +62,7 @@ export function ProductDetailsDesktop({
           <div className={styles.productInfo}>
             <div>
               <span>Вес</span>
-              <b>{weight}</b>
+              <b>{product.weightFormated}</b>
             </div>
             <div>
               <span>Ккал</span>

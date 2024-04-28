@@ -1,20 +1,23 @@
 import { makeAutoObservable } from 'mobx'
-import { makePersistable, clearPersistedStore } from 'mobx-persist-store'
+import { makePersistable, clearPersistedStore, stopPersisting } from 'mobx-persist-store'
 import { enableStaticRendering } from 'mobx-react-lite'
 import { isServer, formatPrice } from '@/lib'
+import { CartItem } from '../models'
 
 enableStaticRendering(isServer())
 
 export class Cart {
   items: CartItem[] = []
-  itemsIds = new Set<number>()
+  itemsProductsIds = new Set<number>()
 
   constructor() {
     makeAutoObservable(this, undefined, { autoBind: true })
+    stopPersisting(this)
   }
 
-  hydrate() {
-    makePersistable(this, { name: 'cart', properties: ['items'], storage: window.localStorage })
+  *hydrate() {
+    yield makePersistable(this, { name: 'cartStore', properties: ['items'], storage: window.localStorage })
+    this.items.map(item => this.itemsProductsIds.add(item.productId))
   }
 
   *clear() {
@@ -23,36 +26,30 @@ export class Cart {
   }
 
   add(product: ProductDto) {
-    if (this.itemsIds.has(product.id)) return
+    if (this.itemsProductsIds.has(product.id)) return
 
-    this.itemsIds.add(product.id)
-    this.items.push({
-      id: product.id,
-      name: product.name,
-      amount: 1,
-      price: product.price,
-      imgSrc: product.images[0]?.url
-    })
+    this.itemsProductsIds.add(product.id)
+    this.items.push(CartItem.createFromProduct(product))
   }
 
   isProductInCart(productId: number) {
-    return this.itemsIds.has(productId)
+    return this.itemsProductsIds.has(productId)
   }
 
   del(productId: number) {
-    this.items = this.items.filter((item) => item.id !== productId)
-    this.itemsIds.delete(productId)
+    this.items = this.items.filter((item) => item.productId !== productId)
+    this.itemsProductsIds.delete(productId)
   }
 
   increaseItemAmount(productId: number) {
-    const cartItem = this.items.find((item) => item.id === productId)
+    const cartItem = this.items.find((item) => item.productId === productId)
     if (cartItem) {
       cartItem.amount++
     }
   }
 
   decreaseItemAmount(productId: number) {
-    const cartItem = this.items.find((item) => item.id === productId)
+    const cartItem = this.items.find((item) => item.productId === productId)
     if (cartItem && cartItem.amount > 1) {
       cartItem.amount--
     }

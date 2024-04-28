@@ -5,6 +5,7 @@ import Image from 'next/image'
 import clsx from 'clsx'
 import { Button } from '@/ui'
 import { getCartRoute } from '@/routes'
+import { Product } from '../../models'
 import CartIcon from './assets/cart.svg'
 import BagIcon from './assets/bag.svg'
 import ArrowIcon from './assets/arrow.svg'
@@ -14,11 +15,11 @@ import { formatPrice } from '@/lib'
 
 export interface Props {
   className?: string
-  product: ProductDto
+  product: Product
   isAddedToCart?: boolean
   backButtonTitle?: string
   onClickBack?: () => void
-  onClickAddToCart?: (product: ProductDto) => void
+  onClickAddToCart?: (product: Product) => void
 }
 
 export function ProductDetailsMobile({
@@ -30,7 +31,6 @@ export function ProductDetailsMobile({
   onClickAddToCart
 }: Props) {
   const [imgLoadState, setImgLoadState] = useState<LoadState>('pending')
-  const weight = product.weight < 1 ? `${product.weight * 1000} г` : `${product.weight} кг`
 
   useEffect(() => {
     setImgLoadState('pending')
@@ -67,7 +67,7 @@ export function ProductDetailsMobile({
           <div className={styles.productInfo}>
             <div>
               <span>Вес</span>
-              <b>{weight}</b>
+              <b>{product.weightFormated}</b>
             </div>
             <div>
               <span>Ккал</span>

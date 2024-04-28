@@ -51,26 +51,30 @@ export const ProductsList = observer(function ProductsList({ className, category
       <div data-view={view} className={styles.content}>
         {productsList}
       </div>
-      <Modal isOpen={isModalOpened === 'desktop'} onClose={handleCloseModal}>
-        <ProductDetailsDesktop
-          product={productsStore.selectedProduct}
-          isAddedToCart={cartStore.isProductInCart(productsStore.selectedProduct.id)}
-          closeButtonTitle={categoryName}
-          onClickNext={productsStore.selectNextProduct}
-          onClickPrev={productsStore.selectPrevProduct}
-          onClickAddToCart={cartStore.add}
-          onClose={handleCloseModal}
-        />
-      </Modal>
-      <FullScreen isOpen={isModalOpened === 'mobile'}>
-        <ProductDetailsMobile
-          product={productsStore.selectedProduct}
-          isAddedToCart={cartStore.isProductInCart(productsStore.selectedProduct.id)}
-          onClickBack={handleCloseModal}
-          backButtonTitle={categoryName}
-          onClickAddToCart={cartStore.add}
-        />
-      </FullScreen>
+      {productsStore.selectedProduct && (
+        <>
+          <Modal isOpen={isModalOpened === 'desktop'} onClose={handleCloseModal}>
+            <ProductDetailsDesktop
+              product={productsStore.selectedProduct}
+              isAddedToCart={cartStore.isProductInCart(productsStore.selectedProduct.id)}
+              closeButtonTitle={categoryName}
+              onClickNext={productsStore.selectNextProduct}
+              onClickPrev={productsStore.selectPrevProduct}
+              onClickAddToCart={cartStore.add}
+              onClose={handleCloseModal}
+            />
+          </Modal>
+          <FullScreen isOpen={isModalOpened === 'mobile'}>
+            <ProductDetailsMobile
+              product={productsStore.selectedProduct}
+              isAddedToCart={cartStore.isProductInCart(productsStore.selectedProduct.id)}
+              onClickBack={handleCloseModal}
+              backButtonTitle={categoryName}
+              onClickAddToCart={cartStore.add}
+            />
+          </FullScreen>
+        </>
+      )}
     </div>
   )
 })
