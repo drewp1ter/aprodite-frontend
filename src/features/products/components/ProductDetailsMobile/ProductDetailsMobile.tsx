@@ -11,7 +11,6 @@ import BagIcon from './assets/bag.svg'
 import ArrowIcon from './assets/arrow.svg'
 import styles from './ProductDetailsMobile.module.scss'
 import Loading from './assets/loading.svg'
-import { formatPrice } from '@/lib'
 
 export interface Props {
   className?: string
@@ -80,7 +79,7 @@ export function ProductDetailsMobile({
           </div>
         </div>
         <div className={styles.footer}>
-          <b>{formatPrice(product.price)}</b>
+          <b>{product.priceFormated}</b>
           {isAddedToCart ? (
             <Link href={getCartRoute()}>
               <Button className={styles.cartButton}>

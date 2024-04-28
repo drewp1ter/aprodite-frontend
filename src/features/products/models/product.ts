@@ -1,3 +1,5 @@
+import {formatPrice } from '@/lib'
+
 export class Product {
   readonly id: number 
   readonly name: string 
@@ -33,6 +35,10 @@ export class Product {
 
   get weightFormated(): string {
     return this.weight < 1 ? `${Math.round(this.weight * 1000)} г` : `${this.weight} кг`
+  }
+
+  get priceFormated(): string {
+    return formatPrice(this.price)
   }
 
   static createFromDto(product: ProductDto): Product {

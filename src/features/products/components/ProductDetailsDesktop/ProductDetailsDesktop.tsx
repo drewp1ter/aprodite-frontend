@@ -4,7 +4,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import clsx from 'clsx'
 import { Button } from '@/ui'
-import { formatPrice, withStopPropagation } from '@/lib'
+import { withStopPropagation } from '@/lib'
 import { getCartRoute } from '@/routes'
 import { Product } from '../../models'
 import ArrowIcon from './assets/arrow.svg'
@@ -77,7 +77,7 @@ export function ProductDetailsDesktop({
           </div>
         </div>
         <div>
-          <b className={styles.price}>{formatPrice(product.price)}</b>
+          <b className={styles.price}>{product.priceFormated}</b>
           {isAddedToCart ? (
             <Link href={getCartRoute()}>
               <Button className={styles.button}>

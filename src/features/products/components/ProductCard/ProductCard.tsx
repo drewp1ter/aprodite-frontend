@@ -6,7 +6,6 @@ import clsx from 'clsx'
 import { Button } from '@/ui'
 import CartIcon from './assets/cart.svg'
 import BagIcon from './assets/bag.svg'
-import { formatPrice } from '@/lib'
 import { getCartRoute } from '@/routes'
 import styles from './ProductCard.module.scss'
 import { ProductCardBase } from './ProductCardBase'
@@ -38,7 +37,7 @@ export class ProductCard extends ProductCardBase {
 
         <div className={styles.title}>
           <h3>{product.name}</h3>
-          <b>{formatPrice(product.price)}</b>
+          <b>{product.priceFormated}</b>
         </div>
 
         <div className={styles.footer}>
