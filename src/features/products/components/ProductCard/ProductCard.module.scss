@@ -3,6 +3,10 @@
 .product, .productCompact {
   display: flex;
   flex-direction: column;
+
+  @include lg {
+    max-width: rem(395);
+  }
 }
 
 .imgContainer, .imgContainerCompact {
