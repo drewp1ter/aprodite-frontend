@@ -16,6 +16,7 @@
   left: -1px;
 
   img {
+    object-fit: cover;
     transition: 300ms ease opacity;
     opacity: 0;
   }

@@ -1,3 +1,4 @@
+import { formatPrice } from '@/lib'
 export class CartItem implements ICartItem {
   productId: number = -1
   name: string = ''
@@ -7,6 +8,10 @@ export class CartItem implements ICartItem {
 
   constructor(partial: Partial<CartItem>) {
     Object.assign(this, partial)
+  }
+
+  get priceFormated(): string {
+    return formatPrice(this.price)
   }
 
   static createFromProduct(product: ProductDto) {

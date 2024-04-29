@@ -33,7 +33,7 @@ export function CartItem({ className, item, onIncrementAmount, onDecrementAmount
         <TrashIcon onClick={withStopPropagation(onDelete, item.productId)} />
         <h3>{item.name}</h3>
         <div className={styles.price}>
-          <h5>{item.price}</h5>
+          <h5>{item.priceFormated}</h5>
           <div className={styles.amount}>
             <Button className={styles.buttonDecrease} onClick={withStopPropagation(onDecrementAmount, item.productId)} />
             <b>{item.amount}</b>

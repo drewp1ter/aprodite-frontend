@@ -58,7 +58,9 @@ const nextConfig = {
     ]
   },
 
-  output: 'standalone'
+  output: 'standalone',
+  experimental: { optimizeCss: true },
+  poweredByHeader: false,
 }
 
 export default nextConfig
