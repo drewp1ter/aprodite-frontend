@@ -4,6 +4,7 @@ import * as categoriesApi from '@/features/home/api'
 import { Page as ProductsPage } from '@/features/products/components'
 import { getCategsOrProductsImages } from '@/lib'
 
+export const dynamic = 'force-dynamic'
 interface SearchParams {
   query: string
 }
@@ -23,7 +24,7 @@ export default async function Page({ searchParams }: Props) {
 
   return (
     <ProductsStoreProvider initialState={products}>
-        <ProductsPage images={images} />
+      <ProductsPage images={images} />
     </ProductsStoreProvider>
   )
 }

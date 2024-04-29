@@ -1,11 +1,13 @@
 const defaultConfig = {
-  apiUrl: 'http://localhost:3000/api'
+  serverApiUrl: 'http://localhost:3000/api',
+  clientApiUrl: 'http://localhost:3000/api'
 }
 
 const { env } = process
 
 export const config = assignDefined(defaultConfig, {
-  apiUrl: env.API_URL
+  serverApiUrl: env.SERVER_API_URL,
+  clientApiUrl: env.SERVER_API_URL
 })
 
 function assignDefined(target: any, ...sources: any) {

@@ -17,7 +17,7 @@ function hashOnlyIdent(context, _, exportName) {
 }
 
 // https://webpack.js.org/loaders/css-loader/
-function upadteCssLoaderConfig(config) {
+function obfuscateCssClasses(config) {
   for (const rule of config.module.rules) {
     if (!Array.isArray(rule.oneOf)) continue
     for (const moduleLoader of rule.oneOf) {
@@ -37,7 +37,7 @@ function upadteCssLoaderConfig(config) {
 
 const nextConfig = {
   webpack(config, { dev }) {
-    !dev && upadteCssLoaderConfig(config)
+    !dev && obfuscateCssClasses(config)
 
     config.module.rules.push({
       test: /\.svg$/,
@@ -56,7 +56,9 @@ const nextConfig = {
         pathname: '**'
       }
     ]
-  }
+  },
+
+  output: 'standalone'
 }
 
 export default nextConfig
