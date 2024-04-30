@@ -19,16 +19,16 @@ export const Header = observer(function Header() {
       <nav className={styles.navbarFull}>
         <menu>
           <li>
-            <a href="hotel.rgk-afrodita.ru">Гостиница</a>
+            <a href="https://hotel.rgk-afrodita.ru">Гостиница</a>
           </li>
           <li>
-            <a href="restaurant.rgk-afrodita.ru">Ресторан</a>
+            <a href="https://restaurant.rgk-afrodita.ru">Ресторан</a>
           </li>
           <li>
-            <a href="summer.rgk-afrodita.ru">Летний ресторан</a>
+            <a href="https://summer.rgk-afrodita.ru">Летний ресторан</a>
           </li>
           <li>
-            <a href="karaoke.rgk-afrodita.ru">Караоке</a>
+            <a href="https://karaoke.rgk-afrodita.ru">Караоке</a>
           </li>
           <li data-active="true">
             <a href="/">Доставка еды</a>
