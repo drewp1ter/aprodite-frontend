@@ -12,7 +12,7 @@ export const Header = observer(function Header() {
   const cartStore = useCartStore()
 
   return (
-    <header className={styles.header}>
+    <header id='header' className={styles.header}>
       <Link href="/">
         <Logo className={styles.logo} />
       </Link>

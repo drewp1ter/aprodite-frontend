@@ -1,5 +1,5 @@
 'use client'
-import { useEffectOnce } from 'react-use'
+import useEffectOnce from 'react-use/lib/useEffectOnce'
 import { createContext, useContext, PropsWithChildren } from 'react'
 import { Cart } from './cart'
 import { isServer } from '@/lib'
