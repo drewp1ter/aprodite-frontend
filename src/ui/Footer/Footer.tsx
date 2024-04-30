@@ -55,7 +55,7 @@ export function Footer() {
       </div>
       <div className={styles.subfooter}>
         <CIcon />
-        <small>2024 Афродита 🤍 от Roinext</small>
+        <small>2024 Афродита 🤍 от <a href="https://roinext.marketing/">Roinext</a></small>
       </div>
       <Logo className={styles.logo} />
     </footer>
