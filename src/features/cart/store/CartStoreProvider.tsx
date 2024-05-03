@@ -30,11 +30,16 @@ function initializeStore() {
   return _store
 }
 
+let isHydrated = false
+
 export function CartStoreProvider({ children }: PropsWithChildren) {
   const store = initializeStore()
 
   useEffectOnce(() => {
-    store.hydrate()
+    if (!isHydrated) {
+      store.hydrate()
+      isHydrated = true
+    } 
   })
 
   return <StoreContext.Provider value={store}>{children}</StoreContext.Provider>

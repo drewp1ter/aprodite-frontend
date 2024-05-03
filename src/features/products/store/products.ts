@@ -5,9 +5,11 @@ import { Product } from '../models'
 
 enableStaticRendering(isServer())
 
+export const PRODUCT_NOT_SELECTED = -1
+
 export class Products {
   products: Product[] = []
-  currentIndex: number = 0
+  currentIndex: number = PRODUCT_NOT_SELECTED
 
   constructor() {
     makeAutoObservable(this, undefined, { autoBind: true })
@@ -17,19 +19,32 @@ export class Products {
     this.currentIndex = this.products.findIndex((product) => product.id === productId)
   }
 
-  selectNextProduct() {
-    if (this.products.length > this.currentIndex + 1) this.currentIndex++
-  }
-
-  selectPrevProduct() {
-    if (0 < this.currentIndex) this.currentIndex--
-  }
-
   get selectedProduct(): Product | undefined {
     return this.products[this.currentIndex]
   }
 
+  get nextProductId(): number {
+    const nextIndex = this.currentIndex + 1
+    return this.products[nextIndex]?.id ?? this.products[this.currentIndex].id
+  }
+
+  get prevProductId(): number {
+    const prevIndex = this.currentIndex - 1
+    return this.products[prevIndex]?.id ?? this.products[this.currentIndex].id
+  }
+
+  get hasNextProduct(): boolean {
+    const nextIndex = this.currentIndex + 1
+    return !!this.products[nextIndex]
+  }
+
+  get hasPrevProduct(): boolean {
+    const prevIndex = this.currentIndex - 1
+    return !!this.products[prevIndex]
+  }
+
   hydrate(products: ProductDto[]) {
+    if (this.products.length) return
     this.products = products.map((product) => Product.createFromDto(product))
   }
 }

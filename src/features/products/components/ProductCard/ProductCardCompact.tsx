@@ -14,7 +14,11 @@ export class ProductCardCompact extends ProductCardBase {
 
     return (
       <div className={clsx(styles.productCompact, className)}>
-        <div className={clsx(styles.imgContainerCompact, imgLoadState === 'failure' && 'imgPlaceholder')} data-status={imgLoadState}>
+        <div
+          className={clsx(styles.imgContainerCompact, imgLoadState === 'failure' && 'imgPlaceholder')}
+          onClick={this.handleImageClick}
+          data-status={imgLoadState}
+        >
           <Image
             onClick={this.handleImageClick}
             fill
@@ -23,7 +27,7 @@ export class ProductCardCompact extends ProductCardBase {
             loader={this.imgLoader}
             onLoad={this.handleOnImgLoaded}
             onError={this.handleOnImgError}
-            loading='eager'
+            loading="eager"
           />
         </div>
         <h3>{product.name}</h3>

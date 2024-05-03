@@ -1,8 +1,9 @@
 'use client'
-import { useState } from 'react'
+import { useState, useEffect, useMemo } from 'react'
+import { useSearchParams, usePathname, useRouter } from 'next/navigation'
 import { observer } from 'mobx-react-lite'
 import clsx from 'clsx'
-import { useProductsStore } from '../../store'
+import { useProductsStore, PRODUCT_NOT_SELECTED } from '../../store'
 import { useCartStore } from '@/features/cart/store'
 import { Modal, FullScreen } from '@/ui'
 import { ProductCard, ProductDetailsDesktop, ProductDetailsMobile } from '..'
@@ -19,16 +20,31 @@ const DESKTOP_WIDTH_START = 1024
 export const ProductsList = observer(function ProductsList({ className, categoryName }: Props) {
   const productsStore = useProductsStore()
   const cartStore = useCartStore()
+
+  const pathname = usePathname()
+  const router = useRouter()
+  const showProductId = parseInt(useSearchParams().get('showProduct') ?? PRODUCT_NOT_SELECTED.toString(), 10)
+
+  useEffect(() => {
+    productsStore.selectProductById(showProductId)
+  }, [showProductId])
+
   const [view, setView] = useState<ViewType>('list')
-  const [isModalOpened, setIsModalOpened] = useState<false | 'mobile' | 'desktop'>(false)
 
   const handleProductClick = (productId: number) => {
-    productsStore.selectProductById(productId)
-    const modalType = window.innerWidth < DESKTOP_WIDTH_START ? 'mobile' : 'desktop'
-    setIsModalOpened(modalType)
+    router.push(`${pathname}?showProduct=${productId}`)
   }
 
-  const handleCloseModal = () => setIsModalOpened(false)
+  const handleClickNext = () => {
+    if (showProductId === productsStore.nextProductId) return
+    // router.replace isn't suitable because it causes a full page remount
+    window.history.replaceState({}, '', `${pathname}?showProduct=${productsStore.nextProductId}`)
+  }
+
+  const handleClickPrev = () => {
+    if (showProductId === productsStore.prevProductId) return
+    window.history.replaceState({}, '', `${pathname}?showProduct=${productsStore.prevProductId}`)
+  }
 
   const productsList = productsStore.products.map((product) => {
     const ProductComponent = view === 'grid' ? ProductCard.Compact : ProductCard
@@ -53,22 +69,22 @@ export const ProductsList = observer(function ProductsList({ className, category
       </div>
       {productsStore.selectedProduct && (
         <>
-          <Modal isOpen={isModalOpened === 'desktop'} onClose={handleCloseModal}>
+          <Modal isOpen={window.innerWidth >= DESKTOP_WIDTH_START} onClose={router.back}>
             <ProductDetailsDesktop
               product={productsStore.selectedProduct}
               isAddedToCart={cartStore.isProductInCart(productsStore.selectedProduct.id)}
               closeButtonTitle={categoryName}
-              onClickNext={productsStore.selectNextProduct}
-              onClickPrev={productsStore.selectPrevProduct}
+              onClickNext={handleClickNext}
+              onClickPrev={handleClickPrev}
               onClickAddToCart={cartStore.add}
-              onClose={handleCloseModal}
+              onClose={router.back}
             />
           </Modal>
-          <FullScreen isOpen={isModalOpened === 'mobile'}>
+          <FullScreen isOpen={window.innerWidth < DESKTOP_WIDTH_START}>
             <ProductDetailsMobile
               product={productsStore.selectedProduct}
               isAddedToCart={cartStore.isProductInCart(productsStore.selectedProduct.id)}
-              onClickBack={handleCloseModal}
+              onClickBack={router.back}
               backButtonTitle={categoryName}
               onClickAddToCart={cartStore.add}
             />
