@@ -16,8 +16,10 @@ import styles from './ProductDetailsDesktop.module.scss'
 export interface Props {
   className?: string
   closeButtonTitle?: string
-  product: Product
+  product?: Product
   isAddedToCart?: boolean
+  hasPrev?: boolean
+  hasNext?: boolean
   onClose?: () => void
   onClickAddToCart?: (product: Product) => void
   onClickPrev?: () => void
@@ -29,19 +31,23 @@ export function ProductDetailsDesktop({
   closeButtonTitle,
   product,
   isAddedToCart,
+  hasPrev,
+  hasNext,
   onClose,
   onClickAddToCart,
   onClickPrev,
-  onClickNext
+  onClickNext,
 }: Props) {
   const [imgLoadState, setImgLoadState] = useState<LoadState>('pending')
 
   useEffect(() => {
     setImgLoadState('pending')
-  }, [product.images])
+  }, [product?.images])
 
   const handleOnImgLoaded = () => setImgLoadState('success')
   const handleOnImgError = () => setImgLoadState('failure')
+
+  if (!product) return null
 
   return (
     <div className={clsx(styles.productDetails, className)}>
@@ -92,12 +98,12 @@ export function ProductDetailsDesktop({
           )}
         </div>
       </div>
-      <button className={styles.navprev} onClick={withStopPropagation(onClickPrev)}>
+      <Button disabled={!hasPrev} className={styles.navprev} onClick={withStopPropagation(onClickPrev)}>
         <ArrowIcon2 />
-      </button>
-      <button className={styles.navnext} onClick={withStopPropagation(onClickNext)}>
+      </Button>
+      <Button disabled={!hasNext} className={styles.navnext} onClick={withStopPropagation(onClickNext)}>
         <ArrowIcon2 />
-      </button>
+      </Button>
     </div>
   )
 }

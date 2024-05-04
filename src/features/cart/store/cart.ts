@@ -33,8 +33,8 @@ export class Cart {
     this.items.push(CartItem.createFromProduct(product))
   }
 
-  isProductInCart(productId: number) {
-    return this.itemsProductsIds.has(productId)
+  isProductInCart(productId?: number): boolean {
+    return this.itemsProductsIds.has(productId ?? -1)
   }
 
   del(productId: number) {

@@ -15,7 +15,7 @@ export function Footer() {
     <footer className={styles.footer}>
       <div className={styles.content}>
         <div className={styles.logoMini}>
-          <Image src={logo.src} fill alt="" />
+          <Image src={logo.src} fill alt="" sizes='100vw' />
         </div>
         <div className={styles.contacts}>
           <div>

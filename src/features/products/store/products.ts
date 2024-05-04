@@ -44,7 +44,14 @@ export class Products {
   }
 
   hydrate(products: ProductDto[]) {
-    if (this.products.length) return
-    this.products = products.map((product) => Product.createFromDto(product))
+    let isUpdated = false
+    for (let i = 0; i < products.length; i++) {
+      if (products[i].id !== this.products[i]?.id) {
+        isUpdated = true
+        break
+      }
+    }
+
+    if (isUpdated) this.products = products.map((product) => Product.createFromDto(product))
   }
 }

@@ -139,8 +139,6 @@
 
 .navprev,
 .navnext {
-  border: none;
-  outline: none;
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
@@ -149,14 +147,7 @@
   border-radius: 50%;
   background-color: #dfc597;
   padding: 22px 27px 22px 22px;
-  cursor: pointer;
   transition: 300ms ease all;
-
-  &:hover {
-    cursor: pointer;
-    background-color: #f2ac57;
-    box-shadow: 0 6px 10px rgba(255, 90, 57, 0.28);
-  }
 }
 
 .navprev {

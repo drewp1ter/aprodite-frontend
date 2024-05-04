@@ -67,30 +67,28 @@ export const ProductsList = observer(function ProductsList({ className, category
       <div data-view={view} className={styles.content}>
         {productsList}
       </div>
-      {productsStore.selectedProduct && (
-        <>
-          <Modal isOpen={window.innerWidth >= DESKTOP_WIDTH_START} onClose={router.back}>
-            <ProductDetailsDesktop
-              product={productsStore.selectedProduct}
-              isAddedToCart={cartStore.isProductInCart(productsStore.selectedProduct.id)}
-              closeButtonTitle={categoryName}
-              onClickNext={handleClickNext}
-              onClickPrev={handleClickPrev}
-              onClickAddToCart={cartStore.add}
-              onClose={router.back}
-            />
-          </Modal>
-          <FullScreen isOpen={window.innerWidth < DESKTOP_WIDTH_START}>
-            <ProductDetailsMobile
-              product={productsStore.selectedProduct}
-              isAddedToCart={cartStore.isProductInCart(productsStore.selectedProduct.id)}
-              onClickBack={router.back}
-              backButtonTitle={categoryName}
-              onClickAddToCart={cartStore.add}
-            />
-          </FullScreen>
-        </>
-      )}
+      <Modal isOpen={productsStore.selectedProduct && window.innerWidth >= DESKTOP_WIDTH_START} onClose={router.back}>
+        <ProductDetailsDesktop
+          product={productsStore.selectedProduct}
+          isAddedToCart={cartStore.isProductInCart(productsStore.selectedProduct?.id)}
+          closeButtonTitle={categoryName}
+          hasPrev={productsStore.hasPrevProduct}
+          hasNext={productsStore.hasNextProduct}
+          onClickNext={handleClickNext}
+          onClickPrev={handleClickPrev}
+          onClickAddToCart={cartStore.add}
+          onClose={router.back}
+        />
+      </Modal>
+      <FullScreen isOpen={window.innerWidth < DESKTOP_WIDTH_START}>
+        <ProductDetailsMobile
+          product={productsStore.selectedProduct}
+          isAddedToCart={cartStore.isProductInCart(productsStore.selectedProduct?.id)}
+          onClickBack={router.back}
+          backButtonTitle={categoryName}
+          onClickAddToCart={cartStore.add}
+        />
+      </FullScreen>
     </div>
   )
 })

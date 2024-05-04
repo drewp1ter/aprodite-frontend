@@ -1,9 +1,9 @@
-'use client'
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import clsx from 'clsx'
 import { Button } from '@/ui'
+import { withStopPropagation } from '@/lib'
 import { getCartRoute } from '@/routes'
 import { Product } from '../../models'
 import CartIcon from './assets/cart.svg'
@@ -14,7 +14,7 @@ import Loading from './assets/loading.svg'
 
 export interface Props {
   className?: string
-  product: Product
+  product?: Product
   isAddedToCart?: boolean
   backButtonTitle?: string
   onClickBack?: () => void
@@ -33,15 +33,12 @@ export function ProductDetailsMobile({
 
   useEffect(() => {
     setImgLoadState('pending')
-  }, [product.images])
+  }, [product?.images])
 
   const handleOnImgLoaded = () => setImgLoadState('success')
   const handleOnImgError = () => setImgLoadState('failure')
 
-  const handleAddToCart: React.MouseEventHandler<HTMLElement> = (event) => {
-    event.stopPropagation()
-    onClickAddToCart && onClickAddToCart(product)
-  }
+  if (!product) return null
 
   return (
     <div className={clsx(styles.productDetailsMobile, className)}>
@@ -88,7 +85,7 @@ export function ProductDetailsMobile({
               </Button>
             </Link>
           ) : (
-            <Button className={styles.cartButton} onClick={handleAddToCart}>
+            <Button className={styles.cartButton} onClick={withStopPropagation(onClickAddToCart, product)}>
               <BagIcon />
               Добавить в корзину
             </Button>
