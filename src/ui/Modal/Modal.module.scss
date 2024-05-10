@@ -7,10 +7,42 @@
   position: fixed;
   background-color: rgba(166, 118, 60, 0.47);
   backdrop-filter: blur(8px);
+
+  &[data-state='opened'] {
+    animation: fadeIn 300ms forwards;
+  }
+
+  &[data-state='closing'] {
+    animation: fadeOut 300ms forwards;
+  }
+
+  &[data-state='closed'] {
+    display: none;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
 }
 
 .container {
-  position: fixed;
+  position: absolute;
   top: 50%;
   left: 50%;
   z-index: 110;

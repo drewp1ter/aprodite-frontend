@@ -10,11 +10,15 @@ interface OrderItem {
   amount: number
 }
 
-interface CreateOrderDto {
+interface CreateOrderRequestDto {
   name: string
   phone: string
   comment: string
   paymentType: PaymentType
   address: Address
   items: OrderItem[]
+}
+
+interface CreateOrderResponseDto {
+  redirectUrl: string
 }

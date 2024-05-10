@@ -29,3 +29,21 @@
     gap: rem(52) rem(20);
   }
 }
+
+div.fullScrenn {
+  display: unset;
+}
+
+div.modal {
+  display: none;
+}
+
+@include lg {
+  div.modal {
+    display: unset;
+  }
+
+  div.fullScreen.fullScreen {
+    display: none;
+  }
+}

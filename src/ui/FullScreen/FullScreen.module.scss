@@ -1,9 +1,26 @@
 .fullScreen {
   position: fixed;
-  display: flex;
   top: 0;
   left: 0;
-  right: 0;
-  bottom: 0;
+  // right: 0;
+  // bottom: 0;
+  width: 100%;
+  height: 100%;
   z-index: 100;
+  display: none;
+
+  &[data-opened='true'] {
+    display: flex;
+    animation: fadeIn 500ms forwards;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    left: -100%;
+  }
+
+  100% {
+    left: 0;
+  }
 }

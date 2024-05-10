@@ -1,5 +1,5 @@
 'use client'
-import { useState, useEffect, useMemo } from 'react'
+import { useState, useEffect } from 'react'
 import { useSearchParams, usePathname, useRouter } from 'next/navigation'
 import { observer } from 'mobx-react-lite'
 import clsx from 'clsx'
@@ -14,8 +14,6 @@ export interface Props {
   className?: string
   categoryName?: string
 }
-
-const DESKTOP_WIDTH_START = 1024
 
 export const ProductsList = observer(function ProductsList({ className, categoryName }: Props) {
   const productsStore = useProductsStore()
@@ -32,7 +30,7 @@ export const ProductsList = observer(function ProductsList({ className, category
   const [view, setView] = useState<ViewType>('list')
 
   const handleProductClick = (productId: number) => {
-    router.push(`${pathname}?showProduct=${productId}`)
+    router.push(`${pathname}?showProduct=${productId}`, { scroll: false })
   }
 
   const handleClickNext = () => {
@@ -67,7 +65,7 @@ export const ProductsList = observer(function ProductsList({ className, category
       <div data-view={view} className={styles.content}>
         {productsList}
       </div>
-      <Modal isOpen={productsStore.selectedProduct && window.innerWidth >= DESKTOP_WIDTH_START} onClose={router.back}>
+      <Modal className={styles.modal} isOpen={!!productsStore.selectedProduct} onClose={router.back}>
         <ProductDetailsDesktop
           product={productsStore.selectedProduct}
           isAddedToCart={cartStore.isProductInCart(productsStore.selectedProduct?.id)}
@@ -80,7 +78,7 @@ export const ProductsList = observer(function ProductsList({ className, category
           onClose={router.back}
         />
       </Modal>
-      <FullScreen isOpen={window.innerWidth < DESKTOP_WIDTH_START}>
+      <FullScreen className={styles.fullScreen} isOpen={!!productsStore.selectedProduct}>
         <ProductDetailsMobile
           product={productsStore.selectedProduct}
           isAddedToCart={cartStore.isProductInCart(productsStore.selectedProduct?.id)}

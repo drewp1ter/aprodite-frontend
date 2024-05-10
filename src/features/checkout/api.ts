@@ -1,11 +1,12 @@
 import { fetchApi } from '@/lib'
 
-export async function createOrder(order: Partial<CreateOrderDto>): Promise<boolean> {
+export async function createOrder(order: Partial<CreateOrderRequestDto>): Promise<CreateOrderResponseDto> {
   const res = await fetchApi(`/orders`, {
     cache: 'no-cache',
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(order)
   })
-  return res.ok
+  if (!res.ok) throw new Error('Something went wrong...')
+  return res.json()
 }

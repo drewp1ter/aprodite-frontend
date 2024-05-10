@@ -1,6 +1,6 @@
 import { setValueToField } from '@/lib'
 
-export class Order implements CreateOrderDto {
+export class Order implements CreateOrderRequestDto {
   readonly name: string;
   readonly phone: string;
   readonly paymentType: PaymentType;
@@ -10,7 +10,7 @@ export class Order implements CreateOrderDto {
 
   constructor(partial: Partial<Order>) {
     this.name = partial.name || ''
-    this.phone = partial.paymentType || ''
+    this.phone = partial.phone || ''
     this.comment = partial.comment || ''
     this.paymentType = partial.paymentType || 'online'
     this.address = partial.address || { city: '', address: '' }

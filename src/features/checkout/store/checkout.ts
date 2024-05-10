@@ -1,4 +1,4 @@
-import { makeAutoObservable } from 'mobx'
+import { makeAutoObservable, runInAction } from 'mobx'
 import { enableStaticRendering } from 'mobx-react-lite'
 import { isServer } from '@/lib'
 import * as api from '../api'
@@ -14,17 +14,21 @@ export class Checkout {
     makeAutoObservable(this, undefined, { autoBind: true })
   }
 
-  *createOrder(order: Order): Generator<Promise<boolean>> {
-    if (this.state === 'pending') return false
+  async createOrder(order: Order): Promise<CreateOrderResponseDto | null> {
+    if (this.state === 'pending') return null
     this.state = 'pending'
     try {
-      const result = yield api.createOrder(order)
-      this.state = 'done'
+      const result = await api.createOrder(order)
+      runInAction(() => {
+        this.state = 'done'
+      })
       return result
     } catch (e: any) {
-      this.state = 'error'
-      this.error = e.message
-      return Promise.resolve(false)
+      runInAction(() => {
+        this.state = 'error'
+        this.error = e.message
+      })
+      return null
     }
   }
 

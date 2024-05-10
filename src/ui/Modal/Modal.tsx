@@ -5,7 +5,7 @@ import { createPortal } from 'react-dom'
 import clsx from 'clsx'
 import CloseIcon from './assets/closeIcon.svg'
 import styles from './Modal.module.scss'
-import { withStopPropagation, preventScroll } from '@/lib'
+import { preventScroll } from '@/lib'
 
 interface Props extends PropsWithChildren {
   className?: string
@@ -14,12 +14,25 @@ interface Props extends PropsWithChildren {
 }
 
 export function Modal({ children, onClose, className, isOpen = false }: Props) {
-  const handleEscPress = (event: KeyboardEvent) => onClose && event.key === 'Escape' && onClose()
   const [mounted, setMounted] = useState(false)
+  const [animationState, setAnimationState] = useState<'opened' | 'closed' | 'closing'>('closed')
 
   useEffect(() => {
+    setAnimationState(isOpen ? 'opened' : 'closed')
     return isOpen ? preventScroll() : undefined
   }, [isOpen])
+
+  const handleClose: React.MouseEventHandler<HTMLElement> = (event) => {
+    {
+      event.stopPropagation()
+      setAnimationState('closing')
+      setTimeout(() => {
+        onClose && onClose()
+      }, 300)
+    }
+  }
+
+  const handleEscPress = (event: any) => event.key === 'Escape' && handleClose(event)
 
   useEffectOnce(() => {
     setMounted(true)
@@ -28,16 +41,15 @@ export function Modal({ children, onClose, className, isOpen = false }: Props) {
   })
 
   const modal = (
-    <>
-      <div className={styles.backdrop} onClick={withStopPropagation(onClose)} onScroll={(event) => console.log('21')} />
-      <div className={clsx(styles.container, className)}>
-        <CloseIcon className={styles.closeIcon} onClick={withStopPropagation(onClose)} />
+    <div className={clsx(styles.backdrop, className)} onClick={handleClose} data-state={animationState}>
+      <div className={styles.container}>
+        <CloseIcon className={styles.closeIcon} onClick={handleClose} />
         {children}
       </div>
-    </>
+    </div>
   )
 
-  if (!isOpen || !mounted) return null
+  if (!mounted) return null
 
   return createPortal(modal, document.body)
 }

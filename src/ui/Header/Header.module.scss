@@ -4,12 +4,13 @@
   position: sticky;
   width: 100%;
   top: 0;
-  background: #6d645a;
+  background-color: #6d645a;
   height: rem(78);
   display: flex;
   justify-content: flex-end;
   align-items: center;
   z-index: 200;
+  transition: 500ms ease all;
 
   @include lg {
     height: rem(68);

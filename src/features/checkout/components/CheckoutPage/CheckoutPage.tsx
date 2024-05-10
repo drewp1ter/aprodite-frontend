@@ -1,6 +1,5 @@
 'use client'
 import { useRef } from 'react'
-import { flowResult } from 'mobx'
 import { observer } from 'mobx-react-lite'
 import { useCartStore } from '@/features/cart/store'
 import { Steps, Label, Input, Button, Textarea } from '@/ui'
@@ -8,37 +7,21 @@ import { Order } from '../../models'
 import { useCheckoutStore } from '../../store'
 import styles from './Checkout.module.scss'
 import * as images from './images'
-
-function getItemsAmountSuffix(amount: number) {
-  const _amount = amount > 20 ? Number(amount.toString().at(-1)) : amount
-
-  switch (_amount) {
-    case 1:
-      return ''
-    case 2:
-    case 3:
-    case 4:
-      return 'а'
-    default:
-      return 'ов'
-  }
-}
+import { useRouter } from 'next/navigation'
 
 export const CheckoutPage = observer(function CheckoutPage() {
   const cartStore = useCartStore()
   const { createOrder, isLoading } = useCheckoutStore()
   const formRef = useRef<HTMLFormElement>(null)
+  const router = useRouter()
 
   const formAction = async (formData: FormData) => {
     const order = Order.createFromFormData(formData)
-    order.addItems(cartStore.items) 
-    
-    const isOk = await flowResult(createOrder(order))
+    order.addItems(cartStore.items)
 
-    if (isOk) {
-      cartStore.clear()
-      formRef.current?.reset()
-    }
+    const response = await createOrder(order)
+
+    response?.redirectUrl && router.push(response.redirectUrl)
   }
 
   return (
@@ -54,18 +37,18 @@ export const CheckoutPage = observer(function CheckoutPage() {
         <div className={styles.fieldset}>
           <div className={styles.nameAndPhone}>
             <Label title="Имя *">
-              <Input name="name" />
+              <Input autoComplete="name" name="name" />
             </Label>
             <Label title="Телефон *">
-              <Input name="phone" />
+              <Input autoComplete="tel" name="phone" />
             </Label>
           </div>
           <Label className={styles.fieldsRow} title="Город *">
-            <Input name="address.city" />
+            <Input autoComplete="address-level1" name="address.city" />
           </Label>
           <Button className={styles.geoButton}>Определить мое местоположение</Button>
           <Label className={styles.fieldsRow} title="Адрес *">
-            <Textarea name="address.address" className={styles.textarea} rows={3} />
+            <Textarea autoComplete="address-line1" name="address.address" className={styles.textarea} rows={3} />
           </Label>
           <Label className={styles.fieldsRow} title="Детали">
             <Textarea
@@ -76,10 +59,10 @@ export const CheckoutPage = observer(function CheckoutPage() {
             />
           </Label>
           <div className={styles.radioButtons}>
-            <Button.Radio checked value="cash" name="paymentType">
+            <Button.Radio value="cash" name="paymentType">
               Оплата при доставке
             </Button.Radio>
-            <Button.Radio disabled value="online" name="paymentType">
+            <Button.Radio defaultChecked value="online" name="paymentType">
               Банковская карта <img src={images.CARDS} alt="banks" />
             </Button.Radio>
           </div>
@@ -112,3 +95,18 @@ export const CheckoutPage = observer(function CheckoutPage() {
     </main>
   )
 })
+
+function getItemsAmountSuffix(amount: number) {
+  const _amount = amount > 20 ? Number(amount.toString().at(-1)) : amount
+
+  switch (_amount) {
+    case 1:
+      return ''
+    case 2:
+    case 3:
+    case 4:
+      return 'а'
+    default:
+      return 'ов'
+  }
+}

@@ -11,5 +11,9 @@ export function getCheckOutRoute() {
 }
 
 export function getSearchProductsRoute(query: string) {
-  return `/products?query=${query}`
+  return `/products?query=${encodeURI(query)}`
+}
+
+export function getThankYouRoute() {
+  return '/thankyou'
 }

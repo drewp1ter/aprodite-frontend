@@ -1,5 +1,5 @@
 'use client'
-import { PropsWithChildren, useState, useEffect } from 'react'
+import { PropsWithChildren, useState, useEffect, useRef } from 'react'
 import { createPortal } from 'react-dom'
 import useEffectOnce from 'react-use/lib/useEffectOnce'
 import clsx from 'clsx'
@@ -13,9 +13,11 @@ export interface Props extends PropsWithChildren {
 
 export function FullScreen({ className, children, isOpen }: Props) {
   const [mounted, setMounted] = useState(false)
+  const elementRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     if (!isOpen) return
+    if (elementRef.current?.computedStyleMap().get('display')?.toString() === 'none' ) return
 
     const allowScroll = preventScroll()
     const restoreHeaderBackground = setHeaderTransparent()
@@ -30,9 +32,9 @@ export function FullScreen({ className, children, isOpen }: Props) {
     setMounted(true)
   })
 
-  const element = <div className={clsx(styles.fullScreen, className)}>{children}</div>
+  const element = <div ref={elementRef} className={clsx(styles.fullScreen, className)} data-opened={isOpen}>{children}</div>
 
-  if (!isOpen || !mounted) return null
+  if (!mounted) return null
 
   return createPortal(element, document.body)
 }
