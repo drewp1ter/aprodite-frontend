@@ -14,7 +14,13 @@ interface Props {
 }
 
 export default async function Page({ searchParams }: Props) {
-  const products = await api.fetchProductsByQuery(searchParams.query)
+  let products: ProductDto[] = []
+  try {
+    products = await api.fetchProductsByQuery(searchParams.query)
+  } catch (e) {
+    console.error(e)
+  }
+
   let images = getCategsOrProductsImages(products)
 
   if (!images.length) {

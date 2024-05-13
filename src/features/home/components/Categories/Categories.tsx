@@ -9,7 +9,13 @@ export interface Props {
 }
 
 export async function Categories({ className }: Props) {
-  const categories = await api.fetchCategories()
+  let categories: CategoryDto[] = []
+
+  try {
+    categories = await api.fetchCategories()
+  } catch (e) {
+    console.error(e)
+  }
 
   return (
     <div className={clsx(styles.categories, className)}>

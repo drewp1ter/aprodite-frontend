@@ -137,8 +137,8 @@
   margin-left: rem(21);
 }
 
-.navprev,
-.navnext {
+button.navprev,
+button.navnext {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
@@ -150,11 +150,11 @@
   transition: 300ms ease all;
 }
 
-.navprev {
+button.navprev {
   left: -40px;
 }
 
-.navnext {
+button.navnext {
   right: -40px;
   transform: translateY(-50%) rotate(180deg);
 }

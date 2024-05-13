@@ -1,4 +1,5 @@
-import { fetchApi } from '@/lib'
+import { fetchApi, RequestError } from '@/lib'
+import { HTTP_OK, HTTP_BAD_REQUEST } from '@/constants'
 
 export async function createOrder(order: Partial<CreateOrderRequestDto>): Promise<CreateOrderResponseDto> {
   const res = await fetchApi(`/orders`, {
@@ -7,6 +8,16 @@ export async function createOrder(order: Partial<CreateOrderRequestDto>): Promis
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(order)
   })
-  if (!res.ok) throw new Error('Something went wrong...')
-  return res.json()
+
+  const body = await res.json()
+
+  if (res.ok) {
+    return body
+  }
+
+  if (res.status === HTTP_BAD_REQUEST) {
+    throw new RequestError({ code: res.status, message: body.message, errors: body.errors })
+  }
+
+  throw new Error('Что то пошло не так...')
 }

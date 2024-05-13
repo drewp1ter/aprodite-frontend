@@ -1,8 +1,8 @@
 'use client'
-import { useRef } from 'react'
+import { useRef, useEffect } from 'react'
 import { observer } from 'mobx-react-lite'
 import { useCartStore } from '@/features/cart/store'
-import { Steps, Label, Input, Button, Textarea } from '@/ui'
+import { Steps, Label, Input, Button, Textarea, Error } from '@/ui'
 import { Order } from '../../models'
 import { useCheckoutStore } from '../../store'
 import styles from './Checkout.module.scss'
@@ -11,7 +11,7 @@ import { useRouter } from 'next/navigation'
 
 export const CheckoutPage = observer(function CheckoutPage() {
   const cartStore = useCartStore()
-  const { createOrder, isLoading } = useCheckoutStore()
+  const checkoutStore = useCheckoutStore()
   const formRef = useRef<HTMLFormElement>(null)
   const router = useRouter()
 
@@ -19,10 +19,18 @@ export const CheckoutPage = observer(function CheckoutPage() {
     const order = Order.createFromFormData(formData)
     order.addItems(cartStore.items)
 
-    const response = await createOrder(order)
-
+    const response = await checkoutStore.createOrder(order)
     response?.redirectUrl && router.push(response.redirectUrl)
   }
+
+  const handleClearErrorOnChange: React.ChangeEventHandler<HTMLElement> = (event) => {
+    const name = event.currentTarget.getAttribute('name') ?? ''
+    checkoutStore.clearError(name)
+  }
+
+  // useEffect(() => {
+  //   cartStore.isEmty && router.push('/')
+  // }, [cartStore.isEmty])
 
   return (
     <main className={styles.checkoutPage}>
@@ -37,10 +45,14 @@ export const CheckoutPage = observer(function CheckoutPage() {
         <div className={styles.fieldset}>
           <div className={styles.nameAndPhone}>
             <Label title="Имя *">
-              <Input autoComplete="name" name="name" />
+              <Error error={checkoutStore.formErrors.name}>
+                <Input autoComplete="name" name="name" onChange={handleClearErrorOnChange} />
+              </Error>
             </Label>
             <Label title="Телефон *">
-              <Input autoComplete="tel" name="phone" />
+              <Error error={checkoutStore.formErrors.phone}>
+                <Input autoComplete="tel" name="phone" onChange={handleClearErrorOnChange} />
+              </Error>
             </Label>
           </div>
           <Label className={styles.fieldsRow} title="Город *">
@@ -87,7 +99,7 @@ export const CheckoutPage = observer(function CheckoutPage() {
               <span>{cartStore.total}</span>
             </div>
           </div>
-          <Button disabled={isLoading} loading={isLoading} type="submit">
+          <Button disabled={checkoutStore.isLoading} loading={checkoutStore.isLoading} type="submit">
             Подтвердить заказ
           </Button>
         </div>

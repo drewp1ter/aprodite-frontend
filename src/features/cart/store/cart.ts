@@ -17,8 +17,15 @@ export class Cart {
 
   async hydrate() {
     if (isHydrated(this)) return
-    await makePersistable(this, { name: 'cartStore', properties: ['items'], storage: window.localStorage })
     
+    await makePersistable(this, {
+      name: 'cartStorage',
+      properties: [
+        { key: 'items', serialize: (items) => JSON.stringify(items), deserialize: (json) => JSON.parse(json).map((item: any) => new CartItem(item)) }
+      ],
+      storage: window.localStorage
+    })
+
     runInAction(() => {
       this.items.map((item) => this.itemsProductsIds.add(item.productId))
     })

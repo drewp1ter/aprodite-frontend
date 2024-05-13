@@ -1,13 +1,6 @@
 import Image from 'next/image'
 import { Logo } from '@/ui'
-import logo from './assets/logo_footer.png'
-import EnvelopeIcon from './assets/envelope.svg'
-import PhoneIcon from './assets/phone.svg'
-import WhatsAppIcon from './assets/whatsapp.svg'
-import InstagramIcon from './assets/instagram.svg'
-import TelegramIcon from './assets/telegram.svg'
-import CIcon from './assets/c-icon.svg'
-import VkIcon from './assets/vk.svg'
+import * as Assets from './assets'
 import styles from './Footer.module.scss'
 
 export function Footer() {
@@ -15,19 +8,19 @@ export function Footer() {
     <footer className={styles.footer}>
       <div className={styles.content}>
         <div className={styles.logoMini}>
-          <Image src={logo.src} fill alt="" sizes='100vw' />
+          <Image src={Assets.logo.src} fill alt="" sizes='100vw' />
         </div>
         <div className={styles.contacts}>
           <div>
-            <EnvelopeIcon />
+            <Assets.EnvelopeIcon />
             <a href="mailto:oooargo2012@mail.ru">oooargo2012@mail.ru</a>
           </div>
           <div>
-            <PhoneIcon />
+            <Assets.PhoneIcon />
             <a href="tel:+79180777200">+7 (918) 0-777-200</a>
           </div>
           <div>
-            <PhoneIcon />
+            <Assets.PhoneIcon />
             <a href="tel:+78615533070">+7 (861) 553-30-70</a>
           </div>
         </div>
@@ -39,22 +32,22 @@ export function Footer() {
           </p>
           <div className={styles.socialIcons}>
             <a href="#">
-              <WhatsAppIcon />
+              <Assets.WhatsAppIcon />
             </a>
             <a href="https://www.instagram.com/grk_afrodita/">
-              <InstagramIcon />
+              <Assets.InstagramIcon />
             </a>
             <a href="#">
-              <TelegramIcon />
+              <Assets.TelegramIcon />
             </a>
             <a href="https://vk.com/id288733184">
-              <VkIcon />
+              <Assets.VkIcon />
             </a>
           </div>
         </div>
       </div>
       <div className={styles.subfooter}>
-        <CIcon />
+        <Assets.CIcon />
         <small>2024 Афродита 🤍 от <a href="https://roinext.marketing/">Roinext</a></small>
       </div>
       <Logo className={styles.logo} />

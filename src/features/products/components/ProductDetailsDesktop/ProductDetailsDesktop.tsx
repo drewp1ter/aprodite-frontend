@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import Image from 'next/image'
 import clsx from 'clsx'
 import { Button } from '@/ui'
@@ -36,9 +36,10 @@ export function ProductDetailsDesktop({
   onClose,
   onClickAddToCart,
   onClickPrev,
-  onClickNext,
+  onClickNext
 }: Props) {
   const [imgLoadState, setImgLoadState] = useState<LoadState>('pending')
+  const router = useRouter()
 
   useEffect(() => {
     setImgLoadState('pending')
@@ -84,12 +85,10 @@ export function ProductDetailsDesktop({
         <div>
           <b className={styles.price}>{product.priceFormated}</b>
           {isAddedToCart ? (
-            <Link href={getCartRoute()}>
-              <Button className={styles.button}>
-                <CartIcon />
-                <span>&nbsp;Перейти в корзину</span>
-              </Button>
-            </Link>
+            <Button className={styles.button} onClick={withStopPropagation(router.push, getCartRoute())}>
+              <CartIcon />
+              <span>&nbsp;Перейти в корзину</span>
+            </Button>
           ) : (
             <Button className={styles.button} onClick={withStopPropagation(onClickAddToCart, product)}>
               <BagIcon />

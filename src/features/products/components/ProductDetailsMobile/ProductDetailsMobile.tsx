@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import Image from 'next/image'
 import clsx from 'clsx'
 import { Button } from '@/ui'
@@ -21,15 +21,9 @@ export interface Props {
   onClickAddToCart?: (product: Product) => void
 }
 
-export function ProductDetailsMobile({
-  className,
-  product,
-  backButtonTitle,
-  isAddedToCart,
-  onClickBack,
-  onClickAddToCart
-}: Props) {
+export function ProductDetailsMobile({ className, product, backButtonTitle, isAddedToCart, onClickBack, onClickAddToCart }: Props) {
   const [imgLoadState, setImgLoadState] = useState<LoadState>('pending')
+  const router = useRouter()
 
   useEffect(() => {
     setImgLoadState('pending')
@@ -78,12 +72,10 @@ export function ProductDetailsMobile({
         <div className={styles.footer}>
           <b>{product.priceFormated}</b>
           {isAddedToCart ? (
-            <Link href={getCartRoute()}>
-              <Button className={styles.cartButton}>
-               <CartIcon />
-                Перейти в корзину
-              </Button>
-            </Link>
+            <Button className={styles.cartButton} onClick={withStopPropagation(router.push, getCartRoute())}>
+              <CartIcon />
+              Перейти в корзину
+            </Button>
           ) : (
             <Button className={styles.cartButton} onClick={withStopPropagation(onClickAddToCart, product)}>
               <BagIcon />

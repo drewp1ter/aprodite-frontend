@@ -6,7 +6,8 @@ import '@/styles/globals.scss'
 
 export const metadata: Metadata = {
   title: 'РГК Афродита',
-  description: 'Ресторанно-гостиничный комплекс "Афродита"',
+  description: 'Ресторанно-гостиничный комплекс "Афродита" - Доставка еды',
+  keywords: 'доставка еды белореченск афродита еда пицца шашлык мангал',
   icons: '/favicon.ico'
 }
 

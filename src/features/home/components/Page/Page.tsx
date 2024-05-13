@@ -6,7 +6,13 @@ import * as api from '../../api'
 import styles from './Page.module.scss'
 
 export async function Page() {
-  const categories = await api.fetchCategories()
+  let categories: CategoryDto[] = []
+
+  try {
+    categories = await api.fetchCategories()
+  } catch (e) {
+    console.error(e)
+  }
 
   const categoriesImages = getCategsOrProductsImages(categories)
 

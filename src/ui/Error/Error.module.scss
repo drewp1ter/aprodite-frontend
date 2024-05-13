@@ -1,0 +1,24 @@
+@import '/src/styles/helpers';
+
+.error {
+  position: relative;
+
+  &[data-error]:not([data-error='']) {
+    &::after {
+      content: attr(data-error);
+      position: absolute;
+      left: 0;
+      font-size: rem(12);
+      top: calc(100% + rem(4));
+      color: #ff7171;
+      white-space: nowrap;
+      overflow: hidden;
+      width: 100%;
+      text-overflow: ellipsis;
+    }
+
+    input {
+      border: 1px solid #ff7171;
+    }
+  }
+}

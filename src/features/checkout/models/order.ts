@@ -9,12 +9,12 @@ export class Order implements CreateOrderRequestDto {
   readonly items: OrderItem[];
 
   constructor(partial: Partial<Order>) {
-    this.name = partial.name || ''
-    this.phone = partial.phone || ''
-    this.comment = partial.comment || ''
-    this.paymentType = partial.paymentType || 'online'
-    this.address = partial.address || { city: '', address: '' }
-    this.items = partial.items || []
+    this.name = partial.name ?? ''
+    this.phone = partial.phone ?? ''
+    this.comment = partial.comment ?? ''
+    this.paymentType = partial.paymentType ?? 'online'
+    this.address = partial.address ?? { city: '', address: '' }
+    this.items = partial.items ?? []
   }
 
   addItems(items: OrderItem[]) {

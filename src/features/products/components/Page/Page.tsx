@@ -12,8 +12,13 @@ export interface Props {
 
 export async function Page({ categoryId, images }: Props) {
   let category
+  
   if (categoryId) {
-    category = await api.fetchCategory(categoryId)
+    try {
+      category = await api.fetchCategory(categoryId)
+    } catch (e) {
+      console.error(e)
+    }
   }
 
   return (

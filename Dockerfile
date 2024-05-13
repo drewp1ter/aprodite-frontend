@@ -22,7 +22,7 @@ COPY --from=deps /app/node_modules ./node_modules
 COPY --from=deps /root/.npm /root/.npm
 COPY . .
 
-ENV NEXT_TELEMETRY_DISABLED 1
+ENV NEXT_TELEMETRY_DISABLED=1
 
 ENV NODE_ENV=production
 

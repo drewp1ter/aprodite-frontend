@@ -1,12 +1,7 @@
 import { ComponentProps } from 'react'
 import clsx from 'clsx'
+import * as Assets from './assets'
 import styles from './Button.module.scss'
-import FilterIcon from './assets/filter-icon.svg'
-import ForkKnifeIcon from './assets/fork-knife.svg'
-import PizzaIcon from './assets/pizza.svg'
-import FishIcon from './assets/fish.svg'
-import BurgerIcon from './assets/burger.svg'
-import CupIcon from './assets/cup.svg'
 
 export interface Props extends ComponentProps<'button'> {
   loading?: boolean
@@ -23,7 +18,7 @@ function Button({ children, className, loading, ...rest }: Props) {
 const ButtonFilter = function ({ className, ...rest }: Omit<ComponentProps<'button'>, 'children'>) {
   return (
     <button className={clsx(styles.filter, className)} {...rest}>
-      <FilterIcon />
+      <Assets.FilterIcon />
     </button>
   )
 }
@@ -31,7 +26,7 @@ const ButtonFilter = function ({ className, ...rest }: Omit<ComponentProps<'butt
 const ButtonForkKnife = function ({ className, ...rest }: Omit<ComponentProps<'button'>, 'children'>) {
   return (
     <button className={clsx(styles.quad, className)} {...rest}>
-      <ForkKnifeIcon />
+      <Assets.ForkKnifeIcon />
     </button>
   )
 }
@@ -39,7 +34,7 @@ const ButtonForkKnife = function ({ className, ...rest }: Omit<ComponentProps<'b
 const ButtonPizza = function ({ className, ...rest }: Omit<ComponentProps<'button'>, 'children'>) {
   return (
     <button className={clsx(styles.quad, className)} {...rest}>
-      <PizzaIcon />
+      <Assets.PizzaIcon />
     </button>
   )
 }
@@ -47,7 +42,7 @@ const ButtonPizza = function ({ className, ...rest }: Omit<ComponentProps<'butto
 const ButtonFish = function ({ className, ...rest }: Omit<ComponentProps<'button'>, 'children'>) {
   return (
     <button className={clsx(styles.quad, className)} {...rest}>
-      <FishIcon />
+      <Assets.FishIcon />
     </button>
   )
 }
@@ -55,7 +50,7 @@ const ButtonFish = function ({ className, ...rest }: Omit<ComponentProps<'button
 const ButtonBurger = function ({ className, ...rest }: Omit<ComponentProps<'button'>, 'children'>) {
   return (
     <button className={clsx(styles.quad, className)} {...rest}>
-      <BurgerIcon />
+      <Assets.BurgerIcon />
     </button>
   )
 }
@@ -63,7 +58,7 @@ const ButtonBurger = function ({ className, ...rest }: Omit<ComponentProps<'butt
 const ButtonCup = function ({ className, ...rest }: Omit<ComponentProps<'button'>, 'children'>) {
   return (
     <button className={clsx(styles.quad, className)} {...rest}>
-      <CupIcon />
+      <Assets.CupIcon />
     </button>
   )
 }

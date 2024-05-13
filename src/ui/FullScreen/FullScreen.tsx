@@ -17,7 +17,11 @@ export function FullScreen({ className, children, isOpen }: Props) {
 
   useEffect(() => {
     if (!isOpen) return
-    if (elementRef.current?.computedStyleMap().get('display')?.toString() === 'none' ) return
+    
+    if (elementRef.current) {
+      const style = getComputedStyle(elementRef.current)
+      if (style.display === 'none' ) return
+    }
 
     const allowScroll = preventScroll()
     const restoreHeaderBackground = setHeaderTransparent()

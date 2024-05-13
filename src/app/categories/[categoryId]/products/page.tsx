@@ -14,7 +14,14 @@ interface Props {
 }
 
 export default async function Page({ params }: Props) {
-  const products = await api.fetchProductsByCategoryId(params.categoryId)
+  let products: ProductDto[] = []
+  
+  try {
+    products = await api.fetchProductsByCategoryId(params.categoryId)
+  } catch (e) {
+    console.error(e)
+  }
+  
   const images = getCategsOrProductsImages(products)
 
   return (
