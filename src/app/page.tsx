@@ -1,4 +1,4 @@
-import { Page as HomePage } from '@/features/home/components'
+import { HomePage } from '@/app/components'
 
 export const dynamic = 'force-dynamic'
 

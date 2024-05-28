@@ -1,6 +1,6 @@
-import { ProductsStoreProvider } from '@/features/products/store/ProductsStoreProvider'
-import * as api from '@/features/products/api'
-import { Page as ProductsPage } from '@/features/products/components'
+import { ProductsStoreProvider } from '@/app/products/models/ProductsStoreProvider'
+import * as api from '@/app/products/api'
+import { ProductsPage } from '@/app/products/components'
 import { getCategsOrProductsImages } from '@/lib'
 
 // https://nextjs.org/docs/app/api-reference/file-conventions/route-segment-config

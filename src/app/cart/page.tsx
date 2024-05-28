@@ -1,3 +1,3 @@
-import { CartPage } from '@/features/cart/components'
+import { CartPage } from './components'
 
 export default CartPage

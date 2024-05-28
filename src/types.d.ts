@@ -1,4 +1,4 @@
-type RequestState = 'init' | 'pending' | 'done' | 'error'
+type RequestState = 'init' | 'pending' | 'succeeded' | 'failed'
 
 interface BaseDto {
   id: number

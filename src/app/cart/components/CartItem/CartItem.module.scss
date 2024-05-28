@@ -1,0 +1,145 @@
+@import '/src/styles/helpers';
+
+.cartItem {
+  position: relative;
+  display: flex;
+  gap: rem(10);
+  align-items: stretch;
+
+  @include lg {
+    gap: rem(24);
+  }
+}
+
+.productImg {
+  position: relative;
+  width: rem(124);
+  height: rem(114);
+  overflow: hidden;
+  border-radius: 20px;
+  flex-shrink: 0;
+
+  img {
+    object-fit: cover;
+  }
+
+  &[data-status='success'] {
+    @include gradient;
+  }
+
+  &[data-status='failure'] {
+    img {
+      opacity: 0;
+    }
+  }
+
+  @include lg {
+    border-radius: 30px;
+    width: rem(216);
+    height: rem(228);
+  }
+}
+
+.productInfo {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-grow: 1;
+  padding-top: rem(24);
+  padding-bottom: rem(10);
+
+  h3 {
+    font-size: 1rem;
+    line-height: 100%;
+    padding-right: rem(28);
+  }
+
+  b,
+  h5 {
+    font-size: 1rem;
+    line-height: 100%;
+  }
+
+  svg {
+    position: absolute;
+    right: 0;
+    top: 18px;
+    z-index: 1;
+
+    @include lg {
+      transition: 300ms ease all;
+
+      &:hover {
+        cursor: pointer;
+        background-color: #f2ac57;
+        box-shadow: 0 6px 10px rgba(255, 90, 57, 0.28);
+      }
+    }
+  }
+
+  @include lg {
+    padding-top: rem(18);
+    padding-bottom: rem(24);
+
+    h3 {
+      font-size: rem(20);
+    }
+
+    h5 {
+      font-size: rem(20);
+      font-weight: 400;
+    }
+  }
+}
+
+.price {
+  display: flex;
+  flex-direction: column;
+
+  @include lg {
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.amount {
+  align-self: flex-end;
+  width: rem(122);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  h5 {
+    font-size: 1rem;
+    line-height: 100%;
+  }
+}
+
+@mixin line {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  translate: -50% -50%;
+  width: rem(10);
+  border-bottom: 1px solid #fff;
+}
+
+button.buttonDecrease,
+button.buttonIncrease {
+  position: relative;
+  width: 29px;
+  height: 29px;
+  border-radius: 50%;
+
+  &::before {
+    @include line;
+  }
+}
+
+button.buttonIncrease::after {
+  @include line;
+  rotate: 90deg;
+}

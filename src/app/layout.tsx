@@ -1,7 +1,8 @@
 import { PropsWithChildren } from 'react'
+import { ToastContainer } from 'react-toastify'
 import type { Metadata } from 'next'
-import { Footer, Header } from '@/ui'
-import { CartStoreProvider } from '@/features/cart/store/CartStoreProvider'
+import { Footer, Header } from './ui'
+import { CartStoreProvider } from './cart/models/CartStoreProvider'
 import '@/styles/globals.scss'
 
 export const metadata: Metadata = {
@@ -20,6 +21,7 @@ export default function RootLayout({ children }: PropsWithChildren) {
           {children}
           <Footer />
         </CartStoreProvider>
+        <ToastContainer theme="colored" position="top-right" autoClose={5000} />
       </body>
     </html>
   )

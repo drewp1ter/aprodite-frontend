@@ -1,6 +1,0 @@
-export { ProductCard } from './ProductCard'
-export { Page } from './Page'
-export { ViewSelector } from './ViewSelector'
-export { ProductsList } from './ProductsList'
-export { ProductDetailsDesktop } from './ProductDetailsDesktop'
-export { ProductDetailsMobile } from './ProductDetailsMobile'

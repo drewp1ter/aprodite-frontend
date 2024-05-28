@@ -1,10 +1,20 @@
-import { CheckoutPage } from '@/features/checkout/components'
-import { CheckoutStoreProvider } from '@/features/checkout/store/CheckoutStoreProvider'
+import { CheckoutPage } from './components'
+import { CheckoutStoreProvider } from './models/CheckoutStoreProvider'
+import * as api from './api'
 
-export default function Page() {
+export const dynamic = 'force-dynamic'
+
+export default async function Page() {
+  let deliveryPrices: DeliveryPriceDto[] = []
+  try {
+    deliveryPrices = await api.getDeliveryPrices()
+  } catch (e) {
+    console.error(e)
+  }
+
   return (
     <CheckoutStoreProvider>
-      <CheckoutPage />
+      <CheckoutPage deliveryPrices={deliveryPrices} />
     </CheckoutStoreProvider>
   )
 }

@@ -1,10 +1,11 @@
-import { ProductsStoreProvider } from '@/features/products/store/ProductsStoreProvider'
-import * as api from '@/features/products/api'
-import * as categoriesApi from '@/features/home/api'
-import { Page as ProductsPage } from '@/features/products/components'
+import { ProductsStoreProvider } from './models/ProductsStoreProvider'
+import * as api from './api'
+import * as categoriesApi from '@/app/api'
+import { ProductsPage } from './components'
 import { getCategsOrProductsImages } from '@/lib'
 
 export const dynamic = 'force-dynamic'
+
 interface SearchParams {
   query: string
 }
